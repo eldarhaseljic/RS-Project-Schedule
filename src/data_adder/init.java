@@ -7,6 +7,7 @@ import java.util.List;
 import entiteti.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -17,7 +18,7 @@ public class init {
 		EntityManagerFactory emf;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
-
+		
 		//USMJERENJA
 		Usmjerenje usmjerenje = new Usmjerenje();
 		usmjerenje.setImeUsmjerenja("Racunarstvo i informatika");
@@ -87,10 +88,7 @@ public class init {
 		} catch (IOException e) {
 		      e.printStackTrace();
 		}
-		Query q1 = em.createQuery("SELECT u FROM Usmjerenje u");
-		List<Usmjerenje> usmjerenja = q1.getResultList();
-		for(Usmjerenje o : usmjerenja) {System.out.println(o.getIDUsmjerenja()+" "+ o.getImeUsmjerenja());}
-		System.out.println("gotovo");
+
 	}
 
 }
