@@ -3,13 +3,11 @@ package data_adder;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import entiteti.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 public class init {
 
@@ -69,6 +67,7 @@ public class init {
 		} catch (IOException e) {
 		      e.printStackTrace();
 		}
+		
 		//NASTAVNICI
 		try {	
 		      FileReader readfile = new FileReader("name_nast.txt");

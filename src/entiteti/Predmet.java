@@ -6,16 +6,24 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.TableGenerator;
 
 @Entity(name="Predmet")
 public class Predmet {
-	@Id
-	@GeneratedValue
+	@TableGenerator(
+			name = "idPred",
+			allocationSize = 1,
+			initialValue = 1)
+	@Id 
+	@GeneratedValue(
+			strategy=GenerationType.TABLE, 
+			generator="idPred")
 	@Column(name = "PREDMET_ID")
 	private int IdPredmeta;
 	

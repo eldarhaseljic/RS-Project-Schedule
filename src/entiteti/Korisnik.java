@@ -3,13 +3,21 @@ package entiteti;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.TableGenerator;
 
 @Entity(name="Korisnik")
 public class Korisnik {
 	
-	@Id
-	@GeneratedValue
+	@TableGenerator(
+			name = "idKorisnik",
+			allocationSize = 1,
+			initialValue = 1)
+	@Id 
+	@GeneratedValue(
+			strategy=GenerationType.TABLE, 
+			generator="idKorisnik")
 	@Column(name = "KORISNIK_ID")
 	private int id;
 	

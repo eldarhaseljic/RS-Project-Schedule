@@ -22,7 +22,7 @@ public class test {
 		// SELECT PRIMJER I TEST DATA ADDERA
 		Query q1 = em.createQuery("SELECT u FROM Usmjerenje u");
 		List<Usmjerenje> usmjerenja = q1.getResultList();
-		for(Usmjerenje o : usmjerenja) {System.out.println(o.getIDUsmjerenja()+" "+ o.getImeUsmjerenja());}
+		for(Usmjerenje o : usmjerenja) System.out.println(o.getIDUsmjerenja()+" "+ o.getImeUsmjerenja());
 		
 		
 		// UPDATE PRIMJER
@@ -33,13 +33,13 @@ public class test {
 		int updateCount = q3.executeUpdate();
 		if (updateCount > 0) {
 			System.out.println("Done...("+updateCount+")");
-			}
+		}
 		updateTransaction.commit();
 		
 		// SELECT PRIMJER I TEST DATA ADDERA
 		Query q2 = em.createQuery("SELECT s FROM Student s");
 		List<Student> student = q2.getResultList();
-		for(Student o : student) {System.out.println(o.getIDStud()+" "+o.getImeStud()+" "+o.getPrezStud());}
+		for(Student o : student) System.out.println(o.getIDStud()+" "+o.getImeStud()+" "+o.getPrezStud());
 	}
 
 }

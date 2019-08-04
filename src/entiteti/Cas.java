@@ -5,15 +5,23 @@ import java.time.LocalTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.TableGenerator;
 
 @Entity(name="Cas")
 public class Cas {
 	
-	@Id
-	@GeneratedValue
+	@TableGenerator(
+			name = "idCas",
+			allocationSize = 1,
+			initialValue = 1)
+	@Id 
+	@GeneratedValue(
+			strategy=GenerationType.TABLE, 
+			generator="idCas")
 	@Column(name = "CAS_ID")
 	private int IdCasa;
 	
