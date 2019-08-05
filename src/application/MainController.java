@@ -32,7 +32,7 @@ public class MainController {
 	@FXML
 	private TextField txtPassword;
 	
-	public void Login(ActionEvent event) throws Exception {
+	public void LOGIN(ActionEvent event) throws Exception {
 		
 		boolean exists = false;
 		

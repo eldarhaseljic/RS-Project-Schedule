@@ -22,5 +22,6 @@
 	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/javafx.fxml.jar"/>
 	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/javafx.controls.jar"/>
 	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/javafx.base.jar"/>
+	<classpathentry kind="lib" path="libs/jfoenix-9.0.9.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
