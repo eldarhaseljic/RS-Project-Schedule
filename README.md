@@ -3,8 +3,7 @@
 
 ## Database
 
-persistance.xml -> /src/META-INF
-	* Rename raspored , set your projects name.
+persistance.xml -> /src/META-INF *Rename raspored , set your projects name.*
 
 * Right click on project -> JPA Tools -> Generate Tables from Entities;
 * Error will occure, dont worry it's normal.
@@ -14,8 +13,8 @@ persistance.xml -> /src/META-INF
 
 ## JavaFX
 
-CREATE FILE .classpath IN ROOT FOLDER OF PROJECT 
-CHANGE */home/mahha/razvoj_projekat/raspored/libs/* -> to your path.
+* CREATE FILE .classpath IN ROOT FOLDER OF PROJECT 
+* CHANGE */home/mahha/razvoj_projekat/raspored/libs/* -> to your path.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
