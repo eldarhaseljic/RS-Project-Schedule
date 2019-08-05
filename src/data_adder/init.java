@@ -25,25 +25,25 @@ public class init {
 		em.getTransaction().commit();
 		
 		Usmjerenje usmjerenje2 = new Usmjerenje();
-		usmjerenje.setImeUsmjerenja("Telekomunikacije");
+		usmjerenje2.setImeUsmjerenja("Telekomunikacije");
 		em.getTransaction().begin();
 		em.persist(usmjerenje2);
 		em.getTransaction().commit();
 		
 		Usmjerenje usmjerenje3 = new Usmjerenje();
-		usmjerenje.setImeUsmjerenja("Automatika i robotika");
+		usmjerenje3.setImeUsmjerenja("Automatika i robotika");
 		em.getTransaction().begin();
 		em.persist(usmjerenje3);
 		em.getTransaction().commit();
 		
 		Usmjerenje usmjerenje4 = new Usmjerenje();
-		usmjerenje.setImeUsmjerenja("Elektroenergetski sistemi konverzije energije");
+		usmjerenje4.setImeUsmjerenja("Elektroenergetski sistemi konverzije energije");
 		em.getTransaction().begin();
 		em.persist(usmjerenje4);
 		em.getTransaction().commit();
 		
 		Usmjerenje usmjerenje5= new Usmjerenje();
-		usmjerenje.setImeUsmjerenja("Elektroenergetske mreze i sistemi");
+		usmjerenje5.setImeUsmjerenja("Elektroenergetske mreze i sistemi");
 		em.getTransaction().begin();
 		em.persist(usmjerenje5);
 		em.getTransaction().commit();
@@ -62,6 +62,18 @@ public class init {
 		    	  stud.setPrezStud(parts[1]);
 		    	  em.getTransaction().begin();
 		  		  em.persist(stud);
+		  		  em.getTransaction().commit();
+		  		  Korisnik studkor = new Korisnik();
+		  		  studkor.setIme(stud.getImeStud());
+		  		  studkor.setPrezime(stud.getPrezStud());
+		  		  studkor.setNastavnik(false);
+		  		  studkor.setProdekan(false);
+		  		  studkor.setEmail(stud.getImeStud()+"."+stud.getPrezStud()+"@gmail.com");
+		  		  String username = stud.getImeStud() + "." + stud.getPrezStud();
+		  		  studkor.setUsername(username.toLowerCase());
+		  		  studkor.setPassword(stud.getImeStud().toLowerCase()+"123");
+		    	  em.getTransaction().begin();
+		  		  em.persist(studkor);
 		  		  em.getTransaction().commit();
 			  }
 		} catch (IOException e) {
@@ -83,11 +95,38 @@ public class init {
 		    	  em.getTransaction().begin();
 		  		  em.persist(nast);
 		  		  em.getTransaction().commit();
+		  		  Korisnik nastkor = new Korisnik();
+		  		  nastkor.setIme(nast.getImeNast());
+		  		  nastkor.setPrezime(nast.getPrezNast());
+		  		  nastkor.setNastavnik(true);
+		  		  nastkor.setProdekan(false);
+		  		  nastkor.setEmail(nast.getImeNast()+"."+nast.getPrezNast()+"@gmail.com");
+		  		  String username = nast.getImeNast() + "." + nast.getPrezNast();
+		  		  nastkor.setUsername(username.toLowerCase());
+		  		  nastkor.setPassword(nast.getImeNast().toLowerCase()+"123");
+		    	  em.getTransaction().begin();
+		  		  em.persist(nastkor);
+		  		  em.getTransaction().commit();
 			  }
 		} catch (IOException e) {
 		      e.printStackTrace();
 		}
-
+		
+		//PRODEKAN
+		  Korisnik nastkor = new Korisnik();
+		  String ime = "Emir";
+		  String prez = "Meskovic";
+		  nastkor.setIme(ime);
+		  nastkor.setPrezime(prez);
+		  nastkor.setNastavnik(false);
+		  nastkor.setProdekan(true);
+		  nastkor.setEmail(ime+"."+prez+"@gmail.com");
+		  String username = ime + "." + prez;
+		  nastkor.setUsername(username.toLowerCase());
+		  nastkor.setPassword(ime.toLowerCase()+"123");
+		  em.getTransaction().begin();
+		  em.persist(nastkor);
+		  em.getTransaction().commit();
 	}
 
 }
