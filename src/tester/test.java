@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import entiteti.Korisnik;
 import entiteti.Student;
 import entiteti.Usmjerenje;
 
@@ -40,6 +41,12 @@ public class test {
 		Query q2 = em.createQuery("SELECT s FROM Student s");
 		List<Student> student = q2.getResultList();
 		for(Student o : student) System.out.println(o.getIDStud()+" "+o.getImeStud()+" "+o.getPrezStud());
+		
+		// SELECT PRIMJER I TEST DATA ADDERA
+		Query q4 = em.createQuery("SELECT k FROM Korisnik k WHERE k.isNastavnik=:isn");
+		q4.setParameter("isn", true);
+		List<Korisnik> korisnik = q4.getResultList();
+		for(Korisnik o : korisnik) System.out.println(o.getIme() + "-" + o.getPrezime()+ "-" + o.getUsername() + "-" + o.getPassword() + "-" + o.getEmail());
 	}
 
 }
