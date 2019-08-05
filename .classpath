@@ -13,14 +13,14 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY/Derby Embedded JDBC Driver"/>
-	<classpathentry kind="lib" path="/home/eldar/eldar/lib/src.zip"/>
-	<classpathentry kind="lib" path="/home/eldar/eldar/lib/javafx-swt.jar"/>
-	<classpathentry kind="lib" path="/home/eldar/eldar/lib/javafx.web.jar"/>
-	<classpathentry kind="lib" path="/home/eldar/eldar/lib/javafx.swing.jar"/>
-	<classpathentry kind="lib" path="/home/eldar/eldar/lib/javafx.media.jar"/>
-	<classpathentry kind="lib" path="/home/eldar/eldar/lib/javafx.graphics.jar"/>
-	<classpathentry kind="lib" path="/home/eldar/eldar/lib/javafx.fxml.jar"/>
-	<classpathentry kind="lib" path="/home/eldar/eldar/lib/javafx.controls.jar"/>
-	<classpathentry kind="lib" path="/home/eldar/eldar/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/src.zip"/>
+	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/javafx.web.jar"/>
+	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/javafx.media.jar"/>
+	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="/home/mahha/razvoj_projekat/raspored/libs/javafx.base.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
