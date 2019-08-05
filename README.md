@@ -44,3 +44,11 @@ persistance.xml -> /src/META-INF *Rename raspored , set your projects name.*
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
 ```
+
+* Run configurations for application go to arguments.
+* Under VM arguments put :
+```bash
+--module-path /home/mahha/razvoj_projekat/raspored/libs/ --add-modules=javafx.controls,javafx.fxml
+```
+* Apply
+* Run
