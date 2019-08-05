@@ -56,12 +56,12 @@ persistance.xml -> /src/META-INF *Rename raspored , set your projects name.*
 
 ## LOGIN
 
-* Student:&nbsp;
+**Student:**&nbsp;
 	*USERNAME:* ja.familia&nbsp;
 	*PASSWORD:* ja123&nbsp;
-* Nastavnik&nbsp;
+**Nastavnik:**&nbsp;
 	*USERNAME:* jo.tash&nbsp;
 	*PASSWORD:* jo123&nbsp;
-* Prodekan&nbsp;
+**Prodekan:**&nbsp;
 	*USERNAME:* emir.meskovic&nbsp;
 	*PASSWORD:* emir123&nbsp;
