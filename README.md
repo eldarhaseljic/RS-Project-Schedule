@@ -15,6 +15,7 @@ persistance.xml -> /src/META-INF *Rename raspored , set your projects name.*
 
 * CREATE FILE .classpath IN ROOT FOLDER OF PROJECT 
 * CHANGE */home/mahha/razvoj_projekat/raspored/libs/* -> to your path.
+* https://gluonhq.com/products/javafx/ download archive that is ment for you (Linux 11) and extract to your path as in previous step.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
