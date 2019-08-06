@@ -5,9 +5,9 @@ on database directory /home/mahha/MyDB with class loader jdk.internal.loader.Cla
 Loaded from file:/home/mahha/razvoj_projekat/derby.jar
 java.vendor=Ubuntu
 java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
-user.dir=/home/mahha/razvoj_projekat/raspored
+user.dir=/home/eldar/eclipse-workspace/raspored
 os.name=Linux
 os.arch=amd64
-os.version=4.15.0-55-generic
+os.version=5.0.0-23-generic
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
