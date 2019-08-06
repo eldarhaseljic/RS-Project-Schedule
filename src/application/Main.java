@@ -17,6 +17,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
+			primaryStage.setTitle("Login Screen");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
