@@ -1,36 +1,34 @@
 package application;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javax.persistence.Query;
-
-import entiteti.Korisnik;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
+import javafx.scene.control.TextField;
 
-public class ProdekanController {
+public class ProdekanController implements Initializable{
 	
 	@FXML
-	private TextField usr;
+	private Label usr;
 	
 	@FXML
-	private TextField email;
+	private Label email;
 	
 	@FXML
-	private TextField titula;
+	private Label titula ;
 	
 	public void init(ActionEvent event) throws Exception {
-		usr.setPromptText(MainController.trenutniKor.getIme()+" "+MainController.trenutniKor.getPrezime());
-		email.setPromptText(MainController.trenutniKor.getEmail());
-		titula.setPromptText("Prodekan");
 	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		usr.setText(MainController.trenutniKor.getIme()+" "+MainController.trenutniKor.getPrezime());
+		email.setText(MainController.trenutniKor.getEmail());
+		titula.setText("Prodekan");
+	}
+	
 }

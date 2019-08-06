@@ -2,13 +2,12 @@ package application;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
-import entiteti.Korisnik;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
+import entiteti.Korisnik;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +18,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 public class MainController {
-	public static Korisnik trenutniKor = new Korisnik();
 	
+	public static Korisnik trenutniKor = new Korisnik();
+
 	@FXML
 	private Label lblStatus;
 	
@@ -56,6 +55,7 @@ public class MainController {
 			if(usernameField.equals(username) && passwordField.equals(password))
 			{
 				exists = true;
+				trenutniKor = k;
 				if(!k.isNastavnik() && !k.isProdekan())
 				{
 					Parent root = FXMLLoader.load(getClass().getResource("ToDo.fxml"));
@@ -64,7 +64,6 @@ public class MainController {
 					primaryStage.setScene(scene);
 					primaryStage.show();
 				}
-				
 				else if(k.isNastavnik())
 				{
 					Parent root = FXMLLoader.load(getClass().getResource("NastavnikScreen.fxml"));
@@ -73,17 +72,16 @@ public class MainController {
 					primaryStage.setScene(scene);
 					primaryStage.show();
 				}
-				
 				else
 				{
 					Parent root = FXMLLoader.load(getClass().getResource("ProdekanScreen.fxml"));
 					Scene scene = new Scene(root);
 					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
-					showProdekan(primaryStage, k);
-					trenutniKor=k;
-					ProdekanController pc = new ProdekanController();
-					pc.init(new ActionEvent());
+					primaryStage.setWidth(600);
+					primaryStage.setHeight(395);
+					primaryStage.setTitle("Welcome Vice Dean");
+					primaryStage.show();
 				}
 				
 			}
@@ -100,11 +98,5 @@ public class MainController {
 		
 	}
 	
-	void showProdekan(Stage primaryStage, Korisnik k) {
-		primaryStage.setWidth(600);
-		primaryStage.setHeight(395);
-		primaryStage.setTitle("Welcome Vice Dean");
-		primaryStage.show();
-	}
 	
 }
