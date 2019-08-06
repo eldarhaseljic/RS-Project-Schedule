@@ -19,7 +19,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+
 public class MainController {
+	public static Korisnik trenutniKor = new Korisnik();
 	
 	@FXML
 	private Label lblStatus;
@@ -45,6 +47,7 @@ public class MainController {
 		Query q = em.createQuery("SELECT k FROM Korisnik k");
 		List<Korisnik> korisnici = q.getResultList();
 		
+		Stage primaryStage = new Stage();
 		for(Korisnik k : korisnici)
 		{
 			String username = k.getUsername();
@@ -57,9 +60,8 @@ public class MainController {
 				{
 					Parent root = FXMLLoader.load(getClass().getResource("ToDo.fxml"));
 					Scene scene = new Scene(root);
-					Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
-					//primaryStage.setResizable(true);
 					primaryStage.show();
 				}
 				
@@ -67,9 +69,8 @@ public class MainController {
 				{
 					Parent root = FXMLLoader.load(getClass().getResource("NastavnikScreen.fxml"));
 					Scene scene = new Scene(root);
-					Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
-					//primaryStage.setResizable(true);
 					primaryStage.show();
 				}
 				
@@ -77,15 +78,18 @@ public class MainController {
 				{
 					Parent root = FXMLLoader.load(getClass().getResource("ProdekanScreen.fxml"));
 					Scene scene = new Scene(root);
-					Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
-					//primaryStage.setResizable(true);
-					primaryStage.show();
+					showProdekan(primaryStage, k);
+					trenutniKor=k;
+					ProdekanController pc = new ProdekanController();
+					pc.init(new ActionEvent());
 				}
-	
+				
 			}
 			
 		}
+		
 		
 		if(!exists)
 		{
@@ -94,6 +98,13 @@ public class MainController {
 			lblStatus.setText("Login failed, please try again");
 		}
 		
+	}
+	
+	void showProdekan(Stage primaryStage, Korisnik k) {
+		primaryStage.setWidth(600);
+		primaryStage.setHeight(395);
+		primaryStage.setTitle("Welcome Vice Dean");
+		primaryStage.show();
 	}
 	
 }
