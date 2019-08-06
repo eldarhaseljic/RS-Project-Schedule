@@ -32,7 +32,7 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <Label fx:id="lblStatus" layoutX="42.0" layoutY="359.0" prefHeight="16.0" prefWidth="264.0" textFill="#bf0909" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="5.0" />
+      <Label fx:id="lblStatus" layoutX="44.0" layoutY="359.0" prefHeight="16.0" prefWidth="264.0" textFill="#bf0909" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="3.0" />
       <JFXTextField fx:id="txtUsername" focusColor="#7c0909" layoutX="67.0" layoutY="268.0" prefHeight="26.0" prefWidth="240.0" promptText="Username" style="color: #7c0909;" unFocusColor="#7e7e7e">
          <cursor>
             <Cursor fx:constant="TEXT" />

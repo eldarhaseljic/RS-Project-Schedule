@@ -78,7 +78,7 @@ public class MainController {
 					Scene scene = new Scene(root);
 					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
-					primaryStage.setWidth(600);
+					primaryStage.setWidth(602);
 					primaryStage.setHeight(395);
 					primaryStage.setTitle("Welcome Vice Dean");
 					primaryStage.show();
