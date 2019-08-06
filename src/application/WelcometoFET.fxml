@@ -76,7 +76,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <ImageView blendMode="DARKEN" cache="true" disable="true" fitHeight="22.0" fitWidth="22.0" focusTraversable="true" layoutX="38.0" layoutY="273.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true">
+      <ImageView blendMode="DARKEN" fitHeight="22.0" fitWidth="22.0" focusTraversable="true" layoutX="38.0" layoutY="273.0" nodeOrientation="INHERIT">
          <image>
             <Image url="@user.png" />
          </image>
@@ -87,7 +87,7 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <ImageView blendMode="DARKEN" cache="true" disable="true" fitHeight="22.0" fitWidth="22.0" focusTraversable="true" layoutX="37.0" layoutY="312.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true">
+      <ImageView blendMode="DARKEN" cache="true" fitHeight="22.0" fitWidth="22.0" focusTraversable="true" layoutX="37.0" layoutY="312.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true">
          <image>
             <Image url="@pass.png" />
          </image>
