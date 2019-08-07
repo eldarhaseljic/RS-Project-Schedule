@@ -67,7 +67,7 @@ public class init {
 		  		  studkor.setPrezime(stud.getPrezStud());
 		  		  studkor.setNastavnik(false);
 		  		  studkor.setProdekan(false);
-		  		  studkor.setEmail(stud.getImeStud()+"."+stud.getPrezStud()+"@fet.ba");
+		  		  studkor.setEmail((stud.getImeStud()+"."+stud.getPrezStud()+"@fet.ba").toLowerCase());
 		  		  String username = stud.getImeStud() + "." + stud.getPrezStud();
 		  		  studkor.setUsername(username.toLowerCase());
 		  		  studkor.setPassword(stud.getImeStud().toLowerCase()+"123");
@@ -117,7 +117,7 @@ public class init {
 		  			 nastkor.setProdekan(true);
 		  		  }
 		  		  
-		  		  nastkor.setEmail(nast.getImeNast()+"."+nast.getPrezNast()+"@fet.ba");
+		  		  nastkor.setEmail((nast.getImeNast()+"."+nast.getPrezNast()+"@fet.ba").toLowerCase());
 		  		  String username = nast.getImeNast() + "." + nast.getPrezNast();
 		  		  nastkor.setUsername(username.toLowerCase());
 		  		  nastkor.setPassword(nast.getImeNast().toLowerCase()+"123");
