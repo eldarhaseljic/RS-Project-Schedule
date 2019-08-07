@@ -80,6 +80,7 @@ public class init {
 		  		  em.persist(studkor);
 		  		  em.getTransaction().commit();
 			  }
+		      readbuffer.close();
 		} catch (IOException e) {
 		      e.printStackTrace();
 		}
@@ -130,9 +131,11 @@ public class init {
 		  		  em.persist(nastkor);
 		  		  em.getTransaction().commit();
 			  }
+		      readbuffer.close();
 		} catch (IOException e) {
 		      e.printStackTrace();
 		}
+		
 		/*
 		//PRODEKAN
 		  Korisnik nastkor = new Korisnik();

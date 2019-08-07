@@ -44,6 +44,7 @@ public class MainController {
 		EntityManager em = emf.createEntityManager();
 		
 		Query q = em.createQuery("SELECT k FROM Korisnik k");
+		@SuppressWarnings("unchecked")
 		List<Korisnik> korisnici = q.getResultList();
 		
 		Stage primaryStage = new Stage();
