@@ -2,13 +2,12 @@ package application;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
-import entiteti.Korisnik;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
+import entiteti.Korisnik;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +20,8 @@ import javafx.stage.Stage;
 
 public class MainController {
 	
+	public static Korisnik trenutniKor = new Korisnik();
+
 	@FXML
 	private Label lblStatus;
 	
@@ -45,6 +46,7 @@ public class MainController {
 		Query q = em.createQuery("SELECT k FROM Korisnik k");
 		List<Korisnik> korisnici = q.getResultList();
 		
+		Stage primaryStage = new Stage();
 		for(Korisnik k : korisnici)
 		{
 			String username = k.getUsername();
@@ -53,39 +55,39 @@ public class MainController {
 			if(usernameField.equals(username) && passwordField.equals(password))
 			{
 				exists = true;
+				trenutniKor = k;
 				if(!k.isNastavnik() && !k.isProdekan())
 				{
 					Parent root = FXMLLoader.load(getClass().getResource("ToDo.fxml"));
 					Scene scene = new Scene(root);
-					Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
-					//primaryStage.setResizable(true);
 					primaryStage.show();
 				}
-				
 				else if(k.isNastavnik())
 				{
 					Parent root = FXMLLoader.load(getClass().getResource("NastavnikScreen.fxml"));
 					Scene scene = new Scene(root);
-					Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
-					//primaryStage.setResizable(true);
 					primaryStage.show();
 				}
-				
 				else
 				{
 					Parent root = FXMLLoader.load(getClass().getResource("ProdekanScreen.fxml"));
 					Scene scene = new Scene(root);
-					Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
-					//primaryStage.setResizable(true);
+					primaryStage.setWidth(602);
+					primaryStage.setHeight(395);
+					primaryStage.setTitle("Welcome Vice Dean");
 					primaryStage.show();
 				}
-	
+				
 			}
 			
 		}
+		
 		
 		if(!exists)
 		{
@@ -95,5 +97,6 @@ public class MainController {
 		}
 		
 	}
+	
 	
 }

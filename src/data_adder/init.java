@@ -67,7 +67,7 @@ public class init {
 		  		  studkor.setPrezime(stud.getPrezStud());
 		  		  studkor.setNastavnik(false);
 		  		  studkor.setProdekan(false);
-		  		  studkor.setEmail(stud.getImeStud()+"."+stud.getPrezStud()+"@gmail.com");
+		  		  studkor.setEmail(stud.getImeStud()+"."+stud.getPrezStud()+"@fet.ba");
 		  		  String username = stud.getImeStud() + "." + stud.getPrezStud();
 		  		  studkor.setUsername(username.toLowerCase());
 		  		  studkor.setPassword(stud.getImeStud().toLowerCase()+"123");
@@ -97,9 +97,27 @@ public class init {
 		  		  Korisnik nastkor = new Korisnik();
 		  		  nastkor.setIme(nast.getImeNast());
 		  		  nastkor.setPrezime(nast.getPrezNast());
-		  		  nastkor.setNastavnik(true);
-		  		  nastkor.setProdekan(false);
-		  		  nastkor.setEmail(nast.getImeNast()+"."+nast.getPrezNast()+"@gmail.com");
+		  		  
+		  		  //Posto sad u bazi ima Emir Meskovic onaj dole dio nam
+		  		  //nece ni trebati ali ja sam samo zakomentarisao
+		  		  //
+		  		  //Haselja
+		  		  
+		  		  String ime = "Emir";
+				  String prezime = "Meskovic";
+		  		  
+		  		  if(!(nast.getImeNast().equals(ime) && nast.getPrezNast().equals(prezime)))
+		  		  {	  
+		  			  nastkor.setNastavnik(true);
+		  			  nastkor.setProdekan(false);
+		  		  }
+		  		  else
+		  		  {
+		  			 nastkor.setNastavnik(false);
+		  			 nastkor.setProdekan(true);
+		  		  }
+		  		  
+		  		  nastkor.setEmail(nast.getImeNast()+"."+nast.getPrezNast()+"@fet.ba");
 		  		  String username = nast.getImeNast() + "." + nast.getPrezNast();
 		  		  nastkor.setUsername(username.toLowerCase());
 		  		  nastkor.setPassword(nast.getImeNast().toLowerCase()+"123");
@@ -110,7 +128,7 @@ public class init {
 		} catch (IOException e) {
 		      e.printStackTrace();
 		}
-		
+		/*
 		//PRODEKAN
 		  Korisnik nastkor = new Korisnik();
 		  String ime = "Emir";
@@ -126,6 +144,7 @@ public class init {
 		  em.getTransaction().begin();
 		  em.persist(nastkor);
 		  em.getTransaction().commit();
+	*/
 	}
 
 }
