@@ -27,11 +27,16 @@
       </ImageView>
       <MenuBar layoutX="-4.0" prefHeight="32.0" prefWidth="606.0">
         <menus>
-            <Menu mnemonicParsing="false" text="Index" />
+            <Menu mnemonicParsing="false" text="Index">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
+               </items></Menu>
           <Menu mnemonicParsing="false" text="Buildings">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#addBuilding" text="Add Building" />
                   <MenuItem mnemonicParsing="false" text="Add Hall" />
+                  <MenuItem mnemonicParsing="false" text="Delete Building" />
+                  <MenuItem mnemonicParsing="false" text="Delete Hall" />
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Schooling">

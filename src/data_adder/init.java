@@ -3,10 +3,15 @@ package data_adder;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import entiteti.*;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import entiteti.Korisnik;
+import entiteti.Nastavnik;
+import entiteti.Student;
+import entiteti.Usmjerenje;
 
 public class init {
 

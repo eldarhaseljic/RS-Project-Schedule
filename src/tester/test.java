@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import entiteti.Korisnik;
 import entiteti.Student;
 import entiteti.Usmjerenje;
+import entiteti.Zgrada;
 
 public class test {
 
@@ -47,6 +48,11 @@ public class test {
 		q4.setParameter("isn", true);
 		List<Korisnik> korisnik = q4.getResultList();
 		for(Korisnik o : korisnik) System.out.println(o.getIme() + "-" + o.getPrezime()+ "-" + o.getUsername() + "-" + o.getPassword() + "-" + o.getEmail());
+		
+		//TEST DODAVANJA ZGRADA
+		Query q5 = em.createQuery("SELECT z FROM Zgrada z");
+		List<Zgrada> zgrade = q5.getResultList();
+		for(Zgrada z : zgrade) System.out.println(z.getNazivZg() + "-" + z.getAdresaZg());
 	}
 
 }

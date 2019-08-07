@@ -7,11 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class ProdekanController implements Initializable{
@@ -28,6 +26,9 @@ public class ProdekanController implements Initializable{
 	public void init(ActionEvent event) throws Exception {
 	}
 
+	public void close(ActionEvent event) throws Exception {
+		System.exit(0);
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -38,6 +39,16 @@ public class ProdekanController implements Initializable{
 	
 	public void addBuilding(ActionEvent event) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("addBuildingScreen.fxml"));
+		Scene scene = new Scene(root);
+		Stage primaryStage = new Stage();
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.setTitle("New Building");
+		primaryStage.show();
+	}
+	
+	public void deleteBuilding(ActionEvent event) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("deleteBuildingScreen.fxml"));
 		Scene scene = new Scene(root);
 		Stage primaryStage = new Stage();
 		primaryStage.setScene(scene);
