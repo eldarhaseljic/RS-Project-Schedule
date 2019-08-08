@@ -22,7 +22,7 @@ public class Zgrada {
 			strategy=GenerationType.TABLE, 
 			generator="idZgrada")
 	@Column(name = "ZGRADA_ID")
-	private int igradaId;
+	private int zgradaId;
 	
 	private String nazivZg;
 	private String adresaZg;
@@ -44,6 +44,10 @@ public class Zgrada {
 
 	public void setAdresaZg(String adresaZg) {
 		this.adresaZg = adresaZg;
+	}
+	
+	public int getZgradaId() {
+		return zgradaId;
 	}
 	
 	

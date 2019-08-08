@@ -19,15 +19,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class MainController {
-	
 	public static Korisnik trenutniKor = new Korisnik();
 
 	@FXML
 	private Label lblStatus;
-	
+
 	@FXML
 	private TextField txtUsername;
-	
+
 	@FXML
 	private TextField txtPassword;
 	
@@ -42,39 +41,33 @@ public class MainController {
 		EntityManagerFactory emf;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
-		
+
 		Query q = em.createQuery("SELECT k FROM Korisnik k");
+		@SuppressWarnings("unchecked")
 		List<Korisnik> korisnici = q.getResultList();
-		
+
 		Stage primaryStage = new Stage();
-		for(Korisnik k : korisnici)
-		{
+		for (Korisnik k : korisnici) {
 			String username = k.getUsername();
 			String password = k.getPassword();
-			
-			if(usernameField.equals(username) && passwordField.equals(password))
-			{
+
+			if (usernameField.equals(username) && passwordField.equals(password)) {
 				exists = true;
 				trenutniKor = k;
-				if(!k.isNastavnik() && !k.isProdekan())
-				{
-					Parent root = FXMLLoader.load(getClass().getResource("ToDo.fxml"));
+				if (!k.isNastavnik() && !k.isProdekan()) {
+					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/ToDo.fxml"));
 					Scene scene = new Scene(root);
 					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
 					primaryStage.show();
-				}
-				else if(k.isNastavnik())
-				{
-					Parent root = FXMLLoader.load(getClass().getResource("NastavnikScreen.fxml"));
+				} else if (k.isNastavnik()) {
+					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/NastavnikScreen.fxml"));
 					Scene scene = new Scene(root);
 					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
 					primaryStage.show();
-				}
-				else
-				{
-					Parent root = FXMLLoader.load(getClass().getResource("ProdekanScreen.fxml"));
+				} else {
+					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/ProdekanScreen.fxml"));
 					Scene scene = new Scene(root);
 					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
@@ -83,14 +76,12 @@ public class MainController {
 					primaryStage.setTitle("Welcome Vice Dean");
 					primaryStage.show();
 				}
-				
+
 			}
-			
+
 		}
-		
-		
-		if(!exists)
-		{
+
+		if (!exists) {
 			txtUsername.clear();
 			txtPassword.clear();
 			lblStatus.setText("Login failed, please try again");

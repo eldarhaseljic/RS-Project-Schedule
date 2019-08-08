@@ -13,28 +13,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 
-@Entity(name="Sala")
+@Entity(name = "Sala")
 public class Sala {
-	@TableGenerator(
-			name = "idSala",
-			allocationSize = 1,
-			initialValue = 1)
-	@Id 
-	@GeneratedValue(
-			strategy=GenerationType.TABLE, 
-			generator="idSala")
+	@TableGenerator(name = "idSala", allocationSize = 1, initialValue = 1)
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "idSala")
 	@Column(name = "SALA_ID")
 	private int salaId;
 
 	private String nazivSale;
-	
-	@OneToMany(mappedBy = "sala",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "sala", cascade = CascadeType.ALL)
 	private Collection<Rezervacija> rezervacija;
-	
-	@ManyToOne 
+
+	@ManyToOne
 	@JoinColumn(name = "ZGRADA_ID")
 	private Zgrada zgrada;
-	
+
 	public String getNazivSale() {
 		return nazivSale;
 	}
@@ -42,5 +37,5 @@ public class Sala {
 	public void setNazivSale(String nazivSale) {
 		this.nazivSale = nazivSale;
 	}
-	
+
 }

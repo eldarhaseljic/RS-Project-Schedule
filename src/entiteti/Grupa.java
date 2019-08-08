@@ -15,60 +15,45 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 
-@Entity(name="GrupaStudenata")
+@Entity(name = "GrupaStudenata")
 public class Grupa {
-	
-	@TableGenerator(
-			name = "idGr",
-			allocationSize = 1,
-			initialValue = 1)
-	@Id 
-	@GeneratedValue(
-			strategy=GenerationType.TABLE, 
-			generator="idGr")
+
+	@TableGenerator(name = "idGr", allocationSize = 1, initialValue = 1)
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "idGr")
 	@Column(name = "GRUPA_ID")
 	private int idGrupe;
-	
+
 	private String tipgrupe;
-	
-	@OneToMany(mappedBy = "grupa",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "grupa", cascade = CascadeType.ALL)
 	private Collection<Rezervacija> rezervacije;
-	
-		
+
 	@ManyToMany
-	@JoinTable(name = "lista_studenata_grupa", 
-				joinColumns = @JoinColumn(name="GRUPA_ID"),
-				inverseJoinColumns=@JoinColumn(name = "STUDENT_ID"))
+	@JoinTable(name = "lista_studenata_grupa", joinColumns = @JoinColumn(name = "GRUPA_ID"), inverseJoinColumns = @JoinColumn(name = "STUDENT_ID"))
 	private Collection<Student> studenti;
 
-	// S obzirom na to da je u slijedecem moguce doci do redundancije, potrebno je svaki put provjeriti da li trazeni 
+	// S obzirom na to da je u slijedecem moguce doci do redundancije, potrebno je
+	// svaki put provjeriti da li trazeni
 	// nastavnik/predmet predaje predmet/nastavnik.
-	
+
 	@ManyToOne
 	@JoinColumn(name = "PREDMET_ID")
 	private Predmet predmet;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "NASTAVNIK_ID")
 	private Nastavnik nastavnik;
-	
-	
-	@OneToMany(mappedBy = "grupa",cascade = CascadeType.ALL)
-	private Collection<Cas> casovi;
 
+	@OneToMany(mappedBy = "grupa", cascade = CascadeType.ALL)
+	private Collection<Cas> casovi;
 
 	public String getTipgrupe() {
 		return tipgrupe;
 	}
 
-
 	public void setTipgrupe(String tipgrupe) {
 		this.tipgrupe = tipgrupe;
 	}
 
-
-
-
-
-	
 }
