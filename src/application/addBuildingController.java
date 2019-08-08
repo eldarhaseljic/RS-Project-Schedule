@@ -66,18 +66,19 @@ public class addBuildingController {
 			@SuppressWarnings("unchecked")
 			List<Zgrada> zgrade = q.getResultList();
 
-			int count = zgrade.size();
+			// int count = zgrade.size();
 
 			for (Zgrada zgrada : zgrade) {
-				if (count < 1) {
-					ProdekanController.Information = "Nema zapisa o zgradama u bazi!";
-					Stage primaryStage = new Stage();
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-					Scene scene = new Scene(root);
-					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					primaryStage.setScene(scene);
-					primaryStage.show();
-				}
+				/*
+				 * if (count < 1) {
+				 * 
+				 * ProdekanController.Information = "Nema zapisa o zgradama u bazi!"; Stage
+				 * primaryStage = new Stage(); Parent root =
+				 * FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml")); Scene scene
+				 * = new Scene(root); primaryStage = (Stage) ((Node)
+				 * event.getSource()).getScene().getWindow(); primaryStage.setScene(scene);
+				 * primaryStage.show(); }
+				 */
 
 				nazivBaza = zgrada.getNazivZg();
 				adresaBaza = zgrada.getAdresaZg();

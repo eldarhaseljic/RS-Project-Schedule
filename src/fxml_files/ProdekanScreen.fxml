@@ -35,10 +35,10 @@
           <Menu mnemonicParsing="false" text="Buildings">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#addBuilding" text="Add Building" />
-                  <MenuItem mnemonicParsing="false" text="Add Hall" />
+                  <MenuItem mnemonicParsing="false" onAction="#addHall" text="Add Hall" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#deleteBuilding" text="Delete Building" />
-                  <MenuItem mnemonicParsing="false" text="Delete Hall" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteHall" text="Delete Hall" />
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Schooling">

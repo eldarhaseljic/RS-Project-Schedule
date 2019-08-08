@@ -30,6 +30,11 @@ public class Sala {
 	@JoinColumn(name = "ZGRADA_ID")
 	private Zgrada zgrada;
 
+	public String getNazivZgrade()
+	{
+		return this.zgrada.getNazivZg();
+	}
+	
 	public String getNazivSale() {
 		return nazivSale;
 	}

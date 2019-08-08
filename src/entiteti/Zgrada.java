@@ -11,25 +11,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 
-@Entity(name="Zgrada")
+@Entity(name = "Zgrada")
 public class Zgrada {
-	@TableGenerator(
-			name = "idZgrada",
-			allocationSize = 1,
-			initialValue = 1)
-	@Id 
-	@GeneratedValue(
-			strategy=GenerationType.TABLE, 
-			generator="idZgrada")
+	@TableGenerator(name = "idZgrada", allocationSize = 1, initialValue = 1)
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "idZgrada")
 	@Column(name = "ZGRADA_ID")
 	private int zgradaId;
-	
+
 	private String nazivZg;
 	private String adresaZg;
-	
-	@OneToMany(mappedBy="zgrada", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "zgrada", cascade = CascadeType.ALL)
 	private Collection<Sala> reference;
-	
+
 	public String getNazivZg() {
 		return nazivZg;
 	}
@@ -45,10 +40,9 @@ public class Zgrada {
 	public void setAdresaZg(String adresaZg) {
 		this.adresaZg = adresaZg;
 	}
-	
+
 	public int getZgradaId() {
 		return zgradaId;
 	}
-	
-	
+
 }
