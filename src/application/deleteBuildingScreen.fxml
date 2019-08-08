@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="121.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BuildingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="121.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.deleteBuildingController">
    <children>
      <JFXButton layoutX="290.0" layoutY="59.0" onAction="#deleteBuilding" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Delete Building" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
@@ -21,7 +21,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
-      <ComboBox editable="true" layoutX="14.0" layoutY="59.0" prefHeight="40.0" prefWidth="223.0" visibleRowCount="10000" />
+      <ComboBox fx:id="listbox" layoutX="14.0" layoutY="59.0" prefHeight="40.0" prefWidth="223.0" visibleRowCount="10000" />
       <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="223.0" text="Naziv zgrade" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />

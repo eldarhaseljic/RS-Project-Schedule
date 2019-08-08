@@ -19,16 +19,13 @@ import javafx.stage.Stage;
 
 //Kontroler koji trenutno kreira pozor za dodavanje 
 //nove zgrade ima i funkciju da brise zgradu ali ona nije jos razvijena
-public class BuildingController {
+public class addBuildingController {
 	
 	@FXML
 	private TextField buildtitle;
 	
 	@FXML
 	private TextField addr;
-	
-	//Sluzi za prosljedjivanje informacije 
-	public static String Information;
 	
 	//Funkcija koja u konacnici dodaje novu zgradu 
 	//prilikom dodavanja se ispituje da li zgrada vec postoji
@@ -43,7 +40,7 @@ public class BuildingController {
 		
 		boolean exists = false;
 		
-		String naziv = buildtitle.getText().toLowerCase();
+		String naziv = buildtitle.getText().toUpperCase();
 		String adresa = addr.getText().toLowerCase();
 		
 		String nazivBaza;
@@ -64,7 +61,7 @@ public class BuildingController {
 		{
 			if(count < 1)
 			{
-				Information = "Nema zapisa o zgradama u bazi!";
+				ProdekanController.Information = "Nema zapisa o zgradama u bazi!";
 				Stage primaryStage = new Stage();
 				Parent root = FXMLLoader.load(getClass().getResource("Info.fxml"));
 				Scene scene = new Scene(root);
@@ -79,7 +76,25 @@ public class BuildingController {
 			if(nazivBaza.equals(naziv) && adresaBaza.equals(adresa))
 			{
 				exists = true;
-				Information = "Entitet vec u bazi!";
+				ProdekanController.Information = "Entitet vec u bazi!";
+				Stage primaryStage = new Stage();
+				Parent root = FXMLLoader.load(getClass().getResource("Info.fxml"));
+				Scene scene = new Scene(root);
+				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				primaryStage.setScene(scene);
+				primaryStage.show();
+				break;
+			}
+
+			else if(nazivBaza.equals(naziv))
+			{
+				exists = true;
+				zgrada.setAdresaZg(adresa);
+				em.getTransaction().begin();
+				em.persist(zgrada);
+				em.getTransaction().commit();
+				
+				ProdekanController.Information = "Adresa navedene zgrade je korigovana!";
 				Stage primaryStage = new Stage();
 				Parent root = FXMLLoader.load(getClass().getResource("Info.fxml"));
 				Scene scene = new Scene(root);
@@ -101,7 +116,7 @@ public class BuildingController {
 			em.persist(z);
 			em.getTransaction().commit();
 			
-			Information = "Uspjesno dodano";
+			ProdekanController.Information = "Uspjesno dodano";
 			Stage primaryStage = new Stage();
 			Parent root = FXMLLoader.load(getClass().getResource("Info.fxml"));
 			Scene scene = new Scene(root);
@@ -112,11 +127,6 @@ public class BuildingController {
 		
 		em.close();
 		emf.close();
-	}
-
-	//Krajnja funkcija koja sluzi za brisanje zgrade iz baze podataka
-	public void deleteBuilding(ActionEvent event) throws Exception {
-	
 	}
 	
 }
