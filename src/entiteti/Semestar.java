@@ -12,27 +12,22 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 
-@Entity(name="Semestar")
+@Entity(name = "Semestar")
 public class Semestar {
-	@TableGenerator(
-			name = "idSem",
-			allocationSize = 1,
-			initialValue = 1)
-		@Id 
-		@GeneratedValue(
-			strategy=GenerationType.TABLE, 
-			generator="idSem")
+	@TableGenerator(name = "idSem", allocationSize = 1, initialValue = 1)
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "idSem")
 	@Column(name = "SEMESTAR_ID")
 	private int IdSemestra;
-	
+
 	private LocalDate datumPocetkaSemestra;
 	private LocalDate datumZavrsetkaSemestra;
 	private int oznakaSemestra; // (brojevi od 1-8)
-	
-	@OneToMany(mappedBy = "semestar",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "semestar", cascade = CascadeType.ALL)
 	private Collection<Cas> casovi;
-	
-	@OneToMany(mappedBy = "semestar",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "semestar", cascade = CascadeType.ALL)
 	private Collection<Student> studenti;
 
 	public int getOznakaSemestra() {
@@ -58,6 +53,5 @@ public class Semestar {
 	public void setDatumZavrsetkaSemestra(LocalDate datumZavrsetkaSemestra) {
 		this.datumZavrsetkaSemestra = datumZavrsetkaSemestra;
 	}
-	
-	
+
 }

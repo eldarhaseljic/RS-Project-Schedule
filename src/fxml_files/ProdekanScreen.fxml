@@ -18,12 +18,12 @@
    <children>
       <ImageView fitHeight="234.0" fitWidth="602.0" layoutX="-1.0" opacity="0.2" pickOnBounds="false">
          <image>
-            <Image url="@sources/background.jpg" />
+            <Image url="@/slike/background.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="103.0" fitWidth="104.0" layoutX="57.0" layoutY="86.0" pickOnBounds="false" preserveRatio="true">
          <image>
-            <Image url="@user.png" />
+            <Image url="@/slike/user.png" />
          </image>
       </ImageView>
       <MenuBar layoutX="-4.0" prefHeight="32.0" prefWidth="606.0">
@@ -54,7 +54,7 @@
       </MenuBar>
       <ImageView fitHeight="112.0" fitWidth="97.0" layoutX="503.0" layoutY="-34.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@sources/welcome.png" />
+            <Image url="@/slike/welcome.png" />
          </image>
       </ImageView>      
       <Label fx:id="usr" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="193.0" layoutY="63.0" prefHeight="32.0" prefWidth="252.0" textAlignment="CENTER">

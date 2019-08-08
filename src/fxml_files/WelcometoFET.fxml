@@ -20,7 +20,7 @@
    <children>
       <ImageView blendMode="DARKEN" cache="true" disable="true" fitHeight="165.0" fitWidth="165.0" focusTraversable="true" layoutX="93.0" layoutY="74.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" AnchorPane.bottomAnchor="261.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="74.0">
          <image>
-            <Image url="@photo.png" />
+            <Image url="@/slike/photo.png" />
          </image>
          <effect>
             <Reflection />
@@ -78,7 +78,7 @@
       </Rectangle>
       <ImageView blendMode="DARKEN" fitHeight="22.0" fitWidth="22.0" focusTraversable="true" layoutX="38.0" layoutY="273.0" nodeOrientation="INHERIT">
          <image>
-            <Image url="@user.png" />
+            <Image url="@/slike/user.png" />
          </image>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
@@ -89,7 +89,7 @@
       </ImageView>
       <ImageView blendMode="DARKEN" cache="true" fitHeight="22.0" fitWidth="22.0" focusTraversable="true" layoutX="37.0" layoutY="312.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true">
          <image>
-            <Image url="@pass.png" />
+            <Image url="@/slike/pass.png" />
          </image>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
