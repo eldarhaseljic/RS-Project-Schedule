@@ -45,15 +45,7 @@ public class test {
 		Query q2 = em.createQuery("SELECT s FROM Student s");
 		@SuppressWarnings("unchecked")
 		List<Student> student = q2.getResultList();
-<<<<<<< HEAD
-		for(Student o : student) System.out.println(o.getIDStud()+" "+o.getImeStud()+" "+o.getPrezStud());
 		
-		// SELECT PRIMJER I TEST DATA ADDERA
-		Query q4 = em.createQuery("SELECT k FROM Korisnik k WHERE k.isNastavnik=:isn");
-		q4.setParameter("isn", true);
-		List<Korisnik> korisnik = q4.getResultList();
-		for(Korisnik o : korisnik) System.out.println(o.getIme() + "-" + o.getPrezime()+ "-" + o.getUsername() + "-" + o.getPassword() + "-" + o.getEmail());
-=======
 		for (Student o : student)
 			System.out.println(o.getIDStud() + " " + o.getImeStud() + " " + o.getPrezStud());
 
@@ -72,7 +64,6 @@ public class test {
 		List<Zgrada> zgrade = q5.getResultList();
 		for (Zgrada z : zgrade)
 			System.out.println(z.getNazivZg() + "-" + z.getAdresaZg());
->>>>>>> haselja_login
 	}
 
 }
