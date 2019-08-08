@@ -27,7 +27,8 @@ public class test {
 		List<Usmjerenje> usmjerenja = q1.getResultList();
 		for (Usmjerenje o : usmjerenja)
 			System.out.println(o.getIDUsmjerenja() + " " + o.getImeUsmjerenja());
-
+		System.out.println();
+		
 		// UPDATE PRIMJER
 		EntityTransaction updateTransaction = em.getTransaction();
 		updateTransaction.begin();
@@ -40,6 +41,7 @@ public class test {
 			System.out.println("Done...(" + updateCount + ")");
 		}
 		updateTransaction.commit();
+		System.out.println();
 
 		// SELECT PRIMJER I TEST DATA ADDERA
 		Query q2 = em.createQuery("SELECT s FROM Student s");
@@ -48,6 +50,7 @@ public class test {
 		
 		for (Student o : student)
 			System.out.println(o.getIDStud() + " " + o.getImeStud() + " " + o.getPrezStud());
+		System.out.println();
 
 		// SELECT PRIMJER I TEST DATA ADDERA
 		Query q4 = em.createQuery("SELECT k FROM Korisnik k WHERE k.isNastavnik=:isn");
@@ -57,6 +60,7 @@ public class test {
 		for (Korisnik o : korisnik)
 			System.out.println(o.getIme() + "-" + o.getPrezime() + "-" + o.getUsername() + "-" + o.getPassword() + "-"
 					+ o.getEmail());
+		System.out.println();
 
 		// TEST DODAVANJA ZGRADA
 		Query q5 = em.createQuery("SELECT z FROM Zgrada z");
