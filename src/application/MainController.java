@@ -19,7 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class MainController {
-
 	public static Korisnik trenutniKor = new Korisnik();
 
 	@FXML
@@ -30,14 +29,14 @@ public class MainController {
 
 	@FXML
 	private TextField txtPassword;
-
+	
 	public void LOGIN(ActionEvent event) throws Exception {
-
+		
 		boolean exists = false;
-
+		
 		String usernameField = txtUsername.getText();
 		String passwordField = txtPassword.getText();
-
+		
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -87,7 +86,8 @@ public class MainController {
 			txtPassword.clear();
 			lblStatus.setText("Login failed, please try again");
 		}
-
+		
 	}
-
+	
+	
 }

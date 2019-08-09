@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -37,6 +38,47 @@ public class deleteHallController implements Initializable {
 
 	public void deleteHall(ActionEvent event) throws Exception {
 		//IRMA
+		
+		String nazivZ = buildingTitle.getValue();
+		String nazivS = hallTitle.getValue();
+		
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+		
+		Query q = em.createQuery("SELECT z FROM Zgrada z WHERE z.nazivZg = :n", Zgrada.class);
+		q.setParameter("n", nazivZ);
+		@SuppressWarnings("unchecked")
+		List<Zgrada> zgrade = q.getResultList();
+		
+		for(Zgrada z : zgrade)
+		{
+			Collection<Sala> sale = z.getSale();
+			for(Sala s : sale)
+			{
+				if(s.getNazivSale().equals(nazivS))
+				{
+					//sale.remove(s);
+					int id = s.getSalaId();
+					Sala sala = em.find(Sala.class, id);
+					if (sala != null) 
+					{
+						em.getTransaction().begin();
+						em.remove(sala);
+						em.getTransaction().commit();
+						
+						ProdekanController.Information = "Obrisali ste salu " + nazivS + " iz zgrade " + nazivZ + ".";
+						Stage primaryStage = new Stage();
+						Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+						Scene scene = new Scene(root);
+						primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+						primaryStage.setScene(scene);
+						primaryStage.show();
+					}
+				}	
+			}
+		}
 	}
 
 	@Override
@@ -56,8 +98,10 @@ public class deleteHallController implements Initializable {
 	}
 
 	public void Press(MouseEvent event) throws IOException {
-		if (!buildingTitle.getSelectionModel().isEmpty()) {
+		if (!(buildingTitle.getSelectionModel().isEmpty())) {
+			
 			String naziv = buildingTitle.getValue();
+			
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -79,7 +123,7 @@ public class deleteHallController implements Initializable {
 			} 
 			else {
 				for (Object e : temp_list)
-					listofhalls.add(((Zgrada) e).getNazivZg());
+					listofhalls.add(((Sala) e).getNazivSale());
 				hallTitle.setItems(FXCollections.observableList(listofhalls));
 			}
 		}

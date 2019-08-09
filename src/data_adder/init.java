@@ -45,8 +45,8 @@ public class init {
 		em.getTransaction().begin();
 		em.persist(usmjerenje4);
 		em.getTransaction().commit();
-
-		Usmjerenje usmjerenje5 = new Usmjerenje();
+		
+		Usmjerenje usmjerenje5= new Usmjerenje();
 		usmjerenje5.setImeUsmjerenja("Elektroenergetske mreze i sistemi");
 		em.getTransaction().begin();
 		em.persist(usmjerenje5);

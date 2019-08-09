@@ -54,6 +54,11 @@ persistance.xml -> /src/META-INF *Rename raspored , set your projects name.*
 * Apply
 * Run
 
+## ADD MATERIAL DESIGN
+* Right click on project -> Properties
+* Java Build Path -> Libraries
+* Add jfoenix-9.0.9.jar apply and close.
+
 ## LOGIN
 
 **Student:**  
