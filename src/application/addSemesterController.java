@@ -36,6 +36,7 @@ public class addSemesterController {
 	private DatePicker dateEnd; 
 
 	public void addSemester(ActionEvent event) throws Exception {
+		@SuppressWarnings("unused")
 		Calendar cal = Calendar.getInstance();
 		
 		if (oznSem.getText().isBlank())

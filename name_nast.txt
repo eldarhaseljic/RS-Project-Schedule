@@ -19,7 +19,6 @@
  Vlado;Madzarevic;
  Amer;Hasnanovic;
  Edin;Pjanic;
- Emir;Meskovic;
  Emir;Skejic;
  Nermin;Sarajlic;
  Zekerijah;Sabanovic;
@@ -28,6 +27,7 @@
  Nermin;Sarajlic;
  Samra;Mujacic;
  Suad;Kasapovic;
+ Emir;Meskovic;
  Adnan;Mulaosmanovic;
  Emir;Omerdic;
  Ivan;Bosankic;
