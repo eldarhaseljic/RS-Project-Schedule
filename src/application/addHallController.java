@@ -36,10 +36,19 @@ public class addHallController implements Initializable {
 	private TextField hallTitle;
 
 	public void addHall(ActionEvent event) throws Exception {
-		//IRMA
-		
+		if (hallTitle.getText().isBlank()) {
+			ProdekanController.Information = "Niste unijeli naziv sale";
+			Stage primaryStage = new Stage();
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+			Scene scene = new Scene(root);
+			primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		}
+		else 
+		{
 		String nazivZ = buildingTitle.getValue();
-		String nazivS = hallTitle.getText();
+		String nazivS = hallTitle.getText().toUpperCase();
 		boolean exists = false;
 		
 		String PERSISTENCE_UNIT_NAME = "raspored";
@@ -114,7 +123,7 @@ public class addHallController implements Initializable {
 		
 		em.close();
 		emf.close();
-		
+		}
 	}
 
 	@Override

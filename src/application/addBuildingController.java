@@ -40,8 +40,8 @@ public class addBuildingController {
 	// zeli prikazati
 	public void addBuilding(ActionEvent event) throws Exception {
 
-		if (buildtitle.getText().isBlank() && addr.getText().isBlank()) {
-			ProdekanController.Information = "Polja su Vam prazna :)";
+		if (buildtitle.getText().isBlank()) {
+			ProdekanController.Information = "Niste unijeli naziv zgrade";
 			Stage primaryStage = new Stage();
 			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
 			Scene scene = new Scene(root);
