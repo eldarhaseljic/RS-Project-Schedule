@@ -36,8 +36,13 @@ public class addHallController implements Initializable {
 	private TextField hallTitle;
 
 	public void addHall(ActionEvent event) throws Exception {
-		if (hallTitle.getText().isBlank()) {
-			ProdekanController.Information = "Niste unijeli naziv sale";
+		if (hallTitle.getText().isBlank() || buildingTitle.getSelectionModel().isEmpty()) {
+			if(hallTitle.getText().isBlank() && buildingTitle.getSelectionModel().isEmpty())
+				ProdekanController.Information = "Polja su Vam prazna";
+			else if(!hallTitle.getText().isBlank() && buildingTitle.getSelectionModel().isEmpty())
+				ProdekanController.Information = "Niste odabrali zgradu";
+			else if(hallTitle.getText().isBlank() && !buildingTitle.getSelectionModel().isEmpty())
+				ProdekanController.Information = "Niste unijeli naziv sale";
 			Stage primaryStage = new Stage();
 			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
 			Scene scene = new Scene(root);
