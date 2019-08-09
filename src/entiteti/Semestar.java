@@ -22,7 +22,7 @@ public class Semestar {
 
 	private LocalDate datumPocetkaSemestra;
 	private LocalDate datumZavrsetkaSemestra;
-	private int oznakaSemestra; // (brojevi od 1-8)
+	private String oznakaSemestra; 
 
 	@OneToMany(mappedBy = "semestar", cascade = CascadeType.ALL)
 	private Collection<Cas> casovi;
@@ -30,11 +30,11 @@ public class Semestar {
 	@OneToMany(mappedBy = "semestar", cascade = CascadeType.ALL)
 	private Collection<Student> studenti;
 
-	public int getOznakaSemestra() {
+	public String getOznakaSemestra() {
 		return oznakaSemestra;
 	}
 
-	public void setOznakaSemestra(int oznakaSemestra) {
+	public void setOznakaSemestra(String oznakaSemestra) {
 		this.oznakaSemestra = oznakaSemestra;
 	}
 
@@ -53,5 +53,8 @@ public class Semestar {
 	public void setDatumZavrsetkaSemestra(LocalDate datumZavrsetkaSemestra) {
 		this.datumZavrsetkaSemestra = datumZavrsetkaSemestra;
 	}
-
+	
+	public int getIDSemestra() {
+		return IdSemestra;
+	}
 }

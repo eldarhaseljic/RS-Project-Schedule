@@ -21,6 +21,7 @@ public class test {
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
 
+		/*
 		// SELECT PRIMJER I TEST DATA ADDERA
 		Query q1 = em.createQuery("SELECT u FROM Usmjerenje u");
 		@SuppressWarnings("unchecked")
@@ -28,6 +29,7 @@ public class test {
 		for (Usmjerenje o : usmjerenja)
 			System.out.println(o.getIDUsmjerenja() + " " + o.getImeUsmjerenja());
 		System.out.println();
+		
 		
 		// UPDATE PRIMJER
 		EntityTransaction updateTransaction = em.getTransaction();
@@ -42,7 +44,8 @@ public class test {
 		}
 		updateTransaction.commit();
 		System.out.println();
-
+	*/
+		
 		// SELECT PRIMJER I TEST DATA ADDERA
 		Query q2 = em.createQuery("SELECT s FROM Student s");
 		@SuppressWarnings("unchecked")

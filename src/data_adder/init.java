@@ -21,6 +21,7 @@ public class init {
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
 
+		/*
 		// USMJERENJA
 		Usmjerenje usmjerenje = new Usmjerenje();
 		usmjerenje.setImeUsmjerenja("Racunarstvo i informatika");
@@ -51,7 +52,8 @@ public class init {
 		em.getTransaction().begin();
 		em.persist(usmjerenje5);
 		em.getTransaction().commit();
-
+*/
+		
 		// STUDENTI
 		try {
 			FileReader readfile = new FileReader("name_rs.txt");
