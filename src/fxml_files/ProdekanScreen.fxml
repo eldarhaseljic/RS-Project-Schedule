@@ -37,8 +37,8 @@
                   <MenuItem mnemonicParsing="false" onAction="#addBuilding" text="Building" />
                   <MenuItem mnemonicParsing="false" onAction="#addHall" text="Hall" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Orientation" />
-                  <MenuItem mnemonicParsing="false" text="Semester" />
+                  <MenuItem mnemonicParsing="false" onAction="#addOrientation" text="Orientation" />
+                  <MenuItem mnemonicParsing="false" onAction="#addSemester" text="Semester" />
                   <MenuItem mnemonicParsing="false" text="Subject" />
                   <MenuItem mnemonicParsing="false" text="Group" />
                   <MenuItem mnemonicParsing="false" text="User" />
@@ -51,8 +51,8 @@
                   <MenuItem mnemonicParsing="false" onAction="#deleteBuilding" text="Building" />
                   <MenuItem mnemonicParsing="false" onAction="#deleteHall" text="Hall" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Orientation" />
-                  <MenuItem mnemonicParsing="false" text="Semester" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteOrientation" text="Orientation" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteSemester" text="Semester" />
                   <MenuItem mnemonicParsing="false" text="Subject" />
                   <MenuItem mnemonicParsing="false" text="Group" />
                   <MenuItem mnemonicParsing="false" text="User" />

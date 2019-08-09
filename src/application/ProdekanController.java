@@ -128,4 +128,82 @@ public class ProdekanController implements Initializable {
 			primaryStage.show();
 		}
 	}
+	
+	public void addOrientation(ActionEvent event) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addOrientationScreen.fxml"));
+		Scene scene = new Scene(root);
+		Stage primaryStage = new Stage();
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.setTitle("New Orientation");
+		primaryStage.show();
+	}
+	
+	public void deleteOrientation(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT u FROM Usmjerenje u");
+		temp_list = q.getResultList();
+
+		if (temp_list.size() < 1) {
+			ProdekanController.Information = "There are no orientations!";
+			Stage primaryStage = new Stage();
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+			Scene scene = new Scene(root);
+			// primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Info");
+			primaryStage.show();
+		} else {
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/deleteOrientationScreen.fxml"));
+			Scene scene = new Scene(root);
+			Stage primaryStage = new Stage();
+			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
+			primaryStage.setTitle("Delete Orientation");
+			primaryStage.show();
+		}
+	}
+	
+	public void addSemester(ActionEvent event) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addSemesterScreen.fxml"));
+		Scene scene = new Scene(root);
+		Stage primaryStage = new Stage();
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.setTitle("New Semester");
+		primaryStage.show();
+	}
+	
+	public void deleteSemester(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT s FROM Semestar s");
+		temp_list = q.getResultList();
+
+		if (temp_list.size() < 1) {
+			ProdekanController.Information = "There are no semesters!";
+			Stage primaryStage = new Stage();
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+			Scene scene = new Scene(root);
+			// primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Info");
+			primaryStage.show();
+		} else {
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/deleteSemesterScreen.fxml"));
+			Scene scene = new Scene(root);
+			Stage primaryStage = new Stage();
+			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
+			primaryStage.setTitle("Delete Semester");
+			primaryStage.show();
+		}
+	}
 }

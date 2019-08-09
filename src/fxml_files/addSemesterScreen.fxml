@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="238.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addSemesterController">
+   <children>      
+      <Label fx:id="usr" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="-20.0" layoutY="25.0" prefHeight="39.0" prefWidth="238.0" text="Semester label" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+     <JFXButton layoutX="144.0" layoutY="182.0" onAction="#addSemester" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add Semester" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXTextField fx:id="oznSem" layoutX="200.0" layoutY="14.0" prefHeight="39.0" prefWidth="216.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <Label fx:id="errBuild" alignment="CENTER" layoutX="97.0" layoutY="156.0" prefHeight="15.0" prefWidth="238.0" textFill="#bf0909">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="usr1" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="-20.0" layoutY="69.0" prefHeight="39.0" prefWidth="238.0" text="Semester begins" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="usr2" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="-19.0" layoutY="113.0" prefHeight="39.0" prefWidth="238.0" text="Semester ends" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dateBegin" layoutX="209.0" layoutY="76.0" />
+      <DatePicker fx:id="dateEnd" layoutX="209.0" layoutY="120.0" />
+   </children>
+</AnchorPane>

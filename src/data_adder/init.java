@@ -11,7 +11,6 @@ import javax.persistence.Persistence;
 import entiteti.Korisnik;
 import entiteti.Nastavnik;
 import entiteti.Student;
-import entiteti.Usmjerenje;
 
 public class init {
 
@@ -21,6 +20,7 @@ public class init {
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
 
+		/*
 		// USMJERENJA
 		Usmjerenje usmjerenje = new Usmjerenje();
 		usmjerenje.setImeUsmjerenja("Racunarstvo i informatika");
@@ -51,7 +51,8 @@ public class init {
 		em.getTransaction().begin();
 		em.persist(usmjerenje5);
 		em.getTransaction().commit();
-
+*/
+		
 		// STUDENTI
 		try {
 			FileReader readfile = new FileReader("name_rs.txt");
@@ -89,12 +90,30 @@ public class init {
 			FileReader readfile = new FileReader("name_nast.txt");
 			BufferedReader readbuffer = new BufferedReader(readfile);
 			String s;
+			boolean middle = true;
 			while (readbuffer.read() != -1) {
 				Nastavnik nast = new Nastavnik();
 				s = readbuffer.readLine();
 				String[] parts = s.split(";");
 				nast.setImeNast(parts[0]);
 				nast.setPrezNast(parts[1]);
+				String ime = "Emir";
+				String prezime = "Meskovic";
+				
+				if(nast.getImeNast().equals(ime) && nast.getPrezNast().equals(prezime))
+				{
+					nast.setTitula("Prodekan");
+					middle = false;
+				}
+				else if(middle) 
+				{
+					nast.setTitula("Profesor");
+				}
+				else
+				{
+					nast.setTitula("Asistent");
+				}
+				
 				em.getTransaction().begin();
 				em.persist(nast);
 				em.getTransaction().commit();
@@ -106,9 +125,6 @@ public class init {
 				// nece ni trebati ali ja sam samo zakomentarisao
 				//
 				// Haselja
-
-				String ime = "Emir";
-				String prezime = "Meskovic";
 
 				if (!(nast.getImeNast().equals(ime) && nast.getPrezNast().equals(prezime))) {
 					nastkor.setNastavnik(true);
