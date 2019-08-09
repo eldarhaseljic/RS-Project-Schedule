@@ -42,5 +42,13 @@ public class Sala {
 	public void setNazivSale(String nazivSale) {
 		this.nazivSale = nazivSale;
 	}
+	
+	public void setZgrada(Zgrada z) {
+		this.zgrada = z;
+	}
+	
+	public int getSalaId() {
+		return salaId;
+	}
 
 }

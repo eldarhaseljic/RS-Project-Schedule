@@ -44,5 +44,9 @@ public class Zgrada {
 	public int getZgradaId() {
 		return zgradaId;
 	}
-
+	
+	public Collection<Sala> getSale() {
+		return reference;
+	}
+	
 }

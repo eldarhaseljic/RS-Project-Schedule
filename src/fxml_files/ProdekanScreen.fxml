@@ -32,23 +32,38 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
                </items></Menu>
-          <Menu mnemonicParsing="false" text="Buildings">
+          <Menu mnemonicParsing="false" text="New">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#addBuilding" text="Add Building" />
-                  <MenuItem mnemonicParsing="false" onAction="#addHall" text="Add Hall" />
+                  <MenuItem mnemonicParsing="false" onAction="#addBuilding" text="Building" />
+                  <MenuItem mnemonicParsing="false" onAction="#addHall" text="Hall" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#deleteBuilding" text="Delete Building" />
-                  <MenuItem mnemonicParsing="false" onAction="#deleteHall" text="Delete Hall" />
+                  <MenuItem mnemonicParsing="false" text="Orientation" />
+                  <MenuItem mnemonicParsing="false" text="Semester" />
+                  <MenuItem mnemonicParsing="false" text="Subject" />
+                  <MenuItem mnemonicParsing="false" text="Group" />
+                  <MenuItem mnemonicParsing="false" text="User" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Reservation" />
                </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Schooling">
+          <Menu mnemonicParsing="false" text="Delete">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Add Orientation" />
-                  <MenuItem mnemonicParsing="false" text="Add Subject" />
-                  <MenuItem mnemonicParsing="false" text="Add Semester" />
-                  <MenuItem mnemonicParsing="false" text="Create Group" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteBuilding" text="Building" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteHall" text="Hall" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Orientation" />
+                  <MenuItem mnemonicParsing="false" text="Semester" />
+                  <MenuItem mnemonicParsing="false" text="Subject" />
+                  <MenuItem mnemonicParsing="false" text="Group" />
+                  <MenuItem mnemonicParsing="false" text="User" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Reservation" />
                </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Update">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Building" />
+               </items></Menu>
           <Menu mnemonicParsing="false" text="Create Schedule" />
         </menus>
       </MenuBar>
@@ -68,7 +83,7 @@
       <Line endX="101.0" layoutX="344.0" layoutY="138.0" startX="-151.0" />
       <Line endX="101.0" layoutX="344.0" layoutY="180.0" startX="-151.0" />
       <Line endX="443.0" layoutX="159.0" layoutY="235.0" startX="-167.0" />
-     <JFXButton layoutX="64.0" layoutY="261.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add Building" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+     <JFXButton layoutX="64.0" layoutY="261.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Buildings" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -79,7 +94,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="64.0" layoutY="314.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add Hall" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+      <JFXButton layoutX="64.0" layoutY="314.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Halls" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -90,7 +105,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="226.0" layoutY="261.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add Orientation" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+      <JFXButton layoutX="226.0" layoutY="261.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Orientations" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -101,7 +116,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="227.0" layoutY="314.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add Subject" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+      <JFXButton layoutX="227.0" layoutY="314.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Subjects" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -112,7 +127,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="388.0" layoutY="261.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Create Group" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+      <JFXButton layoutX="388.0" layoutY="261.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Groups" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -123,7 +138,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="389.0" layoutY="314.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Create Schedule" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+      <JFXButton layoutX="389.0" layoutY="314.0" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Users" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

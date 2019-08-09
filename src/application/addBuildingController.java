@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -26,6 +27,9 @@ public class addBuildingController {
 
 	@FXML
 	private TextField addr;
+
+	@FXML
+	private Label errBuild;
 
 	// Funkcija koja u konacnici dodaje novu zgradu
 	// prilikom dodavanja se ispituje da li zgrada vec postoji
@@ -40,16 +44,10 @@ public class addBuildingController {
 	// zeli prikazati
 	public void addBuilding(ActionEvent event) throws Exception {
 
-		if (buildtitle.getText().isBlank() && addr.getText().isBlank()) {
-			ProdekanController.Information = "Polja su Vam prazna :)";
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-			Scene scene = new Scene(root);
-			primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} else {
+		if (buildtitle.getText().isBlank())
+			errBuild.setText("Niste unijeli naziv zgrade");
 
+		else {
 			boolean exists = false;
 			String naziv = buildtitle.getText().toUpperCase();
 			String adresa = addr.getText().toLowerCase();
