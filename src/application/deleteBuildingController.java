@@ -20,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 //Kontroler koji trenutno kreira pozor za dodavanje 
@@ -29,41 +30,47 @@ public class deleteBuildingController implements Initializable {
 	@FXML
 	private ComboBox<String> listbox;
 
+	@FXML
+	private Label errBuild;
+
 	// Krajnja funkcija koja sluzi za brisanje zgrade iz baze podataka
 	public void deleteBuilding(ActionEvent event) throws Exception {
+		if (listbox.getSelectionModel().isEmpty())
+			errBuild.setText("You didn't choose the building.");
+		else {
+			String naziv = listbox.getValue();
 
-		String naziv = listbox.getValue();
+			String PERSISTENCE_UNIT_NAME = "raspored";
+			EntityManagerFactory emf;
+			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+			EntityManager em = emf.createEntityManager();
 
-		String PERSISTENCE_UNIT_NAME = "raspored";
-		EntityManagerFactory emf;
-		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		EntityManager em = emf.createEntityManager();
+			Query q1 = em.createQuery("SELECT z FROM Zgrada z WHERE z.nazivZg = :n", Zgrada.class);
+			q1.setParameter("n", naziv);
+			@SuppressWarnings("unchecked")
+			List<Zgrada> zgrade = q1.getResultList();
 
-		Query q1 = em.createQuery("SELECT z FROM Zgrada z WHERE z.nazivZg = :n", Zgrada.class);
-		q1.setParameter("n", naziv);
-		@SuppressWarnings("unchecked")
-		List<Zgrada> zgrade = q1.getResultList();
+			for (Zgrada z : zgrade) {
+				int id = z.getZgradaId();
+				Zgrada zgrada = em.find(Zgrada.class, id);
+				if (zgrada != null) {
+					em.getTransaction().begin();
+					em.remove(zgrada);
+					em.getTransaction().commit();
 
-		for (Zgrada z : zgrade) {
-			int id = z.getZgradaId();
-			Zgrada zgrada = em.find(Zgrada.class, id);
-			if (zgrada != null) {
-				em.getTransaction().begin();
-				em.remove(zgrada);
-				em.getTransaction().commit();
-
-				ProdekanController.Information = "Obrisali ste zgradu " + naziv + ".";
-				Stage primaryStage = new Stage();
-				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-				Scene scene = new Scene(root);
-				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				primaryStage.setScene(scene);
-				primaryStage.show();
+					ProdekanController.Information = "Obrisali ste zgradu " + naziv + ".";
+					Stage primaryStage = new Stage();
+					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+					Scene scene = new Scene(root);
+					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					primaryStage.setScene(scene);
+					primaryStage.show();
+				}
 			}
-		}
 
-		em.close();
-		emf.close();
+			em.close();
+			emf.close();
+		}
 	}
 
 	@Override
