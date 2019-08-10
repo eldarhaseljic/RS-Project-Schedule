@@ -11,6 +11,7 @@ import javax.persistence.Persistence;
 import entiteti.Korisnik;
 import entiteti.Nastavnik;
 import entiteti.Student;
+import entiteti.Usmjerenje;
 
 public class init {
 
@@ -20,32 +21,33 @@ public class init {
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
 
-		/*
-		 * // USMJERENJA Usmjerenje usmjerenje = new Usmjerenje();
-		 * usmjerenje.setImeUsmjerenja("Racunarstvo i informatika");
-		 * em.getTransaction().begin(); em.persist(usmjerenje);
-		 * em.getTransaction().commit();
-		 * 
-		 * Usmjerenje usmjerenje2 = new Usmjerenje();
-		 * usmjerenje2.setImeUsmjerenja("Telekomunikacije");
-		 * em.getTransaction().begin(); em.persist(usmjerenje2);
-		 * em.getTransaction().commit();
-		 * 
-		 * Usmjerenje usmjerenje3 = new Usmjerenje();
-		 * usmjerenje3.setImeUsmjerenja("Automatika i robotika");
-		 * em.getTransaction().begin(); em.persist(usmjerenje3);
-		 * em.getTransaction().commit();
-		 * 
-		 * Usmjerenje usmjerenje4 = new Usmjerenje();
-		 * usmjerenje4.setImeUsmjerenja("Elektroenergetski sistemi konverzije energije"
-		 * ); em.getTransaction().begin(); em.persist(usmjerenje4);
-		 * em.getTransaction().commit();
-		 * 
-		 * Usmjerenje usmjerenje5= new Usmjerenje();
-		 * usmjerenje5.setImeUsmjerenja("Elektroenergetske mreze i sistemi");
-		 * em.getTransaction().begin(); em.persist(usmjerenje5);
-		 * em.getTransaction().commit();
-		 */
+		
+		  // USMJERENJA 
+		  Usmjerenje usmjerenje = new Usmjerenje();
+		  usmjerenje.setImeUsmjerenja("Racunarstvo i informatika");
+		  em.getTransaction().begin(); em.persist(usmjerenje);
+		  em.getTransaction().commit();
+		  
+		  Usmjerenje usmjerenje2 = new Usmjerenje();
+		  usmjerenje2.setImeUsmjerenja("Telekomunikacije");
+		  em.getTransaction().begin(); em.persist(usmjerenje2);
+		  em.getTransaction().commit();
+		  
+		  Usmjerenje usmjerenje3 = new Usmjerenje();
+		  usmjerenje3.setImeUsmjerenja("Automatika i robotika");
+		  em.getTransaction().begin(); em.persist(usmjerenje3);
+		  em.getTransaction().commit();
+		  
+		  Usmjerenje usmjerenje4 = new Usmjerenje();
+		  usmjerenje4.setImeUsmjerenja("Elektroenergetski sistemi konverzije energije"
+		  ); em.getTransaction().begin(); em.persist(usmjerenje4);
+		  em.getTransaction().commit();
+		  
+		  Usmjerenje usmjerenje5= new Usmjerenje();
+		  usmjerenje5.setImeUsmjerenja("Elektroenergetske mreze i sistemi");
+		  em.getTransaction().begin(); em.persist(usmjerenje5);
+		  em.getTransaction().commit();
+		
 
 		// STUDENTI
 		try {

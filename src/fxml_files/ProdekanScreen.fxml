@@ -40,7 +40,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#addOrientation" text="Orientation" />
                   <MenuItem mnemonicParsing="false" onAction="#addSemester" text="Semester" />
                   <MenuItem mnemonicParsing="false" text="Subject" />
-                  <MenuItem mnemonicParsing="false" text="Group" />
+                  <MenuItem mnemonicParsing="false" onAction="#addGroup" text="Group" />
                   <MenuItem mnemonicParsing="false" text="User" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Reservation" />
