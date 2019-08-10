@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -11,6 +12,7 @@ import javax.persistence.Query;
 
 import entiteti.Nastavnik;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,7 +40,8 @@ public class ProdekanController implements Initializable {
 		System.exit(0);
 	}
 
-	// Sluzi za inicijalizaciju teksta na pocetnom ekranu
+	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -58,24 +61,15 @@ public class ProdekanController implements Initializable {
 					&& MainController.trenutniKor.getPrezime().equals(n.getPrezNast()))
 				titula.setText(n.getTitula());
 		}
+
 		em.close();
 		emf.close();
 	}
 
-	// Sluz // IRMA de ovdje query napravi da odabere sve sale ciji naziv zgrade
-	// odaberemoi za pozivanja prozora za dodavanje nove zgrade
 	public void addBuilding(ActionEvent event) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addBuildingScreen.fxml"));
-		Scene scene = new Scene(root);
-		Stage primaryStage = new Stage();
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setTitle("New Building");
-		primaryStage.show();
+		show(event, "/fxml_files/addBuildingScreen.fxml", "New Building");
 	}
 
-	// Sluzi za pokretanje prozora za brisanje zgrade ali se
-	// prvo provjeri da li postoji u bazizgrada
 	public void deleteBuilding(ActionEvent event) throws Exception {
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
@@ -86,36 +80,17 @@ public class ProdekanController implements Initializable {
 		temp_list = q.getResultList();
 
 		if (temp_list.size() < 1) {
-			ProdekanController.Information = "Nema zapisa o zgradama u bazi!";
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-			Scene scene = new Scene(root);
-			// primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Info");
-			primaryStage.show();
+			ProdekanController.Information = "There are no buildings !";
+			show(event, "/fxml_files/Info.fxml", "Info");
 		} else {
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/deleteBuildingScreen.fxml"));
-			Scene scene = new Scene(root);
-			Stage primaryStage = new Stage();
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("Delete a Building");
-			primaryStage.show();
+			show(event, "/fxml_files/deleteBuildingScreen.fxml", "Delete a Building");
 		}
 		em.close();
 		emf.close();
 	}
 
-	// Sluzi za pozivanja prozora za dodavanje nove zgrade
 	public void addHall(ActionEvent event) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addHallScreen.fxml"));
-		Scene scene = new Scene(root);
-		Stage primaryStage = new Stage();
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setTitle("New Hall");
-		primaryStage.show();
+		show(event, "/fxml_files/addHallScreen.fxml", "New Hall");
 	}
 
 	public void deleteHall(ActionEvent event) throws Exception {
@@ -128,35 +103,17 @@ public class ProdekanController implements Initializable {
 		temp_list = q.getResultList();
 
 		if (temp_list.size() < 1) {
-			ProdekanController.Information = "Nema zapisa o zgradama u bazi,nema ni sala!";
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-			Scene scene = new Scene(root);
-			// primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Info");
-			primaryStage.show();
+			ProdekanController.Information = "There are no buildings,no halls also!";
+			show(event, "/fxml_files/Info.fxml", "Info");
 		} else {
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/deleteHallScreen.fxml"));
-			Scene scene = new Scene(root);
-			Stage primaryStage = new Stage();
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("Delete a Hall");
-			primaryStage.show();
+			show(event, "/fxml_files/deleteHallScreen.fxml", "Delete a Hall");
 		}
 		em.close();
 		emf.close();
 	}
 
 	public void addOrientation(ActionEvent event) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addOrientationScreen.fxml"));
-		Scene scene = new Scene(root);
-		Stage primaryStage = new Stage();
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setTitle("New Orientation");
-		primaryStage.show();
+		show(event, "/fxml_files/addOrientationScreen.fxml", "New Orientation");
 	}
 
 	public void deleteOrientation(ActionEvent event) throws Exception {
@@ -170,34 +127,16 @@ public class ProdekanController implements Initializable {
 
 		if (temp_list.size() < 1) {
 			ProdekanController.Information = "There are no orientations!";
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-			Scene scene = new Scene(root);
-			// primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Info");
-			primaryStage.show();
+			show(event, "/fxml_files/Info.fxml", "Info");
 		} else {
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/deleteOrientationScreen.fxml"));
-			Scene scene = new Scene(root);
-			Stage primaryStage = new Stage();
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("Delete Orientation");
-			primaryStage.show();
+			show(event, "/fxml_files/deleteOrientationScreen.fxml", "Delete Orientation");
 		}
 		em.close();
 		emf.close();
 	}
 
 	public void addSemester(ActionEvent event) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addSemesterScreen.fxml"));
-		Scene scene = new Scene(root);
-		Stage primaryStage = new Stage();
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setTitle("New Semester");
-		primaryStage.show();
+		show(event, "/fxml_files/addSemesterScreen.fxml", "New Semester");
 	}
 
 	public void deleteSemester(ActionEvent event) throws Exception {
@@ -211,33 +150,49 @@ public class ProdekanController implements Initializable {
 
 		if (temp_list.size() < 1) {
 			ProdekanController.Information = "There are no semesters!";
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-			Scene scene = new Scene(root);
-			// primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Info");
-			primaryStage.show();
+			show(event, "/fxml_files/Info.fxml", "Info");
 		} else {
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/deleteSemesterScreen.fxml"));
-			Scene scene = new Scene(root);
-			Stage primaryStage = new Stage();
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("Delete Semester");
-			primaryStage.show();
+			show(event, "/fxml_files/deleteSemesterScreen.fxml", "Delete Semester");
+		}
+		em.close();
+		emf.close();
+	}
+	
+	public void addSubject(ActionEvent event) throws Exception {
+		show(event,"/fxml_files/addSubjectScreen.fxml","New Subject");
+	}
+
+	public void deleteSubject(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT s FROM Predmet s");
+		temp_list = q.getResultList();
+
+		if (temp_list.size() < 1) {
+			ProdekanController.Information = "There are no subjects!";
+			show(event,"/fxml_files/Info.fxml","Info");
+		} else {
+			show(event,"/fxml_files/deleteSubjectScreen.fxml","Delete Semester");
 		}
 		em.close();
 		emf.close();
 	}
 
 	public void addGroup(ActionEvent event) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addGroupScreen.fxml"));
+		show(event, "/fxml_files/addGroupScreen.fxml", "Add Group");
+	}
+
+	// Funkcija za pokretanje bilo kojeg gui prozora
+	private void show(Event event, String resurs, String title) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource(resurs));
 		Scene scene = new Scene(root);
 		Stage primaryStage = new Stage();
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
-		primaryStage.setTitle("Add Group");
+		primaryStage.setTitle(title);
 		primaryStage.show();
 	}
 }
