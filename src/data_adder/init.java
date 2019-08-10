@@ -54,7 +54,7 @@ public class init {
 		em.getTransaction().commit();
 
 		Usmjerenje usmjerenje6 = new Usmjerenje();
-		usmjerenje5.setImeUsmjerenja("Biomedicinski inzinjering");
+		usmjerenje6.setImeUsmjerenja("Biomedicinski inzinjering");
 		em.getTransaction().begin();
 		em.persist(usmjerenje6);
 		em.getTransaction().commit();
