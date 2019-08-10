@@ -17,7 +17,7 @@
  Mensur;Kasumovic;
  Nerdina;Mehinovic;
  Vlado;Madzarevic;
- Amer;Hasnanovic;
+ Amer;Hasanovic;
  Edin;Pjanic;
  Emir;Skejic;
  Nermin;Sarajlic;
@@ -90,4 +90,3 @@
  Sandra;Ibric;
  Slobodan;Manojlovic;
  Tarik;Demirovic;
-

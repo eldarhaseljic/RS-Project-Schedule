@@ -57,4 +57,10 @@ public class Nastavnik {
 		this.titula = titula;
 	}
 
+	public String toString() { return this.imeNast + " " + this.prezNast; }
+
+	public Collection<Grupa> getGrupe() {
+		// TODO Auto-generated method stub
+		return this.grupe;
+	}
 }

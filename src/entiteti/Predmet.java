@@ -27,6 +27,14 @@ public class Predmet {
 	@OneToMany(mappedBy = "predmet", cascade = CascadeType.ALL)
 	private Collection<Grupa> grupe;
 
+	public Predmet(String ime, Collection<Nastavnik> n, Collection<Usmjerenje> u, Collection<Semestar> s){
+		this.imePred = ime;
+		this.predmeti = n;
+		this.semestri = s;
+		this.usmjerenja =u;
+	}
+	public Predmet() {}
+	
 	@ManyToMany
 	@JoinTable(name = "lista_predmeta_nastavnika", joinColumns = @JoinColumn(name = "PREDMET_ID"), inverseJoinColumns = @JoinColumn(name = "NASTAVNIK_ID"))
 	private Collection<Nastavnik> predmeti;
@@ -35,6 +43,10 @@ public class Predmet {
 	@JoinTable(name = "lista_predmeta_usmjerenja", joinColumns = @JoinColumn(name = "PREDMET_ID"), inverseJoinColumns = @JoinColumn(name = "USMJERENJE_ID"))
 	private Collection<Usmjerenje> usmjerenja;
 
+	@ManyToMany
+	@JoinTable(name = "lista_predmeta_semestara", joinColumns = @JoinColumn(name = "PREDMET_ID"), inverseJoinColumns = @JoinColumn(name = "SEMESTAR_ID"))
+	private Collection<Semestar> semestri;
+
 	public String getImePred() {
 		return imePred;
 	}
@@ -42,5 +54,8 @@ public class Predmet {
 	public void setImePred(String imePred) {
 		this.imePred = imePred;
 	}
+	
+	public int getId() { return IdPredmeta;}
 
+	public String toString() { return imePred;}
 }

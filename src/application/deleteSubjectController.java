@@ -52,7 +52,7 @@ public class deleteSubjectController implements Initializable {
 					em.remove(predmet);
 					em.getTransaction().commit();
 
-					ProdekanController.Information = "You deleted subject: " + naziv.getImePred() + " successfully.";
+					ProdekanController.Information = "You deleted subject successfully.";
 					Stage primaryStage = new Stage();
 					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
 					Scene scene = new Scene(root);

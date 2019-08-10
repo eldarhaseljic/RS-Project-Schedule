@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import entiteti.Korisnik;
+import entiteti.Predmet;
 import entiteti.Student;
 import entiteti.Zgrada;
 
@@ -64,6 +65,14 @@ public class test {
 		for (Zgrada z : zgrade)
 			System.out.println(z.getNazivZg() + "-" + z.getAdresaZg());
 
+		//Test dodavanja predmeta
+		Query q6 = em.createQuery("SELECT s FROM Predmet s");
+		@SuppressWarnings("unchecked")
+		List<Predmet> predmet = q6.getResultList();
+
+		for (Predmet o : predmet)
+			System.out.println(o.getImePred());
+		System.out.println();
 		em.close();
 		emf.close();
 	}

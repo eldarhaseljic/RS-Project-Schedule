@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 
 import entiteti.Korisnik;
 import entiteti.Nastavnik;
+import entiteti.Predmet;
 import entiteti.Student;
 import entiteti.Usmjerenje;
 
@@ -52,6 +53,30 @@ public class init {
 		em.persist(usmjerenje5);
 		em.getTransaction().commit();
 
+		Usmjerenje usmjerenje6 = new Usmjerenje();
+		usmjerenje5.setImeUsmjerenja("Biomedicinski inzinjering");
+		em.getTransaction().begin();
+		em.persist(usmjerenje6);
+		em.getTransaction().commit();
+		
+		//Predmeti
+		try {
+			FileReader readfile = new FileReader("predmeti.txt");
+			BufferedReader readbuffer = new BufferedReader(readfile);
+			String s;
+			while (readbuffer.read() != -1) {
+				Predmet pred = new Predmet();
+				s = readbuffer.readLine();
+				pred.setImePred(s);
+				em.getTransaction().begin();
+				em.persist(pred);
+				em.getTransaction().commit();
+				}
+			readbuffer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		// STUDENTI
 		try {
 			FileReader readfile = new FileReader("name_rs.txt");
@@ -83,7 +108,8 @@ public class init {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		
 		// NASTAVNICI
 		try {
 			FileReader readfile = new FileReader("name_nast.txt");
@@ -140,7 +166,7 @@ public class init {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		/*
 		 * //PRODEKAN Korisnik nastkor = new Korisnik(); String ime = "Emir"; String
 		 * prez = "Meskovic"; nastkor.setIme(ime); nastkor.setPrezime(prez);

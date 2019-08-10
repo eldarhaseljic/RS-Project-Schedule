@@ -56,4 +56,28 @@ public class Grupa {
 		this.tipgrupe = tipgrupe;
 	}
 
+		public void setStudente(Collection<Student> s) {
+		this.studenti = s;
+	}
+	
+	public void setNastavnika(Nastavnik n) {
+		this.nastavnik = n;
+	}
+	
+	public void setPredmet(Predmet p) {
+		this.predmet = p;
+	}
+	
+	public Predmet getPredmet() {
+		return predmet;
+	}
+	
+	public Nastavnik getNastavnik() {
+		return nastavnik;
+	}
+	
+	public Collection<Student> getStudente() {
+		return studenti;
+	}
+
 }

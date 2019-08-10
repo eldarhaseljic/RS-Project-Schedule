@@ -1,0 +1,113 @@
+ Mjerenja u automatici i robotici
+ Linearni dinamički sistemi i signali
+ Linearni sistemi automatskog upravljanja I
+ Instrumentacija
+ Projetovanje logickih sistema
+ Linearni sisremi automatskog upravljana II
+ Stohasticki sistemi i estimacije
+ Aktuatori
+ Nelinearni sistemi upravljanja
+ Robotika i masinska vizija
+ Inteligentni sistemi
+ Projektovanje mikroprocesorskih sistema
+ Digitalni sistemi upravljanja i obrade signala I
+ Upravljanje mehatronickim sistemima
+ Optimalno upravljanje
+ Projektovanje na cipu
+ Distribuirani sistemu automatizacije
+ Digitalni sistemi upravljanja i obrade signala II
+ Klinicki inzenjering
+ Principi biomedicinskog inzenjeringa
+ Obrada i analiza medicinskih slika
+ Prepoznavanje uzoraka
+ Biomedicinski informacioni sistemi
+ Biomedicinska instrumentacija
+ Uvod u energetske sisteme
+ Teorija elektricnih kola
+ Mjerenja u elektrotehnici
+ Matricne metode u elektrotehnici
+ Numericke metode u elektrotehnici 
+ Elektricne instalacije niskog napona
+ Inteligentni sistemi u elektroenergetici
+ Trziste elektricne energije
+ Programski alati u elektroenergetici
+ Elektroenergetske prenosne i distributivne mreze 
+ Oprimizacione metode u elektrotehnici 
+ Modeliranje i simulacija
+ Modeliranje sistema
+ Elektroenergetske stanice
+ Tehnika visokog napona
+ Relejna tehnika
+ Anliza elektroenergetskog sistema
+ Dinamika elektroenergetskog sistema
+ Planiranje elektroenergetskih sistema
+ Simulacije sistema
+ Elektrane
+ Upravljanje elektroenergetskog sistema
+ Numericki postupci u projektovanju
+ Osnovi elektrotehnike 1
+ Osnovi elektrotehnike 2
+ Elektromehanicka konverzija energije
+ Ekonomika i organizacija poslovanja
+ Elektricna mjerenja
+ Teorija elektromagnetskih polja
+ Senzori i pretvaraci
+ Osnovi mehatronike
+ Elektricne masine 1
+ Operaciona istrazivanja
+ Elektromagnetska kompatibilnost
+ Elektricne mreze
+ Elekricne masine 2
+ Dijagnosrika u energetici
+ Mehatronika
+ Elektricna postrojenja
+ Elektromotorni pognoni
+ Proizvodnja energije
+ Zastitni i upravljacki sistemi
+ Senzori konverzije energije
+ Upravljanje elektromotornih pogona
+ Energetika i okolina
+ Osnovi racunarstva
+ Osnovi programiranja
+ Arhitektura racunara
+ Objektno orijentirano programiranje
+ Uvod u racunarske algoritme
+ Windows programiranje
+ Racunarska grafika
+ Primjena inzenjerskih softverskih  paketa
+ Baze podataka
+ Strukture podataka
+ Razvoj softvera
+ Operativni sistemi
+ Dizajn kompajlera
+ Racunarske mreze
+ Sistemsko programiranje
+ Razvoj web aplikacija
+ Tehnologije za podrsku tehnickom pisanju
+ Sekvencijalni sklopovi
+ Telekomunikacijiski protokoli
+ Obrada digitalnih signala
+ Telekomunikacione mreze
+ Signali i sistemi
+ Osnovi elektronike
+ Kumutacijiski sistemi
+ Projektovanje telekomunikacionih mreza
+ Statisticka teorija telekomunikacija
+ Analogna integrisana elektronika
+ Osnovi telekomunikacija
+ Teorija informacija i kodovanja
+ Mobilne telekomunikacije
+ Radijski telekomunikacijski sistemi
+ Digitalne telekomunikacije
+ Opticke telekomunikacije
+ Mjerenja u telekomunikacijama
+ Multimedijski sitemi i komunikacije
+ Satelitske telekomunikacije
+ Mikroprocesorski sitemi u telekomunikacijama
+ Fizika 1
+ Fizika 2
+ Matematika 1
+ Matematika 2
+ Matematika 3
+ Tjelesni i zdravstveni odgoj 1
+ Tjelesni i zdravstveni odgoj 2

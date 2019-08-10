@@ -1,11 +1,14 @@
 package entiteti;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 
@@ -28,6 +31,8 @@ public class Student {
 	@JoinColumn(name = "SEMESTAR_ID")
 	private Semestar semestar;
 
+	@ManyToMany(mappedBy = "studenti")
+	private Collection<Grupa> grupe;
 	public String getImeStud() {
 		return imeStud;
 	}
@@ -54,5 +59,9 @@ public class Student {
 
 	public void setUsmjerenje(Semestar semestar) {
 		this.semestar = semestar;
+	}
+
+	public Collection<Grupa> getGrupe() {
+		return grupe;
 	}
 }
