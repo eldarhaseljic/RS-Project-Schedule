@@ -17,6 +17,7 @@ import entiteti.Sala;
 import entiteti.Semestar;
 import entiteti.Usmjerenje;
 import entiteti.Zgrada;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,6 +45,9 @@ public class addSubjectController implements Initializable{
 	
 	@FXML
 	private ListView<Semestar> semesterTitle = new ListView<>();
+	
+	@FXML
+	private Label teachersHelp = new Label();
 	
 	@FXML
 	private Label errSubject = new Label();
