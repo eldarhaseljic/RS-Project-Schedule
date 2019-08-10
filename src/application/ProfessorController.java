@@ -40,7 +40,7 @@ public class ProfessorController implements Initializable {
 		// TODO Auto-generated method stub
 		usr.setText(MainController.trenutniKor.getIme() + " " + MainController.trenutniKor.getPrezime());
 		email.setText(MainController.trenutniKor.getEmail());
-		
+
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -49,11 +49,10 @@ public class ProfessorController implements Initializable {
 		Query q = em.createQuery("SELECT n FROM Nastavnik n");
 		@SuppressWarnings("unchecked")
 		List<Nastavnik> nastavnici = q.getResultList();
-		for (Nastavnik n : nastavnici) 
-		{
-			if(MainController.trenutniKor.getIme().equals(n.getImeNast()) && 
-			   MainController.trenutniKor.getPrezime().equals(n.getPrezNast()))
-			   titula.setText(n.getTitula());
+		for (Nastavnik n : nastavnici) {
+			if (MainController.trenutniKor.getIme().equals(n.getImeNast())
+					&& MainController.trenutniKor.getPrezime().equals(n.getPrezNast()))
+				titula.setText(n.getTitula());
 		}
 		em.close();
 		emf.close();

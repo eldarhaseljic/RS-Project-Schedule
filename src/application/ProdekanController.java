@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import entiteti.Nastavnik;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +44,22 @@ public class ProdekanController implements Initializable {
 		// TODO Auto-generated method stub
 		usr.setText(MainController.trenutniKor.getIme() + " " + MainController.trenutniKor.getPrezime());
 		email.setText(MainController.trenutniKor.getEmail());
-		titula.setText("Prodekan");
+
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT n FROM Nastavnik n");
+		@SuppressWarnings("unchecked")
+		List<Nastavnik> nastavnici = q.getResultList();
+		for (Nastavnik n : nastavnici) {
+			if (MainController.trenutniKor.getIme().equals(n.getImeNast())
+					&& MainController.trenutniKor.getPrezime().equals(n.getPrezNast()))
+				titula.setText(n.getTitula());
+		}
+		em.close();
+		emf.close();
 	}
 
 	// Sluz // IRMA de ovdje query napravi da odabere sve sale ciji naziv zgrade
@@ -87,6 +103,8 @@ public class ProdekanController implements Initializable {
 			primaryStage.setTitle("Delete a Building");
 			primaryStage.show();
 		}
+		em.close();
+		emf.close();
 	}
 
 	// Sluzi za pozivanja prozora za dodavanje nove zgrade
@@ -127,8 +145,10 @@ public class ProdekanController implements Initializable {
 			primaryStage.setTitle("Delete a Hall");
 			primaryStage.show();
 		}
+		em.close();
+		emf.close();
 	}
-	
+
 	public void addOrientation(ActionEvent event) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addOrientationScreen.fxml"));
 		Scene scene = new Scene(root);
@@ -138,7 +158,7 @@ public class ProdekanController implements Initializable {
 		primaryStage.setTitle("New Orientation");
 		primaryStage.show();
 	}
-	
+
 	public void deleteOrientation(ActionEvent event) throws Exception {
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
@@ -166,8 +186,10 @@ public class ProdekanController implements Initializable {
 			primaryStage.setTitle("Delete Orientation");
 			primaryStage.show();
 		}
+		em.close();
+		emf.close();
 	}
-	
+
 	public void addSemester(ActionEvent event) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addSemesterScreen.fxml"));
 		Scene scene = new Scene(root);
@@ -177,7 +199,7 @@ public class ProdekanController implements Initializable {
 		primaryStage.setTitle("New Semester");
 		primaryStage.show();
 	}
-	
+
 	public void deleteSemester(ActionEvent event) throws Exception {
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
@@ -205,5 +227,7 @@ public class ProdekanController implements Initializable {
 			primaryStage.setTitle("Delete Semester");
 			primaryStage.show();
 		}
+		em.close();
+		emf.close();
 	}
 }

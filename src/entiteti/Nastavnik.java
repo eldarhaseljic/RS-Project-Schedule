@@ -48,7 +48,7 @@ public class Nastavnik {
 	public void setPrezNast(String prezNast) {
 		this.prezNast = prezNast;
 	}
-	
+
 	public String getTitula() {
 		return titula;
 	}

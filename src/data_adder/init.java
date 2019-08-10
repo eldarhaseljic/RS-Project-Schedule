@@ -21,38 +21,32 @@ public class init {
 		EntityManager em = emf.createEntityManager();
 
 		/*
-		// USMJERENJA
-		Usmjerenje usmjerenje = new Usmjerenje();
-		usmjerenje.setImeUsmjerenja("Racunarstvo i informatika");
-		em.getTransaction().begin();
-		em.persist(usmjerenje);
-		em.getTransaction().commit();
+		 * // USMJERENJA Usmjerenje usmjerenje = new Usmjerenje();
+		 * usmjerenje.setImeUsmjerenja("Racunarstvo i informatika");
+		 * em.getTransaction().begin(); em.persist(usmjerenje);
+		 * em.getTransaction().commit();
+		 * 
+		 * Usmjerenje usmjerenje2 = new Usmjerenje();
+		 * usmjerenje2.setImeUsmjerenja("Telekomunikacije");
+		 * em.getTransaction().begin(); em.persist(usmjerenje2);
+		 * em.getTransaction().commit();
+		 * 
+		 * Usmjerenje usmjerenje3 = new Usmjerenje();
+		 * usmjerenje3.setImeUsmjerenja("Automatika i robotika");
+		 * em.getTransaction().begin(); em.persist(usmjerenje3);
+		 * em.getTransaction().commit();
+		 * 
+		 * Usmjerenje usmjerenje4 = new Usmjerenje();
+		 * usmjerenje4.setImeUsmjerenja("Elektroenergetski sistemi konverzije energije"
+		 * ); em.getTransaction().begin(); em.persist(usmjerenje4);
+		 * em.getTransaction().commit();
+		 * 
+		 * Usmjerenje usmjerenje5= new Usmjerenje();
+		 * usmjerenje5.setImeUsmjerenja("Elektroenergetske mreze i sistemi");
+		 * em.getTransaction().begin(); em.persist(usmjerenje5);
+		 * em.getTransaction().commit();
+		 */
 
-		Usmjerenje usmjerenje2 = new Usmjerenje();
-		usmjerenje2.setImeUsmjerenja("Telekomunikacije");
-		em.getTransaction().begin();
-		em.persist(usmjerenje2);
-		em.getTransaction().commit();
-
-		Usmjerenje usmjerenje3 = new Usmjerenje();
-		usmjerenje3.setImeUsmjerenja("Automatika i robotika");
-		em.getTransaction().begin();
-		em.persist(usmjerenje3);
-		em.getTransaction().commit();
-
-		Usmjerenje usmjerenje4 = new Usmjerenje();
-		usmjerenje4.setImeUsmjerenja("Elektroenergetski sistemi konverzije energije");
-		em.getTransaction().begin();
-		em.persist(usmjerenje4);
-		em.getTransaction().commit();
-		
-		Usmjerenje usmjerenje5= new Usmjerenje();
-		usmjerenje5.setImeUsmjerenja("Elektroenergetske mreze i sistemi");
-		em.getTransaction().begin();
-		em.persist(usmjerenje5);
-		em.getTransaction().commit();
-*/
-		
 		// STUDENTI
 		try {
 			FileReader readfile = new FileReader("name_rs.txt");
@@ -99,21 +93,16 @@ public class init {
 				nast.setPrezNast(parts[1]);
 				String ime = "Emir";
 				String prezime = "Meskovic";
-				
-				if(nast.getImeNast().equals(ime) && nast.getPrezNast().equals(prezime))
-				{
+
+				if (nast.getImeNast().equals(ime) && nast.getPrezNast().equals(prezime)) {
 					nast.setTitula("Prodekan");
 					middle = false;
-				}
-				else if(middle) 
-				{
+				} else if (middle) {
 					nast.setTitula("Profesor");
-				}
-				else
-				{
+				} else {
 					nast.setTitula("Asistent");
 				}
-				
+
 				em.getTransaction().begin();
 				em.persist(nast);
 				em.getTransaction().commit();
@@ -156,6 +145,8 @@ public class init {
 		 * nastkor.setPassword(ime.toLowerCase()+"123"); em.getTransaction().begin();
 		 * em.persist(nastkor); em.getTransaction().commit();
 		 */
+		em.close();
+		emf.close();
 	}
 
 }

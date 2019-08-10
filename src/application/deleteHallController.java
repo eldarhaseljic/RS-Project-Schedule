@@ -16,6 +16,7 @@ import entiteti.Sala;
 import entiteti.Zgrada;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,52 +48,49 @@ public class deleteHallController implements Initializable {
 		if (hallTitle.getSelectionModel().isEmpty() && buildingTitle.getSelectionModel().isEmpty()) {
 			errBuild.setText("You didn't choose the building.");
 			errHall.setText("You can't choose the hall");
-		} 
-		else if(hallTitle.getSelectionModel().isEmpty() && !buildingTitle.getSelectionModel().isEmpty()) {
+		} else if (hallTitle.getSelectionModel().isEmpty() && !buildingTitle.getSelectionModel().isEmpty()) {
 			errBuild.setText("");
 			errHall.setText("You didn't choose the hall");
-		} 
-		else 
-		{
+		} else {
 
-		String nazivZ = buildingTitle.getValue();
-		String nazivS = hallTitle.getValue();
+			String nazivZ = buildingTitle.getValue();
+			String nazivS = hallTitle.getValue();
 
-		String PERSISTENCE_UNIT_NAME = "raspored";
-		EntityManagerFactory emf;
-		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		EntityManager em = emf.createEntityManager();
+			String PERSISTENCE_UNIT_NAME = "raspored";
+			EntityManagerFactory emf;
+			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+			EntityManager em = emf.createEntityManager();
 
-		Query q = em.createQuery("SELECT z FROM Zgrada z WHERE z.nazivZg = :n", Zgrada.class);
-		q.setParameter("n", nazivZ);
-		@SuppressWarnings("unchecked")
-		List<Zgrada> zgrade = q.getResultList();
+			Query q = em.createQuery("SELECT z FROM Zgrada z WHERE z.nazivZg = :n", Zgrada.class);
+			q.setParameter("n", nazivZ);
+			@SuppressWarnings("unchecked")
+			List<Zgrada> zgrade = q.getResultList();
 
-		for (Zgrada z : zgrade) {
-			Collection<Sala> sale = z.getSale();
-			for (Sala s : sale) {
-				if (s.getNazivSale().equals(nazivS)) {
-					// sale.remove(s);
-					int id = s.getSalaId();
-					Sala sala = em.find(Sala.class, id);
-					if (sala != null) {
-						em.getTransaction().begin();
-						em.remove(sala);
-						em.getTransaction().commit();
+			for (Zgrada z : zgrade) {
+				Collection<Sala> sale = z.getSale();
+				for (Sala s : sale) {
+					if (s.getNazivSale().equals(nazivS)) {
+						// sale.remove(s);
+						int id = s.getSalaId();
+						Sala sala = em.find(Sala.class, id);
+						if (sala != null) {
+							em.getTransaction().begin();
+							em.remove(sala);
+							em.getTransaction().commit();
 
-						ProdekanController.Information = "Obrisali ste salu " + nazivS + " iz zgrade " + nazivZ + ".";
-						Stage primaryStage = new Stage();
-						Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-						Scene scene = new Scene(root);
-						primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-						primaryStage.setScene(scene);
-						primaryStage.show();
+							ProdekanController.Information = "You deleted the hall \"" + nazivS
+									+ "\" from the building \"" + nazivZ + "\".";
+							show(event);
+							break;
+						}
 					}
 				}
 			}
+			em.close();
+			emf.close();
 		}
 	}
-	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -112,18 +110,18 @@ public class deleteHallController implements Initializable {
 	public void enter(MouseEvent event) throws IOException {
 		hallTitle.setDisable(false);
 	}
-	
+
 	public void test(MouseEvent event) throws IOException {
 		if (buildingTitle.getSelectionModel().isEmpty())
 			hallTitle.setDisable(true);
 		else
 			hallTitle.setDisable(false);
 	}
-	
+
 	public void Press(MouseEvent event) throws IOException {
 		if (!(buildingTitle.getSelectionModel().isEmpty())) {
 			String naziv = buildingTitle.getValue();
-			
+
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -136,17 +134,22 @@ public class deleteHallController implements Initializable {
 			List<String> listofhalls = new ArrayList<String>();
 			if (temp_list.isEmpty()) {
 				ProdekanController.Information = "There is no hall in the selected building.";
-				Stage primaryStage = new Stage();
-				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-				Scene scene = new Scene(root);
-				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				primaryStage.setScene(scene);
-				primaryStage.show();
+				show(event);
 			} else {
 				for (Object e : temp_list)
 					listofhalls.add(((Sala) e).getNazivSale());
 				hallTitle.setItems(FXCollections.observableList(listofhalls));
 			}
-		} 
+		}
+	}
+
+	public void show(Event event) throws IOException {
+		// TODO Auto-generated method stub
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 }

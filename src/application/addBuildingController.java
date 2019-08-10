@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -45,7 +46,7 @@ public class addBuildingController {
 	public void addBuilding(ActionEvent event) throws Exception {
 
 		if (buildtitle.getText().isBlank())
-			errBuild.setText("Niste unijeli naziv zgrade");
+			errBuild.setText("You didn't enter the title for the building.");
 
 		else {
 			boolean exists = false;
@@ -83,30 +84,18 @@ public class addBuildingController {
 
 				if (nazivBaza.equals(naziv) && adresaBaza.equals(adresa)) {
 					exists = true;
-					ProdekanController.Information = "Entitet vec u bazi!";
-					Stage primaryStage = new Stage();
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-					Scene scene = new Scene(root);
-					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					primaryStage.setScene(scene);
-					primaryStage.show();
+					ProdekanController.Information = "The entity already exists in the database!";
+					show(event);
 					break;
-				}
-
-				else if (nazivBaza.equals(naziv)) {
+				} else if (nazivBaza.equals(naziv)) {
 					exists = true;
 					zgrada.setAdresaZg(adresa);
 					em.getTransaction().begin();
 					em.persist(zgrada);
 					em.getTransaction().commit();
 
-					ProdekanController.Information = "Adresa navedene zgrade je korigovana!";
-					Stage primaryStage = new Stage();
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-					Scene scene = new Scene(root);
-					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					primaryStage.setScene(scene);
-					primaryStage.show();
+					ProdekanController.Information = "The entity already exists, but its address was changed!";
+					show(event);
 					break;
 				}
 
@@ -121,17 +110,22 @@ public class addBuildingController {
 				em.persist(z);
 				em.getTransaction().commit();
 
-				ProdekanController.Information = "Uspjesno dodano";
-				Stage primaryStage = new Stage();
-				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-				Scene scene = new Scene(root);
-				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				primaryStage.setScene(scene);
-				primaryStage.show();
+				ProdekanController.Information = "The entity is successfully added to the database.";
+				show(event);
 			}
 
 			em.close();
 			emf.close();
 		}
+	}
+
+	public void show(ActionEvent event) throws IOException {
+		// TODO Auto-generated method stub
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 }
