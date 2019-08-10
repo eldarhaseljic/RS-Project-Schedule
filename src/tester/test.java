@@ -63,7 +63,7 @@ public class test {
 		List<Zgrada> zgrade = q5.getResultList();
 		for (Zgrada z : zgrade)
 			System.out.println(z.getNazivZg() + "-" + z.getAdresaZg());
-		
+
 		em.close();
 		emf.close();
 	}

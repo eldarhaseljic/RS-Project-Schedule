@@ -230,6 +230,7 @@ public class ProdekanController implements Initializable {
 		em.close();
 		emf.close();
 	}
+
 	public void addGroup(ActionEvent event) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addGroupScreen.fxml"));
 		Scene scene = new Scene(root);

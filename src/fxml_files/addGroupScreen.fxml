@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="308.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addGroupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addGroupController">
    <children>      
-      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="21.0" layoutY="25.0" prefHeight="39.0" prefWidth="128.0" text="Type" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="21.0" layoutY="25.0" prefHeight="39.0" prefWidth="95.0" text="Type" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-     <JFXButton layoutX="92.0" layoutY="463.0" onAction="#addGroup" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add Group" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+     <JFXButton layoutX="66.0" layoutY="363.0" onAction="#addGroup" prefHeight="79.0" prefWidth="203.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Create Group" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -32,7 +32,7 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <ComboBox fx:id="type" layoutX="167.0" layoutY="25.0" prefHeight="39.0" prefWidth="119.0" />
+      <ComboBox fx:id="type" layoutX="128.0" layoutY="25.0" prefHeight="39.0" prefWidth="158.0" />
       <ComboBox fx:id="subjects" layoutX="128.0" layoutY="100.0" prefHeight="39.0" prefWidth="158.0" />
       <Label fx:id="errType" alignment="CENTER" layoutX="167.0" layoutY="73.0" prefHeight="18.0" prefWidth="119.0" textFill="#bf0909" />
       <Label fx:id="errSubject" alignment="CENTER" layoutX="128.0" layoutY="145.0" prefHeight="18.0" prefWidth="158.0" textFill="#bf0909" />
@@ -43,12 +43,18 @@
       </Label>
       <ComboBox fx:id="teacher" layoutX="128.0" layoutY="169.0" prefHeight="39.0" prefWidth="158.0" />
       <Label fx:id="errTeacher" alignment="CENTER" layoutX="128.0" layoutY="214.0" prefHeight="18.0" prefWidth="158.0" textFill="#bf0909" />
-      <JFXListView fx:id="students" layoutX="27.0" layoutY="262.0" prefHeight="162.0" prefWidth="258.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="26.0" layoutY="234.0" prefHeight="24.0" prefWidth="258.0" text="Students" textAlignment="RIGHT">
+      <JFXListView fx:id="students" layoutX="355.0" layoutY="45.0" prefHeight="187.0" prefWidth="323.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="355.0" layoutY="13.0" prefHeight="24.0" prefWidth="323.0" text="All students" textAlignment="RIGHT">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="errStudents" alignment="CENTER" layoutX="27.0" layoutY="432.0" prefHeight="18.0" prefWidth="258.0" textFill="#bf0909" />
+      <Label fx:id="errStudents" alignment="CENTER" layoutX="359.0" layoutY="250.0" prefHeight="18.0" prefWidth="323.0" textFill="#bf0909" />
+      <JFXListView fx:id="selectedStudents" layoutX="355.0" layoutY="309.0" prefHeight="187.0" prefWidth="323.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="355.0" layoutY="276.0" prefHeight="24.0" prefWidth="323.0" text="Selected students" textAlignment="RIGHT">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
