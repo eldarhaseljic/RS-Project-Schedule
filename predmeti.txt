@@ -4,7 +4,7 @@
  Instrumentacija
  Projetovanje logickih sistema
  Linearni sisremi automatskog upravljana II
- Stohasticki sistemi estimacije
+ Stohasticki sistemi i estimacije
  Aktuatori
  Nelinearni sistemi upravljanja
  Robotika i masinska vizija
