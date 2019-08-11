@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="656.0" style="-fx-background-color: #7c0909;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.showUsersController">
+   <children>
+      <TableView fx:id="studTable" layoutX="40.0" layoutY="27.0" prefHeight="413.0" prefWidth="304.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <columns>
+          <TableColumn fx:id="teachers" prefWidth="303.0" text="Students" />
+        </columns>
+      </TableView>
+      <TableView fx:id="teachersTable" layoutX="332.0" layoutY="26.0" prefHeight="413.0" prefWidth="304.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <columns>
+          <TableColumn fx:id="students" prefWidth="303.0" text="Teachers" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="689.0" style="-fx-background-color: #7c0909;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.deleteGroupController">
+   <children>
+      <TableView fx:id="table" layoutX="26.0" layoutY="21.0" prefHeight="485.0" prefWidth="669.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <columns>
+          <TableColumn fx:id="teacher" prefWidth="149.0" text="Teacher" />
+          <TableColumn fx:id="subject" minWidth="0.0" prefWidth="110.0" text="Subject" />
+            <TableColumn fx:id="type" minWidth="0.0" prefWidth="150.0" text="Type" />
+            <TableColumn fx:id="students" minWidth="0.0" prefWidth="259.0" text="Students" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

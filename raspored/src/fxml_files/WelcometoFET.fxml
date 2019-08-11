@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <children>
+      <ImageView blendMode="DARKEN" cache="true" disable="true" fitHeight="165.0" fitWidth="165.0" focusTraversable="true" layoutX="93.0" layoutY="74.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" AnchorPane.bottomAnchor="261.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="74.0">
+         <image>
+            <Image url="@/slike/photo.png" />
+         </image>
+         <effect>
+            <Reflection />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <Label fx:id="lblStatus" layoutX="44.0" layoutY="350.0" prefHeight="22.0" prefWidth="264.0" textFill="#bf0909" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="42.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <JFXTextField fx:id="txtUsername" focusColor="#7c0909" layoutX="67.0" layoutY="268.0" prefHeight="26.0" prefWidth="240.0" promptText="Username" style="color: #7c0909;" unFocusColor="#7e7e7e">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </JFXTextField>
+      <JFXPasswordField fx:id="txtPassword" focusColor="#7c0909" layoutX="67.0" layoutY="307.0" prefHeight="26.0" prefWidth="240.0" promptText="Password" style="color: #7c0909;" unFocusColor="#7e7e7e">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </JFXPasswordField>
+      <JFXButton buttonType="RAISED" layoutX="43.0" layoutY="383.0" onAction="#LOGIN" prefHeight="42.0" prefWidth="264.0" ripplerFill="BLACK" style="-fx-background-color: #7c0909;" text="LOGIN" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+         <font>
+            <Font name="TeXGyreDejaVuMath-Regular" size="23.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </JFXButton>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" height="50.0" layoutX="-1.0" layoutY="-1.0" stroke="#ffffff00" strokeType="INSIDE" width="350.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#780b0b" />
+                  <Stop color="#7a0a0a" offset="0.2866666666666667" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" height="50.0" layoutX="-1.0" layoutY="450.0" stroke="#ffffff00" strokeType="INSIDE" width="350.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#7a0a0a" />
+                  <Stop color="#7a0a0a" offset="0.2866666666666667" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <ImageView blendMode="DARKEN" fitHeight="22.0" fitWidth="22.0" focusTraversable="true" layoutX="38.0" layoutY="273.0" nodeOrientation="INHERIT">
+         <image>
+            <Image url="@/slike/user.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <ImageView blendMode="DARKEN" cache="true" fitHeight="22.0" fitWidth="22.0" focusTraversable="true" layoutX="37.0" layoutY="312.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true">
+         <image>
+            <Image url="@/slike/pass.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+   </children>
+</AnchorPane>
