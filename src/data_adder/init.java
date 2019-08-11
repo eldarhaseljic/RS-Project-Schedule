@@ -67,7 +67,7 @@ public class init {
 			while (readbuffer.read() != -1) {
 				Predmet pred = new Predmet();
 				s = readbuffer.readLine();
-				pred.setImePred(s);
+				pred.setImePred(s.toUpperCase());
 				em.getTransaction().begin();
 				em.persist(pred);
 				em.getTransaction().commit();

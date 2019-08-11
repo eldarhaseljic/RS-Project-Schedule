@@ -39,6 +39,6 @@ public class Usmjerenje {
 	public int getIDUsmjerenja() {
 		return IdUsmjerenja;
 	}
-
-	public String toString () { return this.imeUsmjerenja;}
+	
+	public String toString() { return imeUsmjerenja;}
 }

@@ -43,7 +43,7 @@ public class addGroupController implements Initializable {
 	private ListView<String> students;
 	@FXML
 	private ListView<String> selectedStudents;
-	
+
 	private Collection<String> selected;
 
 	@FXML
@@ -105,63 +105,84 @@ public class addGroupController implements Initializable {
 		em.close();
 		emf.close();
 	}
-	
+
 	public void selectStudents(ActionEvent event) throws Exception {
 		ObservableList<String> temp = students.getSelectionModel().getSelectedItems();
 		selectedStudents.setItems(temp);
 		selected = temp;
-		for(String s : selected)
-			System.out.println(s);
-	}
-	
-	public void removeStudents(ActionEvent event) throws Exception {
-		
+		/*
+		 * for(String s : selected) System.out.println(s);
+		 */
 	}
 
 	public void addGroup(ActionEvent event) throws Exception {
-		
-		Collection<Student> studenti = new ArrayList<Student>();
-		String tip = type.getValue();
-		//String predmet = subjects.getValue();
-		String nastavnik = teacher.getValue();
-		
-		String PERSISTENCE_UNIT_NAME = "raspored";
-		EntityManagerFactory emf;
-		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		EntityManager em = emf.createEntityManager();
-		
-		//Query q1 = em.createQuery("SELECT p FROM Predmet p WHERE p.imePred = :ip", Predmet.class);
-		//q1.setParameter("ip", predmet);
-		//Object p = q1.getSingleResult();
-		
-		Query q2 = em.createQuery("SELECT n FROM Nastavnik n WHERE CONCAT(n.imeNast,' ',n.prezNast) = :in", Nastavnik.class);
-		q2.setParameter("in", nastavnik);
-		@SuppressWarnings("unchecked")
-		List<Nastavnik> n = q2.getResultList();
-		Nastavnik nast = n.get(0);
-		
-		for(String s : selected)
+		if (	type.getSelectionModel().isEmpty()
+				|| subjects.getSelectionModel().isEmpty() 
+				|| teacher.getSelectionModel().isEmpty()
+				|| students.getSelectionModel().isEmpty()) 
 		{
-			Query q3 = em.createQuery("SELECT s FROM Student s WHERE CONCAT(s.imeStud,' ',s.prezStud) = :is", Student.class);
-			q3.setParameter("is", s);
-			Object stud = q3.getSingleResult();
-			studenti.add((Student)stud);
+			if (type.getSelectionModel().isEmpty())
+				errType.setText("You didn't choose the type");
+			else
+				errType.setText("");
+			
+			if (subjects.getSelectionModel().isEmpty())
+				errSubject.setText("You didn't choose the subject");
+			else
+				errSubject.setText("");
+
+		    if (teacher.getSelectionModel().isEmpty())
+				errTeacher.setText("You didn't choose the teacher.");
+			else
+				errTeacher.setText("");
+		    
+			if (students.getSelectionModel().isEmpty())
+				errStudents.setText("You didn't choose students.");
+			else
+				errStudents.setText("");
+		} else {
+			Collection<Student> studenti = new ArrayList<Student>();
+			String tip = type.getValue();
+			String nastavnik = teacher.getValue();
+
+			String PERSISTENCE_UNIT_NAME = "raspored";
+			EntityManagerFactory emf;
+			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+			EntityManager em = emf.createEntityManager();
+
+			Query q2 = em.createQuery("SELECT n FROM Nastavnik n WHERE CONCAT(n.imeNast,' ',n.prezNast) = :in",
+					Nastavnik.class);
+			q2.setParameter("in", nastavnik);
+			@SuppressWarnings("unchecked")
+			List<Nastavnik> n = q2.getResultList();
+			Nastavnik nast = n.get(0);
+
+			for (String s : selected) {
+				Query q3 = em.createQuery("SELECT s FROM Student s WHERE CONCAT(s.imeStud,' ',s.prezStud) = :is",
+						Student.class);
+				q3.setParameter("is", s);
+				Object stud = q3.getSingleResult();
+				studenti.add((Student) stud);
+			}
+
+			Grupa g = new Grupa();
+			g.setTipgrupe(tip);
+			g.setNastavnika(nast);
+			nast.getGrupe().add(g);
+			// g.setPredmet((Predmet)p);
+			g.setStudente(studenti);
+			for (Student s : studenti)
+				s.getGrupe().add(g);
+
+			em.getTransaction().begin();
+			em.persist(g);
+			em.getTransaction().commit();
+
+			em.close();
+			emf.close();
+
+			ProdekanController.Information = "Successfully added";
+			show(event);
 		}
-		
-		Grupa g = new Grupa();
-		g.setTipgrupe(tip);
-		g.setNastavnika(nast);
-		nast.getGrupe().add(g);
-		//g.setPredmet((Predmet)p);
-		g.setStudente(studenti);
-		for(Student s : studenti)
-			s.getGrupe().add(g);
-		
-		em.getTransaction().begin();
-		em.persist(g);
-		em.getTransaction().commit();
-		
-		em.close();
-		emf.close();
 	}
 }

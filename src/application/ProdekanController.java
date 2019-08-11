@@ -11,6 +11,8 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import entiteti.Nastavnik;
+import entiteti.Semestar;
+import entiteti.Usmjerenje;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -39,8 +41,6 @@ public class ProdekanController implements Initializable {
 	public void close(ActionEvent event) throws Exception {
 		System.exit(0);
 	}
-
-	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -79,9 +79,9 @@ public class ProdekanController implements Initializable {
 		Query q = em.createQuery("SELECT z FROM Zgrada z");
 		temp_list = q.getResultList();
 
-		if (temp_list.size() < 1) {
+		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "There are no buildings !";
-			show(event, "/fxml_files/Info.fxml", "Info");
+			show(event, "/fxml_files/Info.fxml", "Error");
 		} else {
 			show(event, "/fxml_files/deleteBuildingScreen.fxml", "Delete a Building");
 		}
@@ -90,7 +90,20 @@ public class ProdekanController implements Initializable {
 	}
 
 	public void addHall(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT z FROM Zgrada z");
+		temp_list = q.getResultList();
+		
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "There are no buildings,to add a hall into it!";
+			show(event, "/fxml_files/Info.fxml", "Error");
+		} else {
 		show(event, "/fxml_files/addHallScreen.fxml", "New Hall");
+		}
 	}
 
 	public void deleteHall(ActionEvent event) throws Exception {
@@ -102,9 +115,9 @@ public class ProdekanController implements Initializable {
 		Query q = em.createQuery("SELECT z FROM Zgrada z");
 		temp_list = q.getResultList();
 
-		if (temp_list.size() < 1) {
+		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "There are no buildings,no halls also!";
-			show(event, "/fxml_files/Info.fxml", "Info");
+			show(event, "/fxml_files/Info.fxml", "Error");
 		} else {
 			show(event, "/fxml_files/deleteHallScreen.fxml", "Delete a Hall");
 		}
@@ -125,9 +138,9 @@ public class ProdekanController implements Initializable {
 		Query q = em.createQuery("SELECT u FROM Usmjerenje u");
 		temp_list = q.getResultList();
 
-		if (temp_list.size() < 1) {
+		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "There are no orientations!";
-			show(event, "/fxml_files/Info.fxml", "Info");
+			show(event, "/fxml_files/Info.fxml", "Error");
 		} else {
 			show(event, "/fxml_files/deleteOrientationScreen.fxml", "Delete Orientation");
 		}
@@ -148,7 +161,7 @@ public class ProdekanController implements Initializable {
 		Query q = em.createQuery("SELECT s FROM Semestar s");
 		temp_list = q.getResultList();
 
-		if (temp_list.size() < 1) {
+		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "There are no semesters!";
 			show(event, "/fxml_files/Info.fxml", "Info");
 		} else {
@@ -159,7 +172,46 @@ public class ProdekanController implements Initializable {
 	}
 	
 	public void addSubject(ActionEvent event) throws Exception {
-		show(event,"/fxml_files/addSubjectScreen.fxml","New Subject");
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT x FROM Nastavnik x");
+		@SuppressWarnings("unchecked")
+		List<Nastavnik> temp_list = q.getResultList();
+
+		Query q2 = em.createQuery("SELECT x FROM Usmjerenje x");
+		@SuppressWarnings("unchecked")
+		List<Usmjerenje> temp2_list = q2.getResultList();
+		
+		Query q3 = em.createQuery("SELECT x FROM Semestar x");
+		@SuppressWarnings("unchecked")
+		List<Semestar> temp3_list = q3.getResultList();
+		
+		em.close();
+		emf.close();
+		
+		if(temp_list.isEmpty())
+		{	
+			ProdekanController.Information ="You must have at least one teacher";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else if(temp2_list.isEmpty())
+		{
+			ProdekanController.Information ="You must have at least one orientation";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else if(temp3_list.isEmpty())
+		{	
+			
+			ProdekanController.Information ="You must have at least one semester";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else 
+		{
+			show(event,"/fxml_files/addSubjectScreen.fxml","New Subject");
+		}
 	}
 
 	public void deleteSubject(ActionEvent event) throws Exception {
@@ -170,19 +222,56 @@ public class ProdekanController implements Initializable {
 
 		Query q = em.createQuery("SELECT s FROM Predmet s");
 		temp_list = q.getResultList();
-
-		if (temp_list.size() < 1) {
+		
+		em.close();
+		emf.close();
+		
+		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "There are no subjects!";
-			show(event,"/fxml_files/Info.fxml","Info");
+			show(event,"/fxml_files/Info.fxml","Error");
 		} else {
 			show(event,"/fxml_files/deleteSubjectScreen.fxml","Delete Semester");
 		}
-		em.close();
-		emf.close();
 	}
 
 	public void addGroup(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT p FROM Predmet p");
+		List<?> predmeti = q.getResultList();
+
+		Query q1 = em.createQuery("SELECT n FROM Nastavnik n");
+		List<?> nastavnici = q1.getResultList();
+
+		Query q2 = em.createQuery("SELECT s FROM Student s");
+		List<?> studenti = q2.getResultList();
+
+		em.close();
+		emf.close();
+		
+		if(predmeti.isEmpty())
+		{	
+			ProdekanController.Information ="You must have at least one subject";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else if(nastavnici.isEmpty())
+		{
+			ProdekanController.Information ="You must have at least one teacher";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else if(studenti.isEmpty())
+		{	
+			
+			ProdekanController.Information ="You must have at least one student";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else 
+		{
 		show(event, "/fxml_files/addGroupScreen.fxml", "Add Group");
+		}
 	}
 
 	// Funkcija za pokretanje bilo kojeg gui prozora
