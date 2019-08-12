@@ -23,16 +23,16 @@ public class Semestar {
 
 	private LocalDate datumPocetkaSemestra;
 	private LocalDate datumZavrsetkaSemestra;
-	private String oznakaSemestra; 
+	private String oznakaSemestra;
 
-	@ManyToMany(mappedBy = "semestri")
-	private Collection<Predmet> predmeti;
-	
 	@OneToMany(mappedBy = "semestar", cascade = CascadeType.ALL)
 	private Collection<Cas> casovi;
 
 	@OneToMany(mappedBy = "semestar", cascade = CascadeType.ALL)
 	private Collection<Student> studenti;
+	
+	@ManyToMany(mappedBy = "semestri")
+	private Collection<Predmet> predmeti;
 
 	public String getOznakaSemestra() {
 		return oznakaSemestra;
@@ -57,10 +57,12 @@ public class Semestar {
 	public void setDatumZavrsetkaSemestra(LocalDate datumZavrsetkaSemestra) {
 		this.datumZavrsetkaSemestra = datumZavrsetkaSemestra;
 	}
-	
+
 	public int getIDSemestra() {
 		return IdSemestra;
 	}
 	
-	public String toString() { return oznakaSemestra + " " + datumPocetkaSemestra.toString();}
+	public String toString() { 
+		return oznakaSemestra + " " + datumPocetkaSemestra.toString();
+	}
 }

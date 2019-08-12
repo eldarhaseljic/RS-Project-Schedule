@@ -81,7 +81,6 @@ public class addSemesterController {
 					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
 					primaryStage.show();
-					show(event);
 					break;
 				}
 
@@ -106,7 +105,6 @@ public class addSemesterController {
 				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				primaryStage.setScene(scene);
 				primaryStage.show();
-				show(event);
 			}
 
 			em.close();
