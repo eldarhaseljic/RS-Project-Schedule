@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,13 +59,9 @@ public class deleteBuildingController implements Initializable {
 					em.remove(zgrada);
 					em.getTransaction().commit();
 
-					ProdekanController.Information = "Obrisali ste zgradu " + naziv + ".";
-					Stage primaryStage = new Stage();
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-					Scene scene = new Scene(root);
-					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					primaryStage.setScene(scene);
-					primaryStage.show();
+					ProdekanController.Information = "You deleted the building \"" + naziv + "\".";
+					show(event);
+					break;
 				}
 			}
 
@@ -81,6 +78,16 @@ public class deleteBuildingController implements Initializable {
 		for (Object e : ProdekanController.temp_list)
 			temp.add(((Zgrada) e).getNazivZg());
 		listbox.setItems(FXCollections.observableList(temp));
+	}
+
+	public void show(ActionEvent event) throws IOException {
+		// TODO Auto-generated method stub
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 
 }

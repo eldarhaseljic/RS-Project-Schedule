@@ -13,7 +13,7 @@
    <children>      
       <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="14.0" layoutY="25.0" prefHeight="39.0" prefWidth="141.0" text="Building" textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="23.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
      <JFXButton layoutX="143.0" layoutY="162.0" onAction="#addHall" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add Hall" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
@@ -29,7 +29,7 @@
       </JFXButton>
       <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="14.0" layoutY="99.0" prefHeight="39.0" prefWidth="141.0" text="Hall title" textAlignment="RIGHT">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
       <JFXTextField fx:id="hallTitle" layoutX="170.0" layoutY="93.0" prefHeight="27.0" prefWidth="238.0">
@@ -38,15 +38,7 @@
          </font>
       </JFXTextField>
       <ComboBox fx:id="buildingTitle" layoutX="170.0" layoutY="25.0" prefHeight="39.0" prefWidth="238.0" />
-      <Label fx:id="errBuild" alignment="CENTER" layoutX="170.0" layoutY="67.0" prefHeight="18.0" prefWidth="238.0" textFill="#bf0909">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="errHall" alignment="CENTER" layoutX="170.0" layoutY="138.0" prefHeight="18.0" prefWidth="238.0" textFill="#bf0909">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <Label fx:id="errBuild" alignment="CENTER" layoutX="170.0" layoutY="67.0" prefHeight="18.0" prefWidth="238.0" textFill="#bf0909" />
+      <Label fx:id="errHall" alignment="CENTER" layoutX="170.0" layoutY="138.0" prefHeight="18.0" prefWidth="238.0" textFill="#bf0909" />
    </children>
 </AnchorPane>

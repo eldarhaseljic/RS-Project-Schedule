@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -9,7 +10,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import entiteti.Nastavnik;
+import entiteti.Semestar;
+import entiteti.Usmjerenje;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -37,29 +42,29 @@ public class ProdekanController implements Initializable {
 		System.exit(0);
 	}
 
-	// Sluzi za inicijalizaciju teksta na pocetnom ekranu
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		usr.setText(MainController.trenutniKor.getIme() + " " + MainController.trenutniKor.getPrezime());
 		email.setText(MainController.trenutniKor.getEmail());
-		titula.setText("Prodekan");
+
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT n FROM Nastavnik n");
+		@SuppressWarnings("unchecked")
+		List<Nastavnik> nastavnici = q.getResultList();
+		for (Nastavnik n : nastavnici) {
+			if (MainController.trenutniKor.getIme().equals(n.getImeNast())
+					&& MainController.trenutniKor.getPrezime().equals(n.getPrezNast()))
+				titula.setText(n.getTitula());
+		}
+
+		em.close();
+		emf.close();
 	}
 
-	// Sluz // IRMA de ovdje query napravi da odabere sve sale ciji naziv zgrade
-	// odaberemoi za pozivanja prozora za dodavanje nove zgrade
-	public void addBuilding(ActionEvent event) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addBuildingScreen.fxml"));
-		Scene scene = new Scene(root);
-		Stage primaryStage = new Stage();
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setTitle("New Building");
-		primaryStage.show();
-	}
-
-	// Sluzi za pokretanje prozora za brisanje zgrade ali se
-	// prvo provjeri da li postoji u bazizgrada
 	public void deleteBuilding(ActionEvent event) throws Exception {
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
@@ -69,35 +74,31 @@ public class ProdekanController implements Initializable {
 		Query q = em.createQuery("SELECT z FROM Zgrada z");
 		temp_list = q.getResultList();
 
-		if (temp_list.size() < 1) {
-			ProdekanController.Information = "Nema zapisa o zgradama u bazi!";
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-			Scene scene = new Scene(root);
-			// primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Info");
-			primaryStage.show();
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "There are no buildings !";
+			show(event, "/fxml_files/Info.fxml", "Error");
 		} else {
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/deleteBuildingScreen.fxml"));
-			Scene scene = new Scene(root);
-			Stage primaryStage = new Stage();
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("Delete a Building");
-			primaryStage.show();
+			show(event, "/fxml_files/deleteBuildingScreen.fxml", "Delete a Building");
 		}
+		em.close();
+		emf.close();
 	}
 
-	// Sluzi za pozivanja prozora za dodavanje nove zgrade
 	public void addHall(ActionEvent event) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addHallScreen.fxml"));
-		Scene scene = new Scene(root);
-		Stage primaryStage = new Stage();
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setTitle("New Hall");
-		primaryStage.show();
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT z FROM Zgrada z");
+		temp_list = q.getResultList();
+		
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "There are no buildings,to add a hall into it!";
+			show(event, "/fxml_files/Info.fxml", "Error");
+		} else {
+		show(event, "/fxml_files/addHallScreen.fxml", "New Hall");
+		}
 	}
 
 	public void deleteHall(ActionEvent event) throws Exception {
@@ -109,24 +110,108 @@ public class ProdekanController implements Initializable {
 		Query q = em.createQuery("SELECT z FROM Zgrada z");
 		temp_list = q.getResultList();
 
-		if (temp_list.size() < 1) {
-			ProdekanController.Information = "Nema zapisa o zgradama u bazi,nema ni sala!";
-			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-			Scene scene = new Scene(root);
-			// primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Info");
-			primaryStage.show();
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "There are no buildings,no halls also!";
+			show(event, "/fxml_files/Info.fxml", "Error");
 		} else {
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/deleteHallScreen.fxml"));
-			Scene scene = new Scene(root);
-			Stage primaryStage = new Stage();
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle("Delete a Hall");
-			primaryStage.show();
+			show(event, "/fxml_files/deleteHallScreen.fxml", "Delete a Hall");
 		}
+		em.close();
+		emf.close();
+	}
+	
+	public void addSubject(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT x FROM Nastavnik x");
+		@SuppressWarnings("unchecked")
+		List<Nastavnik> temp_list = q.getResultList();
+
+		Query q2 = em.createQuery("SELECT x FROM Usmjerenje x");
+		@SuppressWarnings("unchecked")
+		List<Usmjerenje> temp2_list = q2.getResultList();
+		
+		Query q3 = em.createQuery("SELECT x FROM Semestar x");
+		@SuppressWarnings("unchecked")
+		List<Semestar> temp3_list = q3.getResultList();
+		
+		em.close();
+		emf.close();
+		
+		if(temp_list.isEmpty())
+		{	
+			ProdekanController.Information ="You must have at least one teacher";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else if(temp2_list.isEmpty())
+		{
+			ProdekanController.Information ="You must have at least one orientation";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else if(temp3_list.isEmpty())
+		{	
+			
+			ProdekanController.Information ="You must have at least one semester";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else 
+		{
+			show(event,"/fxml_files/addSubjectScreen.fxml","New Subject");
+		}
+	}
+
+	public void addGroup(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT p FROM Predmet p");
+		List<?> predmeti = q.getResultList();
+
+		Query q1 = em.createQuery("SELECT n FROM Nastavnik n");
+		List<?> nastavnici = q1.getResultList();
+
+		Query q2 = em.createQuery("SELECT s FROM Student s");
+		List<?> studenti = q2.getResultList();
+
+		em.close();
+		emf.close();
+		
+		if(predmeti.isEmpty())
+		{	
+			ProdekanController.Information ="You must have at least one subject";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else if(nastavnici.isEmpty())
+		{
+			ProdekanController.Information ="You must have at least one teacher";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else if(studenti.isEmpty())
+		{	
+			
+			ProdekanController.Information ="You must have at least one student";
+			show(event,"/fxml_files/Info.fxml","Error");
+		}
+		else 
+		{
+		show(event, "/fxml_files/addGroupScreen.fxml", "Add Group");
+		}
+	}
+
+	// Funkcija za pokretanje bilo kojeg gui prozora
+	private void show(Event event, String resurs, String title) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource(resurs));
+		Scene scene = new Scene(root);
+		Stage primaryStage = new Stage();
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.setTitle(title);
+		primaryStage.show();
 	}
 	
 	public void addOrientation(ActionEvent event) throws Exception {
@@ -207,16 +292,6 @@ public class ProdekanController implements Initializable {
 		}
 	}
 	
-	public void addSubject(ActionEvent event) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/addSubjectScreen.fxml"));
-		Scene scene = new Scene(root);
-		Stage primaryStage = new Stage();
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setTitle("New Subject");
-		primaryStage.show();
-	}
-	
 	public void deleteSubject(ActionEvent event) throws Exception {
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
@@ -241,8 +316,13 @@ public class ProdekanController implements Initializable {
 			Stage primaryStage = new Stage();
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
-			primaryStage.setTitle("Delete Semester");
+			primaryStage.setTitle("Delete Subject");
 			primaryStage.show();
 		}
 	}
+
+	public void addBuilding(ActionEvent event) throws Exception {
+		show(event, "/fxml_files/addBuildingScreen.fxml", "New Building");
+	}
+
 }

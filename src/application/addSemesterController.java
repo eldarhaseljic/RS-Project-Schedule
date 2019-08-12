@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
@@ -36,20 +37,25 @@ public class addSemesterController {
 	private DatePicker dateEnd; 
 
 	public void addSemester(ActionEvent event) throws Exception {
+		@SuppressWarnings("unused")
 		Calendar cal = Calendar.getInstance();
-		
+
 		if (oznSem.getText().isBlank())
 			errBuild.setText("Enter semester label!");
 		else if (dateBegin.getValue() == null)
 			errBuild.setText("Enter semester begin date!");
 		else if (dateEnd.getValue() == null)
 			errBuild.setText("Enter semester end date!");
-		else if (dateBegin.getValue().getYear() > dateEnd.getValue().getYear()) 
-			errBuild.setText("Bad date");	
-		else if (dateBegin.getValue().getYear() == dateEnd.getValue().getYear() && dateBegin.getValue().getMonthValue() > dateEnd.getValue().getMonthValue())
+
+		else if (dateBegin.getValue().getYear() > dateEnd.getValue().getYear())
 			errBuild.setText("Bad date");
-		else if(dateBegin.getValue().getDayOfYear() > dateEnd.getValue().getDayOfYear() && dateBegin.getValue().getYear() == dateEnd.getValue().getYear())
+		else if (dateBegin.getValue().getYear() == dateEnd.getValue().getYear()
+				&& dateBegin.getValue().getMonthValue() > dateEnd.getValue().getMonthValue())
 			errBuild.setText("Bad date");
+		else if (dateBegin.getValue().getDayOfYear() > dateEnd.getValue().getDayOfYear()
+				&& dateBegin.getValue().getYear() == dateEnd.getValue().getYear())
+			errBuild.setText("Bad date");
+		
 		else {
 			boolean exists = false;
 			String naziv = oznSem.getText().toUpperCase();
@@ -75,6 +81,7 @@ public class addSemesterController {
 					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
 					primaryStage.show();
+					show(event);
 					break;
 				}
 
@@ -83,9 +90,11 @@ public class addSemesterController {
 			if (!exists) {
 				Semestar s = new Semestar();
 				s.setOznakaSemestra(naziv);
-				s.setDatumPocetkaSemestra(LocalDate.of(dateBegin.getValue().getYear(), dateBegin.getValue().getMonth(), dateBegin.getValue().getDayOfMonth()));
-				s.setDatumZavrsetkaSemestra(LocalDate.of(dateEnd.getValue().getYear(), dateEnd.getValue().getMonth(), dateEnd.getValue().getDayOfMonth()));
-				
+				s.setDatumPocetkaSemestra(LocalDate.of(dateBegin.getValue().getYear(), dateBegin.getValue().getMonth(),
+						dateBegin.getValue().getDayOfMonth()));
+				s.setDatumZavrsetkaSemestra(LocalDate.of(dateEnd.getValue().getYear(), dateEnd.getValue().getMonth(),
+						dateEnd.getValue().getDayOfMonth()));
+
 				em.getTransaction().begin();
 				em.persist(s);
 				em.getTransaction().commit();
@@ -97,10 +106,21 @@ public class addSemesterController {
 				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				primaryStage.setScene(scene);
 				primaryStage.show();
+				show(event);
 			}
 
 			em.close();
 			emf.close();
 		}
+	}
+
+	public void show(ActionEvent event) throws IOException {
+		// TODO Auto-generated method stub
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 }

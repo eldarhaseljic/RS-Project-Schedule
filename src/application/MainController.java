@@ -61,7 +61,7 @@ public class MainController {
 					primaryStage.setScene(scene);
 					primaryStage.show();
 				} else if (k.isNastavnik()) {
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/NastavnikScreen.fxml"));
+					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/ProfessorScreen.fxml"));
 					Scene scene = new Scene(root);
 					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
@@ -85,9 +85,8 @@ public class MainController {
 			txtUsername.clear();
 			txtPassword.clear();
 			lblStatus.setText("Login failed, please try again");
-		}
-		
+		}		
+		em.close();
+		emf.close();
 	}
-	
-	
 }

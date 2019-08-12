@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="183.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addBuildingController">
    <children>      
-      <Label fx:id="usr" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="21.0" layoutY="25.0" prefHeight="39.0" prefWidth="141.0" text="Naziv zgrade" textAlignment="CENTER">
+      <Label fx:id="usr" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="21.0" layoutY="25.0" prefHeight="39.0" prefWidth="141.0" text="Building title" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
@@ -26,9 +26,9 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
-      <Label fx:id="usr1" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="21.0" layoutY="76.0" prefHeight="39.0" prefWidth="141.0" text="Adresa" textAlignment="RIGHT">
+      <Label fx:id="usr1" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="21.0" layoutY="76.0" prefHeight="39.0" prefWidth="141.0" text="Address" textAlignment="RIGHT">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
       <JFXTextField fx:id="buildtitle" layoutX="174.0" layoutY="14.0" prefHeight="32.0" prefWidth="238.0">
@@ -43,7 +43,7 @@
       </JFXTextField>
       <Label fx:id="errBuild" alignment="CENTER" layoutX="174.0" layoutY="57.0" prefHeight="15.0" prefWidth="238.0" textFill="#bf0909">
          <font>
-            <Font size="14.0" />
+            <Font size="11.0" />
          </font>
       </Label>
    </children>

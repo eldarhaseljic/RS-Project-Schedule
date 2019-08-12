@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -81,26 +82,16 @@ public class addHallController implements Initializable {
 					em.persist(s);
 					em.getTransaction().commit();
 
-					ProdekanController.Information = "Uspjesno dodano";
-					Stage primaryStage = new Stage();
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-					Scene scene = new Scene(root);
-					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					primaryStage.setScene(scene);
-					primaryStage.show();
+					ProdekanController.Information = "The entity is successfully added to the database.";
+					show(event);
 					break;
 				}
 
 				for (Sala s : sale) {
 					if (s.getNazivSale().equals(nazivS)) {
 						exists = true;
-						ProdekanController.Information = "Entitet vec u bazi!";
-						Stage primaryStage = new Stage();
-						Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-						Scene scene = new Scene(root);
-						primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-						primaryStage.setScene(scene);
-						primaryStage.show();
+						ProdekanController.Information = "The entity already exists in the database!";
+						show(event);
 						break;
 					}
 				}
@@ -114,13 +105,8 @@ public class addHallController implements Initializable {
 					em.persist(s);
 					em.getTransaction().commit();
 
-					ProdekanController.Information = "Uspjesno dodano";
-					Stage primaryStage = new Stage();
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-					Scene scene = new Scene(root);
-					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					primaryStage.setScene(scene);
-					primaryStage.show();
+					ProdekanController.Information = "The entity is successfully added to the database.";
+					show(event);
 				}
 			}
 
@@ -146,5 +132,17 @@ public class addHallController implements Initializable {
 			temp.add(((Zgrada) e).getNazivZg());
 		buildingTitle.setItems(FXCollections.observableList(temp));
 
+		em.close();
+		emf.close();
+	}
+
+	public void show(ActionEvent event) throws IOException {
+		// TODO Auto-generated method stub
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 }

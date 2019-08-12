@@ -22,6 +22,7 @@ public class Nastavnik {
 
 	private String imeNast;
 	private String prezNast;
+	private String titula;
 
 	@OneToMany(mappedBy = "nastavnik", cascade = CascadeType.ALL)
 	private Collection<Grupa> grupe;
@@ -50,4 +51,16 @@ public class Nastavnik {
 	
 	public String toString() { return this.imeNast + " "+ this.prezNast;}
 
+	public String getTitula() {
+		return titula;
+	}
+
+	public void setTitula(String titula) {
+		this.titula = titula;
+	}
+
+	public Collection<Grupa> getGrupe() {
+		// TODO Auto-generated method stub
+		return this.grupe;
+	}
 }

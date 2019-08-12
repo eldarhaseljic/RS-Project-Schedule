@@ -2,6 +2,8 @@ package application;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,6 +23,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import entiteti.Semestar;
+import entiteti.Usmjerenje;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -60,10 +67,12 @@ public class addSubjectController implements Initializable{
 	
 	@FXML
 	private Label errSemester= new Label();
-	
-	
+
 	public void addSubject(ActionEvent event) throws Exception {
-		if (subjectTitle.getText().isBlank() || teachersTitle.getSelectionModel().isEmpty() || teachersTitle.getSelectionModel().isEmpty() || semesterTitle.getSelectionModel().isEmpty()) {
+		if (subjectTitle.getText().isBlank() 
+		|| teachersTitle.getSelectionModel().isEmpty() 
+		|| orientationsTitle.getSelectionModel().isEmpty() 
+		|| semesterTitle.getSelectionModel().isEmpty()) {
 			if (subjectTitle.getText().isBlank())
 				errSubject.setText("You didn't set the title of the subject");
 			else
@@ -84,7 +93,6 @@ public class addSubjectController implements Initializable{
 			else
 				errSemester.setText("");
 		}
-		
 		else {
 			String subjectName= subjectTitle.getText().toUpperCase();
 			Collection<Nastavnik> teacherName =  teachersTitle.getSelectionModel().getSelectedItems();
@@ -100,11 +108,10 @@ public class addSubjectController implements Initializable{
 			Query q = em.createQuery("SELECT x FROM Predmet x WHERE x.imePred = :n", Predmet.class);
 			q.setParameter("n", subjectName);
 			
+			@SuppressWarnings("unchecked")
 			List<Predmet> predmeti = q.getResultList();
 			
-			if(predmeti.size() > 0)
-			{
-				
+			if(predmeti.size() > 0){
 				ProdekanController.Information = "Entitet vec u bazi!";
 				Stage primaryStage = new Stage();
 				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
@@ -112,10 +119,12 @@ public class addSubjectController implements Initializable{
 				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				primaryStage.setScene(scene);
 				primaryStage.show();
+
+				ProdekanController.Information = "The entity is already in the database!";
+				show(event);
 				em.close();
 				emf.close();
 				return;
-				
 			}
 			
 			Predmet noviPredmet = new Predmet(subjectName,teacherName, orientationName, semesterName);
@@ -132,17 +141,14 @@ public class addSubjectController implements Initializable{
 			primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			ProdekanController.Information = "Successfully added";
+			show(event);
 			}
 	
 	}
-
 	
-
-
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+	public void initialize(URL arg0, ResourceBundle arg1) {		
 		teachersTitle.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		orientationsTitle.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		semesterTitle.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -152,25 +158,37 @@ public class addSubjectController implements Initializable{
 		EntityManager em = emf.createEntityManager();
 
 		Query q = em.createQuery("SELECT x FROM Nastavnik x");
+		@SuppressWarnings("unchecked")
 		List<Nastavnik> temp_list = q.getResultList();
 
 		if(temp_list != null)
 		teachersTitle.setItems( FXCollections.observableArrayList(temp_list));
 		
 		Query q2 = em.createQuery("SELECT x FROM Usmjerenje x");
+		@SuppressWarnings("unchecked")
 		List<Usmjerenje> temp2_list = q2.getResultList();
 		
 		if(temp2_list != null)
 			orientationsTitle.setItems( FXCollections.observableArrayList(temp2_list));
 		
 		Query q3 = em.createQuery("SELECT x FROM Semestar x");
+		@SuppressWarnings("unchecked")
+
 		List<Semestar> temp3_list = q3.getResultList();
 		
 		if(temp3_list != null)
 			semesterTitle.setItems( FXCollections.observableArrayList(temp3_list));
 		
-
 		em.close();
 		emf.close();
+	}
+
+	private void show(Event event) throws IOException {
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 }

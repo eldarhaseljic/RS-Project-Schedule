@@ -4,26 +4,40 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="109.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InfoController">
-   <children>      
-      <Label fx:id="info" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="4.0" layoutY="14.0" prefHeight="40.0" prefWidth="429.0" text="Adresa vec postojece zgrade je korigovana!" textAlignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="113.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InfoController">
+   <children>
+      <ImageView blendMode="MULTIPLY" fitHeight="119.0" fitWidth="436.0" focusTraversable="true" layoutY="-3.0">
+         <image>
+            <Image url="@/slike/1157b6fd85f1ff2.jpg" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ImageView>      
+      <Label fx:id="info" alignment="CENTER" contentDisplay="CENTER" depthTest="ENABLE" disable="true" layoutX="8.0" layoutY="14.0" prefHeight="40.0" prefWidth="420.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-     <JFXButton layoutX="148.0" layoutY="63.0" onAction="#close" prefHeight="32.0" prefWidth="140.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Close" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </JFXButton>
+      <AnchorPane layoutX="149.0" layoutY="73.0">
+         <children>
+           <JFXButton depthTest="ENABLE" layoutY="-8.0" onAction="#close" prefHeight="32.0" prefWidth="140.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Close" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

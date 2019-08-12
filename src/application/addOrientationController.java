@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -28,7 +29,7 @@ public class addOrientationController {
 	public void addOrientation(ActionEvent event) throws Exception {
 
 		if (orientation.getText().isBlank())
-			errBuild.setText("You didnt enter name for the orientation!");
+			errBuild.setText("You didn't enter name for the orientation!");
 
 		else {
 			boolean exists = false;
@@ -53,6 +54,7 @@ public class addOrientationController {
 					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);
 					primaryStage.show();
+					show(event);
 					break;
 				}
 			}
@@ -72,10 +74,20 @@ public class addOrientationController {
 				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				primaryStage.setScene(scene);
 				primaryStage.show();
-			}
+				show(event);
+				}
 
 			em.close();
 			emf.close();
 		}
+	}
+	public void show(ActionEvent event) throws IOException {
+		// TODO Auto-generated method stub
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 }

@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 
 import entiteti.Korisnik;
 import entiteti.Nastavnik;
+import entiteti.Predmet;
 import entiteti.Student;
 import entiteti.Usmjerenje;
 
@@ -46,14 +47,38 @@ public class init {
 		em.getTransaction().begin();
 		em.persist(usmjerenje4);
 		em.getTransaction().commit();
-		
-		Usmjerenje usmjerenje5= new Usmjerenje();
+
+		Usmjerenje usmjerenje5 = new Usmjerenje();
 		usmjerenje5.setImeUsmjerenja("Elektroenergetske mreze i sistemi");
 		em.getTransaction().begin();
 		em.persist(usmjerenje5);
 		em.getTransaction().commit();
+<<<<<<< HEAD
 */
+
+		Usmjerenje usmjerenje6 = new Usmjerenje();
+		usmjerenje6.setImeUsmjerenja("Biomedicinski inzinjering");
+		em.getTransaction().begin();
+		em.persist(usmjerenje6);
+		em.getTransaction().commit();
 		
+		//Predmeti
+		try {
+			FileReader readfile = new FileReader("predmeti.txt");
+			BufferedReader readbuffer = new BufferedReader(readfile);
+			String s;
+			while (readbuffer.read() != -1) {
+				Predmet pred = new Predmet();
+				s = readbuffer.readLine();
+				pred.setImePred(s.toUpperCase());
+				em.getTransaction().begin();
+				em.persist(pred);
+				em.getTransaction().commit();
+				}
+			readbuffer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 		// STUDENTI
 		try {
 			FileReader readfile = new FileReader("name_rs.txt");
@@ -85,18 +110,32 @@ public class init {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		
 		// NASTAVNICI
 		try {
 			FileReader readfile = new FileReader("name_nast.txt");
 			BufferedReader readbuffer = new BufferedReader(readfile);
 			String s;
+			boolean middle = true;
 			while (readbuffer.read() != -1) {
 				Nastavnik nast = new Nastavnik();
 				s = readbuffer.readLine();
 				String[] parts = s.split(";");
 				nast.setImeNast(parts[0]);
 				nast.setPrezNast(parts[1]);
+				String ime = "Emir";
+				String prezime = "Meskovic";
+
+				if (nast.getImeNast().equals(ime) && nast.getPrezNast().equals(prezime)) {
+					nast.setTitula("Prodekan");
+					middle = false;
+				} else if (middle) {
+					nast.setTitula("Profesor");
+				} else {
+					nast.setTitula("Asistent");
+				}
+
 				em.getTransaction().begin();
 				em.persist(nast);
 				em.getTransaction().commit();
@@ -108,9 +147,6 @@ public class init {
 				// nece ni trebati ali ja sam samo zakomentarisao
 				//
 				// Haselja
-
-				String ime = "Emir";
-				String prezime = "Meskovic";
 
 				if (!(nast.getImeNast().equals(ime) && nast.getPrezNast().equals(prezime))) {
 					nastkor.setNastavnik(true);
@@ -132,7 +168,7 @@ public class init {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		/*
 		 * //PRODEKAN Korisnik nastkor = new Korisnik(); String ime = "Emir"; String
 		 * prez = "Meskovic"; nastkor.setIme(ime); nastkor.setPrezime(prez);
@@ -142,6 +178,8 @@ public class init {
 		 * nastkor.setPassword(ime.toLowerCase()+"123"); em.getTransaction().begin();
 		 * em.persist(nastkor); em.getTransaction().commit();
 		 */
+		em.close();
+		emf.close();
 	}
 
 }

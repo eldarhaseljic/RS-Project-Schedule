@@ -12,7 +12,7 @@
    <children>      
       <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="21.0" layoutY="25.0" prefHeight="39.0" prefWidth="138.0" text="Building" textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="23.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
      <JFXButton layoutX="143.0" layoutY="170.0" onAction="#deleteHall" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Delete Hall" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
@@ -28,20 +28,12 @@
       </JFXButton>
       <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="21.0" layoutY="100.0" prefHeight="39.0" prefWidth="138.0" text="Hall" textAlignment="RIGHT">
          <font>
-            <Font name="System Bold" size="28.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
       <ComboBox fx:id="buildingTitle" layoutX="178.0" layoutY="25.0" onMouseClicked="#enter" prefHeight="39.0" prefWidth="238.0" />
       <ComboBox fx:id="hallTitle" layoutX="178.0" layoutY="100.0" onMouseClicked="#Press" onMouseMoved="#test" prefHeight="39.0" prefWidth="238.0" />
-      <Label fx:id="errBuild" alignment="CENTER" layoutX="178.0" layoutY="75.0" prefHeight="18.0" prefWidth="238.0" textFill="#bf0909">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="errHall" alignment="CENTER" layoutX="178.0" layoutY="146.0" prefHeight="18.0" prefWidth="238.0" textFill="#bf0909">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <Label fx:id="errBuild" alignment="CENTER" layoutX="178.0" layoutY="75.0" prefHeight="18.0" prefWidth="238.0" textFill="#bf0909" />
+      <Label fx:id="errHall" alignment="CENTER" layoutX="178.0" layoutY="146.0" prefHeight="18.0" prefWidth="238.0" textFill="#bf0909" />
    </children>
 </AnchorPane>

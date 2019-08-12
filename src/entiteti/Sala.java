@@ -30,11 +30,10 @@ public class Sala {
 	@JoinColumn(name = "ZGRADA_ID")
 	private Zgrada zgrada;
 
-	public String getNazivZgrade()
-	{
+	public String getNazivZgrade() {
 		return this.zgrada.getNazivZg();
 	}
-	
+
 	public String getNazivSale() {
 		return nazivSale;
 	}
@@ -42,11 +41,11 @@ public class Sala {
 	public void setNazivSale(String nazivSale) {
 		this.nazivSale = nazivSale;
 	}
-	
+
 	public void setZgrada(Zgrada z) {
 		this.zgrada = z;
 	}
-	
+
 	public int getSalaId() {
 		return salaId;
 	}
