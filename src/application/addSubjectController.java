@@ -57,13 +57,12 @@ public class addSubjectController implements Initializable{
 	
 	@FXML
 	private Label errSemester= new Label();
-	
+
 	public void addSubject(ActionEvent event) throws Exception {
 		if (subjectTitle.getText().isBlank() 
 		|| teachersTitle.getSelectionModel().isEmpty() 
 		|| orientationsTitle.getSelectionModel().isEmpty() 
-		|| semesterTitle.getSelectionModel().isEmpty()) 
-		{
+		|| semesterTitle.getSelectionModel().isEmpty()) {
 			if (subjectTitle.getText().isBlank())
 				errSubject.setText("You didn't set the title of the subject");
 			else
@@ -84,14 +83,11 @@ public class addSubjectController implements Initializable{
 			else
 				errSemester.setText("");
 		}
-		else 
-		{
+		else {
 			String subjectName= subjectTitle.getText().toUpperCase();
 			Collection<Nastavnik> teacherName =  teachersTitle.getSelectionModel().getSelectedItems();
 			Collection<Usmjerenje> orientationName = orientationsTitle.getSelectionModel().getSelectedItems();
 			Collection<Semestar> semesterName = semesterTitle.getSelectionModel().getSelectedItems();	
-			//boolean exists = false;
-			
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -103,15 +99,20 @@ public class addSubjectController implements Initializable{
 			@SuppressWarnings("unchecked")
 			List<Predmet> predmeti = q.getResultList();
 			
-			if(predmeti.size() > 0)
-			{
-				
+			if(predmeti.size() > 0){
+				ProdekanController.Information = "Entitet vec u bazi!";
+				Stage primaryStage = new Stage();
+				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+				Scene scene = new Scene(root);
+				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				primaryStage.setScene(scene);
+				primaryStage.show();
+
 				ProdekanController.Information = "The entity is already in the database!";
 				show(event);
 				em.close();
 				emf.close();
 				return;
-				
 			}
 			
 			Predmet noviPredmet = new Predmet(subjectName,teacherName, orientationName, semesterName);
@@ -128,9 +129,7 @@ public class addSubjectController implements Initializable{
 	}
 	
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+	public void initialize(URL arg0, ResourceBundle arg1) {		
 		teachersTitle.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		orientationsTitle.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		semesterTitle.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -155,6 +154,7 @@ public class addSubjectController implements Initializable{
 		
 		Query q3 = em.createQuery("SELECT x FROM Semestar x");
 		@SuppressWarnings("unchecked")
+
 		List<Semestar> temp3_list = q3.getResultList();
 		
 		if(temp3_list != null)

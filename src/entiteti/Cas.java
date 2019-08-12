@@ -12,32 +12,37 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 
-@Entity(name = "Cas")
+@Entity(name="Cas")
 public class Cas {
-
-	@TableGenerator(name = "idCas", allocationSize = 1, initialValue = 1)
-	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "idCas")
+	
+	@TableGenerator(
+			name = "idCas",
+			allocationSize = 1,
+			initialValue = 1)
+	@Id 
+	@GeneratedValue(
+			strategy=GenerationType.TABLE, 
+			generator="idCas")
 	@Column(name = "CAS_ID")
 	private int IdCasa;
-
+	
 	private LocalDate datumOdrzavanjaCasa;
 	private LocalTime vrijemePocetkaCasa;
-	private LocalDate vrijemeZavrsetkaCasa;
-
+	private LocalTime vrijemeZavrsetkaCasa;
+	
 	@ManyToOne
 	@JoinColumn(name = "GRUPA_ID")
 	private Grupa grupa;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "SEMESTAR_ID")
 	private Semestar semestar;
 
-	public LocalDate getVrijemeZavrsetkaCasa() {
+	public LocalTime getVrijemeZavrsetkaCasa() {
 		return vrijemeZavrsetkaCasa;
 	}
 
-	public void setVrijemeZavrsetkaCasa(LocalDate vrijemeZavrsetkaCasa) {
+	public void setVrijemeZavrsetkaCasa(LocalTime vrijemeZavrsetkaCasa) {
 		this.vrijemeZavrsetkaCasa = vrijemeZavrsetkaCasa;
 	}
 
@@ -56,5 +61,5 @@ public class Cas {
 	public void setDatumOdrzavanjaCasa(LocalDate datumOdrzavanjaCasa) {
 		this.datumOdrzavanjaCasa = datumOdrzavanjaCasa;
 	}
-
+	
 }

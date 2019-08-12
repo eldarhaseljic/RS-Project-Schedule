@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #7c0909;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.showSubjectsController">
+   <children>
+      <TableView fx:id="table" layoutX="17.0" layoutY="59.0" prefHeight="380.0" prefWidth="580.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <columns>
+          <TableColumn fx:id="title" prefWidth="172.0" text="Title" />
+            <TableColumn fx:id="orientation" prefWidth="218.0" text="Orientation" />
+            <TableColumn fx:id="teachers" prefWidth="189.0" text="Teachers" />
+        </columns>
+         <effect>
+            <Glow />
+         </effect>
+      </TableView>
+   </children>
+</AnchorPane>

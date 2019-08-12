@@ -16,6 +16,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
+
      <JFXButton layoutX="118.0" layoutY="593.0" onAction="#addSubject" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add Subject" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />

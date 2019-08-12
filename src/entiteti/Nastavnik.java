@@ -27,7 +27,7 @@ public class Nastavnik {
 	@OneToMany(mappedBy = "nastavnik", cascade = CascadeType.ALL)
 	private Collection<Grupa> grupe;
 
-	@ManyToMany(mappedBy = "predmeti")
+	@ManyToMany(mappedBy = "nastavnici")
 	private Collection<Predmet> predmeti;
 
 	@OneToMany(mappedBy = "nastavnik", cascade = CascadeType.ALL)
@@ -56,11 +56,21 @@ public class Nastavnik {
 	public void setTitula(String titula) {
 		this.titula = titula;
 	}
-
-	public String toString() { return this.imeNast + " " + this.prezNast; }
-
+	
 	public Collection<Grupa> getGrupe() {
-		// TODO Auto-generated method stub
-		return this.grupe;
+		return grupe;
 	}
+	
+	public String toString() { 
+		return this.imeNast + " "+ this.prezNast;
+	}
+	
+	public Collection<Predmet> getPredmeti() {
+		return predmeti;
+	}
+	
+	public String getIme() {
+		return this.toString();
+	}
+
 }

@@ -21,7 +21,32 @@ public class test {
 		EntityManager em = emf.createEntityManager();
 
 		/*
-		 * // SELECT PRIMJER I TEST DATA ADDERA Query q1 =
+<<<<<<< HEAD
+		// SELECT PRIMJER I TEST DATA ADDERA
+		Query q1 = em.createQuery("SELECT u FROM Usmjerenje u");
+		@SuppressWarnings("unchecked")
+		List<Usmjerenje> usmjerenja = q1.getResultList();
+		for (Usmjerenje o : usmjerenja)
+			System.out.println(o.getIDUsmjerenja() + " " + o.getImeUsmjerenja());
+		System.out.println();
+		
+		
+		// UPDATE PRIMJER
+		EntityTransaction updateTransaction = em.getTransaction();
+		updateTransaction.begin();
+		Query q3 = em
+				.createQuery("UPDATE Student s SET s.usmjerenje= :uid" + " WHERE s.IdStudenta= :sid", Student.class)
+				.setParameter("uid", usmjerenja.get(0));
+		q3.setParameter("sid", 1703);
+		int updateCount = q3.executeUpdate();
+		if (updateCount > 0) {
+			System.out.println("Done...(" + updateCount + ")");
+		}
+		updateTransaction.commit();
+		System.out.println();
+	*/
+		
+		 /* // SELECT PRIMJER I TEST DATA ADDERA Query q1 =
 		 * em.createQuery("SELECT u FROM Usmjerenje u");
 		 * 
 		 * @SuppressWarnings("unchecked") List<Usmjerenje> usmjerenja =

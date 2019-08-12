@@ -18,7 +18,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
-      <ImageView blendMode="DARKEN" cache="true" disable="true" fitHeight="154.0" fitWidth="234.0" focusTraversable="true" layoutX="68.0" layoutY="85.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" AnchorPane.bottomAnchor="261.0" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="85.0">
+      <ImageView blendMode="DARKEN" cache="true" disable="true" fitHeight="154.0" fitWidth="234.0" focusTraversable="true" layoutX="58.0" layoutY="85.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" AnchorPane.bottomAnchor="261.0" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="85.0">
          <image>
             <Image url="@/slike/photo.png" />
          </image>

@@ -110,6 +110,7 @@ public class addGroupController implements Initializable {
 		ObservableList<String> temp = students.getSelectionModel().getSelectedItems();
 		selectedStudents.setItems(temp);
 		selected = temp;
+		//students.setDisable(true);
 		/*
 		 * for(String s : selected) System.out.println(s);
 		 */
@@ -144,7 +145,8 @@ public class addGroupController implements Initializable {
 			Collection<Student> studenti = new ArrayList<Student>();
 			String tip = type.getValue();
 			String nastavnik = teacher.getValue();
-
+			String predmet = subjects.getValue();
+			
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -164,13 +166,19 @@ public class addGroupController implements Initializable {
 				Object stud = q3.getSingleResult();
 				studenti.add((Student) stud);
 			}
+			Query q4 = em.createQuery("SELECT n FROM Predmet n WHERE n.imePred = :in",
+					Predmet.class);
+			q4.setParameter("in", predmet);
+			
+			@SuppressWarnings("unchecked")
+			List<Predmet> pred = q4.getResultList();
 
 			Grupa g = new Grupa();
 			g.setTipgrupe(tip);
 			g.setNastavnika(nast);
-			nast.getGrupe().add(g);
-			// g.setPredmet((Predmet)p);
+			g.setPredmet(pred.get(0));
 			g.setStudente(studenti);
+			nast.getGrupe().add(g);
 			for (Student s : studenti)
 				s.getGrupe().add(g);
 
