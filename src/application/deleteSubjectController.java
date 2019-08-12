@@ -77,7 +77,7 @@ public class deleteSubjectController implements Initializable {
 		List<Predmet> temp = new ArrayList<>();
 		for (Object e : ProdekanController.temp_list)
 			temp.add(((Predmet) e));
-		listbox.setItems(FXCollections.observableList(temp));
+		listbox.setItems(FXCollections.observableList(temp).sorted());
 	}
 
 }

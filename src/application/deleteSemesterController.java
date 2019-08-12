@@ -77,7 +77,7 @@ public class deleteSemesterController implements Initializable {
 		List<String> temp = new ArrayList<String>();
 		for (Object e : ProdekanController.temp_list)
 			temp.add(((Semestar) e).getOznakaSemestra());
-		listbox.setItems(FXCollections.observableList(temp));
+		listbox.setItems(FXCollections.observableList(temp).sorted());
 	}
 
 }

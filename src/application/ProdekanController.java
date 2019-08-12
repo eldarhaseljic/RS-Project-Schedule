@@ -392,7 +392,22 @@ public void showGroups(ActionEvent event) throws Exception {
 }
 
 public void createPeriod(ActionEvent event) throws Exception {
-	
+	String PERSISTENCE_UNIT_NAME = "raspored";
+	EntityManagerFactory emf;
+	emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+	EntityManager em = emf.createEntityManager();
+
+	Query q = em.createQuery("SELECT g FROM GrupaStudenata g");
+	temp_list = q.getResultList();
+
+	if (temp_list.size() < 1) {
+		ProdekanController.Information = "There are no groups!";
+		show(event,"/fxml_files/Info.fxml","Info");
+	} else {
+		show(event,"/fxml_files/createPeriodScreen.fxml","Groups");
+	}
+	em.close();
+	emf.close();
 }
 
 public void showUsers(ActionEvent event) throws Exception {

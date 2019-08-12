@@ -100,14 +100,6 @@ public class addSubjectController implements Initializable{
 			List<Predmet> predmeti = q.getResultList();
 			
 			if(predmeti.size() > 0){
-				ProdekanController.Information = "Entitet vec u bazi!";
-				Stage primaryStage = new Stage();
-				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-				Scene scene = new Scene(root);
-				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				primaryStage.setScene(scene);
-				primaryStage.show();
-
 				ProdekanController.Information = "The entity is already in the database!";
 				show(event);
 				em.close();
@@ -143,14 +135,14 @@ public class addSubjectController implements Initializable{
 		List<Nastavnik> temp_list = q.getResultList();
 
 		if(temp_list != null)
-		teachersTitle.setItems( FXCollections.observableArrayList(temp_list));
+		teachersTitle.setItems( FXCollections.observableArrayList(temp_list).sorted());
 		
 		Query q2 = em.createQuery("SELECT x FROM Usmjerenje x");
 		@SuppressWarnings("unchecked")
 		List<Usmjerenje> temp2_list = q2.getResultList();
 		
 		if(temp2_list != null)
-			orientationsTitle.setItems( FXCollections.observableArrayList(temp2_list));
+			orientationsTitle.setItems( FXCollections.observableArrayList(temp2_list).sorted());
 		
 		Query q3 = em.createQuery("SELECT x FROM Semestar x");
 		@SuppressWarnings("unchecked")
@@ -158,7 +150,7 @@ public class addSubjectController implements Initializable{
 		List<Semestar> temp3_list = q3.getResultList();
 		
 		if(temp3_list != null)
-			semesterTitle.setItems( FXCollections.observableArrayList(temp3_list));
+			semesterTitle.setItems( FXCollections.observableArrayList(temp3_list).sorted());
 		
 		em.close();
 		emf.close();
