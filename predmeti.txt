@@ -9,7 +9,7 @@
  Nelinearni sistemi upravljanja;Automatika i robotika;Jakub Osmic;
  Robotika i masinska vizija;Automatika i robotika;Naser Prljaca;
  Inteligentni sistemi;Automatika i robotika;Lejla Banjanovic-Mehmedovic;
- Projektovanje mikroprocesorskih sistema;Automatika i robotika;Lejla Banjanovic-Mehmedovic;
+ Projektovanje mikroprocesorskih sistema;Automatika i robotika;Naser Prljaca;
  Digitalni sistemi upravljanja i obrade signala I;Automatika i robotika;Zenan Sehic;
  Upravljanje mehatronickim sistemima;Automatika i robotika;Amila Dubravic;
  Optimalno upravljanje;Automatika i robotika;Amila Dubravic;
@@ -34,6 +34,7 @@
  Elektroenergetske prenosne i distributivne mreze;Elektroenergetske mreze i sistemi;Tatjana Konjic;
  Oprimizacione metode u elektrotehnici;Elektroenergetske mreze i sistemi;Amir Nuhanovic;
  Modeliranje sistema;Elektroenergetske mreze i sistemi;Amir Tokic;
+ Modeliranje i simulacija sistema;Elektroenergetske mreze i sistemi;Amir Tokic;
  Elektroenergetske stanice;Elektroenergetske mreze i sistemi;Suad Halilcevic;
  Tehnika visokog napona;Elektroenergetske mreze i sistemi;Amir Tokic;
  Relejna tehnika;Elektroenergetske mreze i sistemi;Suad Halilcevic;

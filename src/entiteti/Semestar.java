@@ -30,7 +30,7 @@ public class Semestar {
 
 	@OneToMany(mappedBy = "semestar", cascade = CascadeType.ALL)
 	private Collection<Student> studenti;
-	
+
 	@ManyToMany(mappedBy = "semestri")
 	private Collection<Predmet> predmeti;
 
@@ -61,8 +61,8 @@ public class Semestar {
 	public int getIDSemestra() {
 		return IdSemestra;
 	}
-	
-	public String toString() { 
+
+	public String toString() {
 		return oznakaSemestra + " " + datumPocetkaSemestra.toString();
 	}
 }

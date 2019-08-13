@@ -102,6 +102,7 @@ public class createPeriodController implements Initializable {
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 			EntityManager em = emf.createEntityManager();
 
+			@SuppressWarnings("rawtypes")
 			TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
 			int row = pos.getRow();
 
@@ -126,6 +127,7 @@ public class createPeriodController implements Initializable {
 			q1.setParameter("krajvrijeme", satikraj*60+minutekraj);
 			q1.setParameter("sem", semester.getValue());
 
+			@SuppressWarnings("unchecked")
 			List<Cas> casoviSaNast=q1.getResultList();
 			if(!casoviSaNast.isEmpty()) {
 				errPeriod.setText("Teacher is busy at that time.");
@@ -144,6 +146,7 @@ public class createPeriodController implements Initializable {
 			q3.setParameter("krajvrijeme", satikraj*60+minutekraj);
 			q3.setParameter("dan", danusedmici.getValue());
 
+			@SuppressWarnings("unchecked")
 			List<Cas> casoviSaSala=q3.getResultList();
 			if(!casoviSaSala.isEmpty()) {
 				errPeriod.setText("Classroom is busy at that time.");
@@ -163,7 +166,13 @@ public class createPeriodController implements Initializable {
 			em.getTransaction().begin();
 			em.persist(cas);
 			em.getTransaction().commit();
-		}
+
+
+		ProdekanController.Information ="Period was successfuly created";
+			show(event);
+			em.close();
+			emf.close();		
+	}
 			
 		
 	}
@@ -214,7 +223,6 @@ public class createPeriodController implements Initializable {
 		emf.close();
 	}
 	
-	@SuppressWarnings("unused")
 	private void show(Event event) throws IOException {
 		Stage primaryStage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));

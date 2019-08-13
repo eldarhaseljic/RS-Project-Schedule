@@ -56,23 +56,23 @@ public class Nastavnik {
 	public void setTitula(String titula) {
 		this.titula = titula;
 	}
-	
+
 	public Collection<Grupa> getGrupe() {
 		return grupe;
 	}
-	
-	public String toString() { 
-		return this.imeNast + " "+ this.prezNast;
+
+	public String toString() {
+		return this.imeNast + " " + this.prezNast;
 	}
-	
+
 	public Collection<Predmet> getPredmeti() {
 		return predmeti;
 	}
-	
+
 	public String getIme() {
 		return this.toString();
 	}
-	
+
 	public int getId() {
 		return IdNastavnika;
 	}

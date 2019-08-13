@@ -31,10 +31,10 @@ public class addSemesterController {
 	private Label errBuild;
 
 	@FXML
-	private DatePicker dateBegin; 
-	
+	private DatePicker dateBegin;
+
 	@FXML
-	private DatePicker dateEnd; 
+	private DatePicker dateEnd;
 
 	public void addSemester(ActionEvent event) throws Exception {
 		@SuppressWarnings("unused")
@@ -55,7 +55,7 @@ public class addSemesterController {
 		else if (dateBegin.getValue().getDayOfYear() > dateEnd.getValue().getDayOfYear()
 				&& dateBegin.getValue().getYear() == dateEnd.getValue().getYear())
 			errBuild.setText("Bad date");
-		
+
 		else {
 			boolean exists = false;
 			String naziv = oznSem.getText().toUpperCase();
@@ -70,17 +70,12 @@ public class addSemesterController {
 			List<Semestar> semestri = q.getResultList();
 
 			for (Semestar semestar : semestri) {
-	
+
 				if (semestar.getOznakaSemestra().equals(naziv)) {
 					exists = true;
 
 					ProdekanController.Information = "Semester already exists!";
-					Stage primaryStage = new Stage();
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-					Scene scene = new Scene(root);
-					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					primaryStage.setScene(scene);
-					primaryStage.show();
+					show(event);
 					break;
 				}
 
@@ -99,12 +94,7 @@ public class addSemesterController {
 				em.getTransaction().commit();
 
 				ProdekanController.Information = "Semester added successfully!";
-				Stage primaryStage = new Stage();
-				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-				Scene scene = new Scene(root);
-				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				primaryStage.setScene(scene);
-				primaryStage.show();
+				show(event);
 			}
 
 			em.close();
@@ -120,5 +110,6 @@ public class addSemesterController {
 		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 	}
 }
