@@ -54,9 +54,10 @@
                   <MenuItem mnemonicParsing="false" onAction="#deleteGroup" text="Group" />
                </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Create Schedule">
+          <Menu mnemonicParsing="false" text="Schedule">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#createPeriod" text="Create Period" />
+                  <MenuItem mnemonicParsing="false" onAction="#deletePeriod" text="Delete Period" />
                </items></Menu>
         </menus>
       </MenuBar>

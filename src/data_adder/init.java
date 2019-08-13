@@ -184,13 +184,21 @@ public class init {
 				nastavnici.add((Nastavnik) n.get(0));
 
 				Collection<Usmjerenje> usmjerenja = new ArrayList<Usmjerenje>();
-
-				Query q3 = em.createQuery("SELECT n FROM Usmjerenje n WHERE n.imeUsmjerenja = :in", Usmjerenje.class);
-
-				q3.setParameter("in", parts[1]);
+				Query q3;
+				
+				if(parts[1].equals("all")) {
+					q3 = em.createQuery("SELECT n FROM Usmjerenje n");
+				}
+				else 
+				{
+					q3 = em.createQuery("SELECT n FROM Usmjerenje n WHERE n.imeUsmjerenja = :in", Usmjerenje.class);
+					q3.setParameter("in", parts[1]);
+				}
+				
 				@SuppressWarnings("unchecked")
 				List<Usmjerenje> a = q3.getResultList();
-				usmjerenja.add((Usmjerenje) a.get(0));
+				for(Usmjerenje current: a)
+					usmjerenja.add((Usmjerenje) current);
 
 				Predmet novi = new Predmet();
 				novi.setImePred(parts[0].toUpperCase());

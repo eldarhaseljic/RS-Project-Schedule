@@ -425,6 +425,25 @@ public class ProdekanController implements Initializable {
 		emf.close();
 	}
 
+	public void deletePeriod(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+	
+		Query q = em.createQuery("SELECT p FROM Cas p");
+		temp_list = q.getResultList();
+	
+		if (temp_list.size() < 1) {
+			ProdekanController.Information = "There are no groups!";
+			show(event,"/fxml_files/Info.fxml","Info");
+		} else {
+			show(event,"/fxml_files/deletePeriodScreen.fxml","Groups");
+		}
+		em.close();
+		emf.close();
+	}
+
 	public void showUsers(ActionEvent event) throws Exception {
 		show(event, "/fxml_files/showUsersScreen.fxml", "Users");
 	}
