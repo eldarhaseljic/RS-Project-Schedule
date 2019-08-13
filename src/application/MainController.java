@@ -55,7 +55,7 @@ public class MainController {
 				exists = true;
 				trenutniKor = k;
 				if (!k.isNastavnik() && !k.isProdekan()) {
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/ToDo.fxml"));
+					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/StudentScreen.fxml"));
 					Scene scene = new Scene(root);
 					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					primaryStage.setScene(scene);

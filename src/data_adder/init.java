@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -69,12 +70,18 @@ public class init {
 			FileReader readfile = new FileReader("name_rs.txt");
 			BufferedReader readbuffer = new BufferedReader(readfile);
 			String s;
+			Query q3 = em.createQuery("SELECT n FROM Usmjerenje n");
+			@SuppressWarnings("unchecked")
+			List<Usmjerenje> a = q3.getResultList();
+			Random rand = new Random();
+
 			while (readbuffer.read() != -1) {
 				Student stud = new Student();
 				s = readbuffer.readLine();
 				String[] parts = s.split(";");
 				stud.setImeStud(parts[0]);
 				stud.setPrezStud(parts[1]);
+				stud.setUsmjerenje(a.get(rand.nextInt(a.size())));
 				em.getTransaction().begin();
 				em.persist(stud);
 				em.getTransaction().commit();

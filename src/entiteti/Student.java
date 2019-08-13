@@ -14,7 +14,7 @@ import javax.persistence.TableGenerator;
 
 @Entity(name = "Student")
 public class Student {
-	@TableGenerator(name = "index", allocationSize = 1, initialValue = 1700)
+	@TableGenerator(name = "index", allocationSize = 1, initialValue = 17000)
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "index")
 	@Column(name = "STUDENT_ID")
@@ -54,11 +54,18 @@ public class Student {
 		return IdStudenta;
 	}
 
-	public void setSemestar(Usmjerenje usmjerenje) {
+	public void setIDStud(int id) {
+		this.IdStudenta =  id;
+	}
+	
+	public void setUsmjerenje(Usmjerenje usmjerenje) {
 		this.usmjerenje = usmjerenje;
 	}
 
-	public void setUsmjerenje(Semestar semestar) {
+	public String getUsmjerenje() {
+		return usmjerenje.getImeUsmjerenja();
+	}
+	public void setSemestar(Semestar semestar) {
 		this.semestar = semestar;
 	}
 
