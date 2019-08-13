@@ -135,12 +135,14 @@ public class createPeriodController implements Initializable {
 					+ "(:pocvrijeme BETWEEN c.vrijemePocetkaCasaSat*60+c.vrijemePocetkaCasaMinuta "
 					+ "AND c.vrijemeZavrsetkaCasaSat*60+c.vrijemeZavrsetkaCasaMinuta OR "
 					+ ":krajvrijeme BETWEEN c.vrijemePocetkaCasaSat*60+c.vrijemePocetkaCasaMinuta "
-					+ "AND c.vrijemeZavrsetkaCasaSat*60+c.vrijemeZavrsetkaCasaMinuta)");
+					+ "AND c.vrijemeZavrsetkaCasaSat*60+c.vrijemeZavrsetkaCasaMinuta)"
+					+ " AND c.datumOdrzavanjaCasa = :dan");
 			
 			q3.setParameter("sala", sala.getValue());
 			q3.setParameter("pocvrijeme", satipoc*60+minutepoc);
 			q3.setParameter("krajvrijeme", satikraj*60+minutekraj);
-			
+			q3.setParameter("dan", danusedmici.getValue());
+
 			List<Cas> casoviSaSala=q1.getResultList();
 			if(!casoviSaSala.isEmpty()) {
 				errPeriod.setText("Classroom is busy at that time.");
