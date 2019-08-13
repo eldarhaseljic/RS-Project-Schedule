@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Tue Aug 13 15:49:59 CEST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-016c-8b3e-1b59-000004f1d148 
-on database directory /home/mahha/MyDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@3b9a45b3 
-Loaded from file:/home/mahha/razvoj_projekat/derby.jar
+Tue Aug 13 18:17:33 CEST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-016c-8bc5-37d5-000004c59eb8 
+on database directory /home/lejla/MyDB4 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@3b9a45b3 
+Loaded from file:/home/lejla/Desktop/razvoj_projekat/derby.jar
 java.vendor=Ubuntu
 java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
-user.dir=/home/mahha/razvoj_projekat/raspored
+user.dir=/home/lejla/eclipse-workspace2/raspored
 os.name=Linux
 os.arch=amd64
 os.version=4.15.0-55-generic

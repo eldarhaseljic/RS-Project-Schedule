@@ -79,7 +79,7 @@ public class Predmet {
 	public String toString() { 
 		return imePred;
 	}
-	
+
 	public Collection<Grupa> getGrupe() {
 		return grupe;
 	}

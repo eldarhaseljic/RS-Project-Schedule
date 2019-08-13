@@ -96,5 +96,15 @@ public class Cas {
 	public void setSala(Sala sal) {
 		this.sala = sal;
 	}
+
+	public Object getId() {
+		// TODO Auto-generated method stub
+		return IdCasa;
+	}
+	
+	public String toString() {
+		return this.sala.getNazivSale() + " " + this.grupa.getImePredmeta().split(";")[0] + " " +this.grupa.getNastavnik().toString()+" "+ this.getDatumOdrzavanjaCasa()+ " "+ this.getvrijemePocetkaCasaSat()+ ":"+ this.getVrijemePocetkaCasaMinuta()
+		+ " - "+ this.getVrijemeZavrsetkaCasaSat()+":"+this.getVrijemeZavrsetkaCasaMinuta();
+	}
 	
 }
