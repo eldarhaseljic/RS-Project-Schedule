@@ -80,15 +80,15 @@ public class addGroupController implements Initializable {
 		List<String> temp = new ArrayList<String>();
 		for (Object e : predmeti)
 			temp.add(((Predmet) e).getImePred());
-		subjects.setItems(FXCollections.observableList(temp));
-
+		subjects.setItems(FXCollections.observableList(temp).sorted());
+		
 		Query q1 = em.createQuery("SELECT n FROM Nastavnik n");
 		List<?> nastavnici = q1.getResultList();
 
 		List<String> temp1 = new ArrayList<String>();
 		for (Object e : nastavnici)
 			temp1.add(((Nastavnik) e).getImeNast() + " " + ((Nastavnik) e).getPrezNast());
-		teacher.setItems(FXCollections.observableList(temp1));
+		teacher.setItems(FXCollections.observableList(temp1).sorted());
 
 		Query q2 = em.createQuery("SELECT s FROM Student s");
 		List<?> studenti = q2.getResultList();
@@ -96,7 +96,7 @@ public class addGroupController implements Initializable {
 		List<String> temp2 = new ArrayList<String>();
 		for (Object e : studenti)
 			temp2.add(((Student) e).getImeStud() + " " + ((Student) e).getPrezStud());
-		students.setItems(FXCollections.observableList(temp2));
+		students.setItems(FXCollections.observableList(temp2).sorted());
 
 		// Ovo selektuje vise ali kad drzis CTRL
 		// pa odkomentarisi ako bude trebalo dalje
@@ -108,12 +108,9 @@ public class addGroupController implements Initializable {
 
 	public void selectStudents(ActionEvent event) throws Exception {
 		ObservableList<String> temp = students.getSelectionModel().getSelectedItems();
-		selectedStudents.setItems(temp);
+		selectedStudents.setItems(temp.sorted());
 		selected = temp;
 		students.setDisable(true);
-		/*
-		 * for(String s : selected) System.out.println(s);
-		 */
 	}
 
 	public void addGroup(ActionEvent event) throws Exception {
@@ -145,7 +142,8 @@ public class addGroupController implements Initializable {
 			Collection<Student> studenti = new ArrayList<Student>();
 			String tip = type.getValue();
 			String nastavnik = teacher.getValue();
-
+			String predmet = subjects.getValue();
+			
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -165,13 +163,19 @@ public class addGroupController implements Initializable {
 				Object stud = q3.getSingleResult();
 				studenti.add((Student) stud);
 			}
+			Query q4 = em.createQuery("SELECT n FROM Predmet n WHERE n.imePred = :in",
+					Predmet.class);
+			q4.setParameter("in", predmet);
+			
+			@SuppressWarnings("unchecked")
+			List<Predmet> pred = q4.getResultList();
 
 			Grupa g = new Grupa();
 			g.setTipgrupe(tip);
 			g.setNastavnika(nast);
-			nast.getGrupe().add(g);
-			// g.setPredmet((Predmet)p);
+			g.setPredmet(pred.get(0));
 			g.setStudente(studenti);
+			nast.getGrupe().add(g);
 			for (Student s : studenti)
 				s.getGrupe().add(g);
 

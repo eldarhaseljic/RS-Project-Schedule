@@ -1,113 +1,102 @@
- Mjerenja u automatici i robotici
- Linearni dinamički sistemi i signali
- Linearni sistemi automatskog upravljanja I
- Instrumentacija
- Projetovanje logickih sistema
- Linearni sisremi automatskog upravljana II
- Stohasticki sistemi i estimacije
- Aktuatori
- Nelinearni sistemi upravljanja
- Robotika i masinska vizija
- Inteligentni sistemi
- Projektovanje mikroprocesorskih sistema
- Digitalni sistemi upravljanja i obrade signala I
- Upravljanje mehatronickim sistemima
- Optimalno upravljanje
- Projektovanje na cipu
- Distribuirani sistemu automatizacije
- Digitalni sistemi upravljanja i obrade signala II
- Klinicki inzenjering
- Principi biomedicinskog inzenjeringa
- Obrada i analiza medicinskih slika
- Prepoznavanje uzoraka
- Biomedicinski informacioni sistemi
- Biomedicinska instrumentacija
- Uvod u energetske sisteme
- Teorija elektricnih kola
- Mjerenja u elektrotehnici
- Matricne metode u elektrotehnici
- Numericke metode u elektrotehnici 
- Elektricne instalacije niskog napona
- Inteligentni sistemi u elektroenergetici
- Trziste elektricne energije
- Programski alati u elektroenergetici
- Elektroenergetske prenosne i distributivne mreze 
- Oprimizacione metode u elektrotehnici 
- Modeliranje i simulacija
- Modeliranje sistema
- Elektroenergetske stanice
- Tehnika visokog napona
- Relejna tehnika
- Anliza elektroenergetskog sistema
- Dinamika elektroenergetskog sistema
- Planiranje elektroenergetskih sistema
- Simulacije sistema
- Elektrane
- Upravljanje elektroenergetskog sistema
- Numericki postupci u projektovanju
- Osnovi elektrotehnike 1
- Osnovi elektrotehnike 2
- Elektromehanicka konverzija energije
- Ekonomika i organizacija poslovanja
- Elektricna mjerenja
- Teorija elektromagnetskih polja
- Senzori i pretvaraci
- Osnovi mehatronike
- Elektricne masine 1
- Operaciona istrazivanja
- Elektromagnetska kompatibilnost
- Elektricne mreze
- Elekricne masine 2
- Dijagnosrika u energetici
- Mehatronika
- Elektricna postrojenja
- Elektromotorni pognoni
- Proizvodnja energije
- Zastitni i upravljacki sistemi
- Senzori konverzije energije
- Upravljanje elektromotornih pogona
- Energetika i okolina
- Osnovi racunarstva
- Osnovi programiranja
- Arhitektura racunara
- Objektno orijentirano programiranje
- Uvod u racunarske algoritme
- Windows programiranje
- Racunarska grafika
- Primjena inzenjerskih softverskih  paketa
- Baze podataka
- Strukture podataka
- Razvoj softvera
- Operativni sistemi
- Dizajn kompajlera
- Racunarske mreze
- Sistemsko programiranje
- Razvoj web aplikacija
- Tehnologije za podrsku tehnickom pisanju
- Sekvencijalni sklopovi
- Telekomunikacijiski protokoli
- Obrada digitalnih signala
- Telekomunikacione mreze
- Signali i sistemi
- Osnovi elektronike
- Kumutacijiski sistemi
- Projektovanje telekomunikacionih mreza
- Statisticka teorija telekomunikacija
- Analogna integrisana elektronika
- Osnovi telekomunikacija
- Teorija informacija i kodovanja
- Mobilne telekomunikacije
- Radijski telekomunikacijski sistemi
- Digitalne telekomunikacije
- Opticke telekomunikacije
- Mjerenja u telekomunikacijama
- Multimedijski sitemi i komunikacije
- Satelitske telekomunikacije
- Mikroprocesorski sitemi u telekomunikacijama
- Fizika 1
- Fizika 2
- Matematika 1
- Matematika 2
- Matematika 3
- Tjelesni i zdravstveni odgoj 1
- Tjelesni i zdravstveni odgoj 2
+ Mjerenja u automatici i robotici;Automatika i robotika;Zenan Sehic;
+ Linearni dinamički sistemi i signali;Automatika i robotika;Zenan Sehic;
+ Linearni sistemi automatskog upravljanja I;Automatika i robotika;Naser Prljaca;
+ Instrumentacija;Automatika i robotika;Jakub Osmic;
+ Projetovanje logickih sistema;Automatika i robotika;Jakub Osmic;
+ Linearni sistemi automatskog upravljana II;Automatika i robotika;Naser Prljaca;
+ Stohasticki sistemi i estimacije;Automatika i robotika;Lejla Banjanovic-Mehmedovic;
+ Aktuatori;Automatika i robotika;Jakub Osmic;
+ Nelinearni sistemi upravljanja;Automatika i robotika;Jakub Osmic;
+ Robotika i masinska vizija;Automatika i robotika;Naser Prljaca;
+ Inteligentni sistemi;Automatika i robotika;Lejla Banjanovic-Mehmedovic;
+ Projektovanje mikroprocesorskih sistema;Automatika i robotika;Lejla Banjanovic-Mehmedovic;
+ Digitalni sistemi upravljanja i obrade signala I;Automatika i robotika;Zenan Sehic;
+ Upravljanje mehatronickim sistemima;Automatika i robotika;Amila Dubravic;
+ Optimalno upravljanje;Automatika i robotika;Amila Dubravic;
+ Projektovanje sistema na cipu;Automatika i robotika;Lejla Banjanovic-Mehmedovic;
+ Distribuirani sistemu automatizacije;Automatika i robotika;Naser Prljaca;
+ Digitalni sistemi upravljanja i obrade signala II;Automatika i robotika;Zenan Sehic;
+ Klinicki inzenjering;Biomedicinski inzinjering;Amira Serifovic-Trbalic;
+ Principi biomedicinskog inzenjeringa;Biomedicinski inzinjering;Damir Demirovic;
+ Obrada i analiza medicinskih slika;Biomedicinski inzinjering;Amira Serifovic-Trbalic;
+ Prepoznavanje uzoraka;Biomedicinski inzinjering;Damir Demirovic;
+ Biomedicinski informacioni sistemi;Biomedicinski inzinjering;Amira Serifovic-Trbalic;
+ Biomedicinska instrumentacija;Biomedicinski inzinjering;Amira Serifovic-Trbalic;
+ Uvod u energetske sisteme;Elektroenergetske mreze i sistemi;Nedzmija Demirovic;
+ Teorija elektricnih kola;Elektroenergetske mreze i sistemi;Mirza Kusljugic;
+ Mjerenja u elektrotehnici;Elektroenergetske mreze i sistemi;Tatjana Konjic;
+ Matricne metode u elektrotehnici;Elektroenergetske mreze i sistemi;Amir Tokic;
+ Numericke metode u elektrotehnici;Elektroenergetske mreze i sistemi;Amir Nuhanovic;
+ Elektricne instalacije niskog napona;Elektroenergetske mreze i sistemi;Nedzmija Demirovic;
+ Inteligentni sistemi u elektroenergetici;Elektroenergetske mreze i sistemi;Tatjana Konjic;
+ Trziste elektricne energije;Elektroenergetske mreze i sistemi;Suad Halilcevic;
+ Programski alati u elektroenergetici;Elektroenergetske mreze i sistemi;Amir Nuhanovic;
+ Elektroenergetske prenosne i distributivne mreze;Elektroenergetske mreze i sistemi;Tatjana Konjic;
+ Oprimizacione metode u elektrotehnici;Elektroenergetske mreze i sistemi;Amir Nuhanovic;
+ Modeliranje sistema;Elektroenergetske mreze i sistemi;Amir Tokic;
+ Elektroenergetske stanice;Elektroenergetske mreze i sistemi;Suad Halilcevic;
+ Tehnika visokog napona;Elektroenergetske mreze i sistemi;Amir Tokic;
+ Relejna tehnika;Elektroenergetske mreze i sistemi;Suad Halilcevic;
+ Anliza elektroenergetskog sistema;Elektroenergetske mreze i sistemi;Mirza Kusljugic;
+ Dinamika elektroenergetskog sistema;Elektroenergetske mreze i sistemi;Mirza Kusljugic;
+ Planiranje elektroenergetskih sistema;Elektroenergetske mreze i sistemi;Nedzmija Demirovic;
+ Simulacije sistema;Elektroenergetske mreze i sistemi;Amir Tokic;
+ Elektrane;Elektroenergetske mreze i sistemi;Suad Halilcevic;
+ Upravljanje elektroenergetskog sistema;Elektroenergetske mreze i sistemi;Suad Halilcevic;
+ Numericki postupci u projektovanju;Elektroenergetske mreze i sistemi;Amir Nuhanovic;
+ Osnovi elektrotehnike 1;Elektroenergetski sistemi konverzije energije;Izudin Kapetanovic;
+ Osnovi elektrotehnike 2;Elektroenergetski sistemi konverzije energije;Izudin Kapetanovic;
+ Elektromehanicka konverzija energije;Elektroenergetski sistemi konverzije energije;Vlado Madzarevic;
+ Ekonomika i organizacija poslovanja;Elektroenergetski sistemi konverzije energije;Izudin Kapetanovic;
+ Elektricna mjerenja;Elektroenergetski sistemi konverzije energije;Mensur Kasumovic;
+ Teorija elektromagnetskih polja;Elektroenergetski sistemi konverzije energije;Vlado Madzarevic;
+ Senzori i pretvaraci;Elektroenergetski sistemi konverzije energije;Mario Pejdanovic;
+ Osnovi mehatronike;Elektroenergetski sistemi konverzije energije;Mario Pejdanovic;
+ Elektricne masine 1;Elektroenergetski sistemi konverzije energije;Nerdina Mehinovic;
+ Operaciona istrazivanja;Elektroenergetski sistemi konverzije energije;Mario Pejdanovic;
+ Elektromagnetska kompatibilnost;Elektroenergetski sistemi konverzije energije;Vlado Madzarevic;
+ Elektricne mreze;Elektroenergetski sistemi konverzije energije;Majda Tesanovic;
+ Elekricne masine 2;Elektroenergetski sistemi konverzije energije;Nerdina Mehinovic;
+ Dijagnosrika u energetici;Elektroenergetski sistemi konverzije energije;Vlado Madzarevic;
+ Mehatronika;Elektroenergetski sistemi konverzije energije;Mario Pejdanovic;
+ Elektricna postrojenja;Elektroenergetski sistemi konverzije energije;Mensur Kasumovic;
+ Elektromotorni pognoni;Elektroenergetski sistemi konverzije energije;Vlado Madzarevic;
+ Proizvodnja energije;Elektroenergetski sistemi konverzije energije;Mensur Kasumovic;
+ Upravljanje elektromotornih pogona;Elektroenergetski sistemi konverzije energije;Suad Halilcevic;
+ Energetika i okolina;Elektroenergetski sistemi konverzije energije;Nerdina Mehinovic;
+ Osnovi racunarstva;Racunarstvo i informatika;Nermin Sarajlic;
+ Osnovi programiranja;Racunarstvo i informatika;Nermin Sarajlic;
+ Arhitektura racunara;Racunarstvo i informatika;Amer Hasanovic;
+ Objektno orijentirano programiranje;Racunarstvo i informatika;Amer Hasanovic;
+ Uvod u racunarske algoritme;Racunarstvo i informatika;Edin Pjanic;
+ Windows programiranje;Racunarstvo i informatika;Edin Pjanic;
+ Racunarska grafika;Racunarstvo i informatika;Emir Skejic;
+ Primjena inzenjerskih softverskih  paketa;Racunarstvo i informatika;Emir Skejic;
+ Baze podataka;Racunarstvo i informatika;Emir Meskovic;
+ Strukture podataka;Racunarstvo i informatika;Edin Pjanic;
+ Razvoj softvera;Racunarstvo i informatika;Emir Meskovic;
+ Operativni sistemi;Racunarstvo i informatika;Amer Hasanovic;
+ Dizajn kompajlera;Racunarstvo i informatika;Edin Pjanic;
+ Racunarske mreze;Racunarstvo i informatika;Amer Hasanovic;
+ Sistemsko programiranje;Racunarstvo i informatika;Amer Hasanovic;
+ Razvoj web aplikacija;Racunarstvo i informatika;Edin Pjanic;
+ Tehnologije za podrsku tehnickom pisanju;Telekomunikacije;Asmir Gogic;
+ Sekvencijalni sklopovi;Telekomunikacije;Samra Mujacic;
+ Telekomunikacijiski protokoli;Telekomunikacije;Samra Mujacic;
+ Obrada digitalnih signala;Telekomunikacije;Nermin Suljanovic;
+ Telekomunikacione mreze;Telekomunikacije;Suad Kasapovic;
+ Signali i sistemi;Telekomunikacije;Nermin Suljanovic;
+ Osnovi elektronike;Telekomunikacije;Aljo Mujcic;
+ Kumutacijiski sistemi;Telekomunikacije;Suad Kasapovic;
+ Projektovanje telekomunikacionih mreza;Telekomunikacije;Suad Kasapovic;
+ Statisticka teorija telekomunikacija;Telekomunikacije;Nermin Suljanovic;
+ Analogna integrisana elektronika;Telekomunikacije;Aljo Mujcic;
+ Osnovi telekomunikacija;Telekomunikacije;Nermin Suljanovic;
+ Teorija informacija i kodovanja;Telekomunikacije;Aljo Mujcic;
+ Mobilne telekomunikacije;Telekomunikacije;Suad Kasapovic;
+ Radijski telekomunikacijski sistemi;Telekomunikacije;Suad Kasapovic;
+ Digitalne telekomunikacije;Telekomunikacije;Nermin Suljanovic;
+ Opticke telekomunikacije;Telekomunikacije;Aljo Mujcic;
+ Multimedijski sistemi i komunikacije;Telekomunikacije;Samra Mujacic;
+ Satelitske telekomunikacije;Telekomunikacije;Asmir Gogic;
+ Mikroprocesorski sitemi u telekomunikacijama;Telekomunikacije;Asmir Gogic;

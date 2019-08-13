@@ -34,7 +34,7 @@ public class showGroupsController implements Initializable {
 		type.setCellValueFactory(new PropertyValueFactory<Grupa, String>("tipgrupe"));
 		teacher.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imeNastavnika"));
 		students.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imenaStudenata"));
-		//subject.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imePredmeta"));
+		subject.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imePredmeta"));
 		table.setItems(temp);
 	}
 

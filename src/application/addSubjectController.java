@@ -99,7 +99,6 @@ public class addSubjectController implements Initializable{
 			Collection<Usmjerenje> orientationName = orientationsTitle.getSelectionModel().getSelectedItems();
 			Collection<Semestar> semesterName = semesterTitle.getSelectionModel().getSelectedItems();	
 			boolean exists = false;
-			
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -162,14 +161,14 @@ public class addSubjectController implements Initializable{
 		List<Nastavnik> temp_list = q.getResultList();
 
 		if(temp_list != null)
-		teachersTitle.setItems( FXCollections.observableArrayList(temp_list));
+		teachersTitle.setItems( FXCollections.observableArrayList(temp_list).sorted());
 		
 		Query q2 = em.createQuery("SELECT x FROM Usmjerenje x");
 		@SuppressWarnings("unchecked")
 		List<Usmjerenje> temp2_list = q2.getResultList();
 		
 		if(temp2_list != null)
-			orientationsTitle.setItems( FXCollections.observableArrayList(temp2_list));
+			orientationsTitle.setItems( FXCollections.observableArrayList(temp2_list).sorted());
 		
 		Query q3 = em.createQuery("SELECT x FROM Semestar x");
 		@SuppressWarnings("unchecked")
@@ -177,7 +176,7 @@ public class addSubjectController implements Initializable{
 		List<Semestar> temp3_list = q3.getResultList();
 		
 		if(temp3_list != null)
-			semesterTitle.setItems( FXCollections.observableArrayList(temp3_list));
+			semesterTitle.setItems( FXCollections.observableArrayList(temp3_list).sorted());
 		
 		em.close();
 		emf.close();

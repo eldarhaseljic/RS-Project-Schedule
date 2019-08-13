@@ -130,7 +130,7 @@ public class addHallController implements Initializable {
 		List<String> temp = new ArrayList<String>();
 		for (Object e : temp_list)
 			temp.add(((Zgrada) e).getNazivZg());
-		buildingTitle.setItems(FXCollections.observableList(temp));
+		buildingTitle.setItems(FXCollections.observableList(temp).sorted());
 
 		em.close();
 		emf.close();

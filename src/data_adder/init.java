@@ -3,10 +3,14 @@ package data_adder;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import entiteti.Korisnik;
 import entiteti.Nastavnik;
@@ -79,6 +83,7 @@ public class init {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
+		System.out.println("Orientation added successfully");
 		// STUDENTI
 		try {
 			FileReader readfile = new FileReader("name_rs.txt");
@@ -110,8 +115,8 @@ public class init {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
+		System.out.println("Students added successfully");
 		// NASTAVNICI
 		try {
 			FileReader readfile = new FileReader("name_nast.txt");
@@ -168,7 +173,58 @@ public class init {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println("Professors added successfully");
+		// Predmeti
+		try {
+			FileReader readfile = new FileReader("predmeti.txt");
+			BufferedReader readbuffer = new BufferedReader(readfile);
+			String s;
+			while (readbuffer.read() != -1) {
+				s = readbuffer.readLine();
+				String[] parts = s.split(";");
+
+				 //System.out.println(parts[0]);
+				// System.out.println(parts[1]);
+
+				String[] naziv = parts[2].split(" ");
+				// System.out.println(naziv[0]+" "+naziv[1]);
+
+				Collection<Nastavnik> nastavnici = new ArrayList<Nastavnik>();
+
+				Query q2 = em.createQuery("SELECT n FROM Nastavnik n WHERE n.imeNast "
+										+ "	= :a and n.prezNast = :b and (n.titula = :c or n.titula = :d)",
+						Nastavnik.class);
+				q2.setParameter("a", naziv[0]);
+				q2.setParameter("b", naziv[1]);
+				q2.setParameter("c", "Profesor");
+				q2.setParameter("d", "Prodekan");
+				
+				@SuppressWarnings("unchecked")
+				List<Nastavnik> n = q2.getResultList();
+				nastavnici.add((Nastavnik) n.get(0));
+
+				Collection<Usmjerenje> usmjerenja = new ArrayList<Usmjerenje>();
+
+				Query q3 = em.createQuery("SELECT n FROM Usmjerenje n WHERE n.imeUsmjerenja = :in", Usmjerenje.class);
+
+				q3.setParameter("in", parts[1]);
+				@SuppressWarnings("unchecked")
+				List<Usmjerenje> a = q3.getResultList();
+				usmjerenja.add((Usmjerenje) a.get(0));
+
+				Predmet novi = new Predmet();
+				novi.setImePred(parts[0].toUpperCase());
+				novi.setNastavnici(nastavnici);
+				novi.setUsmjerenja(usmjerenja);
+				em.getTransaction().begin();
+				em.persist(novi);
+				em.getTransaction().commit();
+			}
+			readbuffer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Subjects added successfully");
 		/*
 		 * //PRODEKAN Korisnik nastkor = new Korisnik(); String ime = "Emir"; String
 		 * prez = "Meskovic"; nastkor.setIme(ime); nastkor.setPrezime(prez);

@@ -77,7 +77,7 @@ public class deleteBuildingController implements Initializable {
 		List<String> temp = new ArrayList<String>();
 		for (Object e : ProdekanController.temp_list)
 			temp.add(((Zgrada) e).getNazivZg());
-		listbox.setItems(FXCollections.observableList(temp));
+		listbox.setItems(FXCollections.observableList(temp).sorted());
 	}
 
 	public void show(ActionEvent event) throws IOException {

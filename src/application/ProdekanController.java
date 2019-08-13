@@ -90,7 +90,21 @@ public class ProdekanController implements Initializable {
 	}
 
 	public void addHall(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT z FROM Zgrada z");
+		temp_list = q.getResultList();
+		
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "There are no buildings,to add a hall into it!";
+			show(event, "/fxml_files/Info.fxml", "Error");
+		} 
+		else {
 		show(event, "/fxml_files/addHallScreen.fxml", "New Hall");
+		}
 	}
 
 	public void deleteHall(ActionEvent event) throws Exception {
@@ -185,24 +199,6 @@ public class ProdekanController implements Initializable {
 		show(event, "/fxml_files/addGroupScreen.fxml", "Add Group");
 	}
 	
-	public void deleteGroup(ActionEvent event) throws Exception {
-		String PERSISTENCE_UNIT_NAME = "raspored";
-		EntityManagerFactory emf;
-		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		EntityManager em = emf.createEntityManager();
-
-		Query q = em.createQuery("SELECT g FROM GrupaStudenata g");
-		temp_list = q.getResultList();
-
-		if (temp_list.size() < 1) {
-			ProdekanController.Information = "There are no groups!";
-			show(event,"/fxml_files/Info.fxml","Info");
-		} else {
-			show(event,"/fxml_files/deleteGroupScreen.fxml","Delete Group");
-		}
-		em.close();
-		emf.close();
-	}
 	
 	public void showBuildings(ActionEvent event) throws Exception {
 		
@@ -219,6 +215,69 @@ public class ProdekanController implements Initializable {
 			show(event, "/fxml_files/Info.fxml", "Info");
 		} else {
 			show(event, "/fxml_files/showBuildingsScreen.fxml", "Buildings");
+			if (temp_list.isEmpty()) {
+			ProdekanController.Information = "There are no subjects!";
+			show(event,"/fxml_files/Info.fxml","Info");
+			} else {
+			show(event,"/fxml_files/deleteSubjectScreen.fxml","Delete Subject");
+			}
+			em.close();
+			emf.close();
+		}
+	}
+
+	public void showOrientations(ActionEvent event) throws Exception {
+		
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+	
+		Query q = em.createQuery("SELECT u FROM Usmjerenje u");
+		temp_list = q.getResultList();
+		
+		if (temp_list.size() < 1) {
+			ProdekanController.Information = "There are no orientations!";
+			show(event, "/fxml_files/Info.fxml", "Info");
+		} else {
+			show(event, "/fxml_files/showOrientationsScreen.fxml", "Orientations");
+		}
+		em.close();
+		emf.close();
+	}   
+
+	public void showGroups(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+	
+		Query q = em.createQuery("SELECT g FROM GrupaStudenata g");
+		temp_list = q.getResultList();
+	
+		if (temp_list.size() < 1) {
+			ProdekanController.Information = "There are no groups!";
+			show(event,"/fxml_files/Info.fxml","Info");
+		} else {
+			show(event,"/fxml_files/showGroupsScreen.fxml","Groups");
+		}
+	}
+
+	
+	public void deleteGroup(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT g FROM GrupaStudenata g");
+		temp_list = q.getResultList();
+
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "There are no groups!";
+			show(event,"/fxml_files/Info.fxml","Info");
+		} else {
+			show(event,"/fxml_files/deleteGroupsScreen.fxml","Delete Group");
 		}
 		em.close();
 		emf.close();
@@ -234,7 +293,7 @@ public void showHalls(ActionEvent event) throws Exception {
 		Query q = em.createQuery("SELECT s FROM Sala s");
 		temp_list = q.getResultList();
 		
-		if (temp_list.size() < 1) {
+		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "There are no halls!";
 			show(event, "/fxml_files/Info.fxml", "Info");
 		} else {
@@ -244,96 +303,57 @@ public void showHalls(ActionEvent event) throws Exception {
 		emf.close();
 	}
 
-public void showOrientations(ActionEvent event) throws Exception {
+	public void showSubjects(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
 	
-	String PERSISTENCE_UNIT_NAME = "raspored";
-	EntityManagerFactory emf;
-	emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-	EntityManager em = emf.createEntityManager();
-
-	Query q = em.createQuery("SELECT u FROM Usmjerenje u");
-	temp_list = q.getResultList();
+		Query q = em.createQuery("SELECT s FROM Predmet s");
+		temp_list = q.getResultList();
 	
-	if (temp_list.size() < 1) {
-		ProdekanController.Information = "There are no orientations!";
-		show(event, "/fxml_files/Info.fxml", "Info");
-	} else {
-		show(event, "/fxml_files/showOrientationsScreen.fxml", "Orientations");
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "There are no subjects!";
+			show(event,"/fxml_files/Info.fxml","Info");
+		} else {
+			show(event,"/fxml_files/showSubjectsScreen.fxml","Subjects");
+		}
+		em.close();
+		emf.close();
 	}
-	em.close();
-	emf.close();
-}   
 
-public void showSubjects(ActionEvent event) throws Exception {
-	String PERSISTENCE_UNIT_NAME = "raspored";
-	EntityManagerFactory emf;
-	emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-	EntityManager em = emf.createEntityManager();
 
-	Query q = em.createQuery("SELECT s FROM Predmet s");
-	temp_list = q.getResultList();
-
-	if (temp_list.size() < 1) {
-		ProdekanController.Information = "There are no subjects!";
-		show(event,"/fxml_files/Info.fxml","Info");
-	} else {
-		show(event,"/fxml_files/showSubjectsScreen.fxml","Subjects");
+	public void createPeriod(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+	
+		Query q = em.createQuery("SELECT g FROM GrupaStudenata g");
+		temp_list = q.getResultList();
+	
+		if (temp_list.size() < 1) {
+			ProdekanController.Information = "There are no groups!";
+			show(event,"/fxml_files/Info.fxml","Info");
+		} else {
+			show(event,"/fxml_files/createPeriodScreen.fxml","Groups");
+		}
+		em.close();
+		emf.close();
 	}
-	em.close();
-	emf.close();
-}
 
-public void showGroups(ActionEvent event) throws Exception {
-	String PERSISTENCE_UNIT_NAME = "raspored";
-	EntityManagerFactory emf;
-	emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-	EntityManager em = emf.createEntityManager();
-
-	Query q = em.createQuery("SELECT g FROM GrupaStudenata g");
-	temp_list = q.getResultList();
-
-	if (temp_list.size() < 1) {
-		ProdekanController.Information = "There are no groups!";
-		show(event,"/fxml_files/Info.fxml","Info");
-	} else {
-		show(event,"/fxml_files/showGroupsScreen.fxml","Groups");
+	public void showUsers(ActionEvent event) throws Exception {
+		show(event,"/fxml_files/showUsersScreen.fxml","Users");
 	}
-	em.close();
-	emf.close();
-}
-
-public void createPeriod(ActionEvent event) throws Exception {
-	String PERSISTENCE_UNIT_NAME = "raspored";
-	EntityManagerFactory emf;
-	emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-	EntityManager em = emf.createEntityManager();
-
-	Query q = em.createQuery("SELECT g FROM GrupaStudenata g");
-	temp_list = q.getResultList();
-
-	if (temp_list.size() < 1) {
-		ProdekanController.Information = "There are no groups!";
-		show(event,"/fxml_files/Info.fxml","Info");
-	} else {
-		show(event,"/fxml_files/createPeriodScreen.fxml","Groups");
+	
+		// Funkcija za pokretanje bilo kojeg gui prozora
+		private void show(Event event, String resurs, String title) throws IOException {
+			Parent root = FXMLLoader.load(getClass().getResource(resurs));
+			Scene scene = new Scene(root);
+			Stage primaryStage = new Stage();
+			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
+			primaryStage.setTitle(title);
+			primaryStage.show();
+		}
 	}
-	em.close();
-	emf.close();
-}
-
-
-public void showUsers(ActionEvent event) throws Exception {
-	show(event,"/fxml_files/showUsersScreen.fxml","Users");
-}
-
-	// Funkcija za pokretanje bilo kojeg gui prozora
-	private void show(Event event, String resurs, String title) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource(resurs));
-		Scene scene = new Scene(root);
-		Stage primaryStage = new Stage();
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setTitle(title);
-		primaryStage.show();
-	}
-}

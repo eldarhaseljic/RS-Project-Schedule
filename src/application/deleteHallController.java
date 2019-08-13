@@ -97,7 +97,7 @@ public class deleteHallController implements Initializable {
 		List<String> temp = new ArrayList<String>();
 		for (Object e : ProdekanController.temp_list)
 			temp.add(((Zgrada) e).getNazivZg());
-		buildingTitle.setItems(FXCollections.observableList(temp));
+		buildingTitle.setItems(FXCollections.observableList(temp).sorted());
 		hallTitle.setDisable(true);
 		// Ovo koristeno samo za test ne treba dirat
 		/*
@@ -138,7 +138,7 @@ public class deleteHallController implements Initializable {
 			} else {
 				for (Object e : temp_list)
 					listofhalls.add(((Sala) e).getNazivSale());
-				hallTitle.setItems(FXCollections.observableList(listofhalls));
+				hallTitle.setItems(FXCollections.observableList(listofhalls).sorted());
 			}
 		}
 	}

@@ -58,6 +58,12 @@ public class Predmet {
 	}
 	public Predmet() {}
 
+	public void setNastavnici(Collection<Nastavnik> nastavnici) {
+		this.nastavnici = nastavnici;
+	}
+	public void setUsmjerenja(Collection<Usmjerenje> usmjerenja) {
+		this.usmjerenja = usmjerenja;
+	}
 	public String getImePred() {
 		return imePred;
 	}
