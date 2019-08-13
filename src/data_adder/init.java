@@ -27,6 +27,7 @@ public class init {
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
 
+		/*
 		// USMJERENJA
 		Usmjerenje usmjerenje = new Usmjerenje();
 		usmjerenje.setImeUsmjerenja("Racunarstvo i informatika");
@@ -57,13 +58,32 @@ public class init {
 		em.getTransaction().begin();
 		em.persist(usmjerenje5);
 		em.getTransaction().commit();
+<<<<<<< HEAD
+*/
 
 		Usmjerenje usmjerenje6 = new Usmjerenje();
 		usmjerenje6.setImeUsmjerenja("Biomedicinski inzinjering");
 		em.getTransaction().begin();
 		em.persist(usmjerenje6);
 		em.getTransaction().commit();
-
+		
+		//Predmeti
+		try {
+			FileReader readfile = new FileReader("predmeti.txt");
+			BufferedReader readbuffer = new BufferedReader(readfile);
+			String s;
+			while (readbuffer.read() != -1) {
+				Predmet pred = new Predmet();
+				s = readbuffer.readLine();
+				pred.setImePred(s.toUpperCase());
+				em.getTransaction().begin();
+				em.persist(pred);
+				em.getTransaction().commit();
+				}
+			readbuffer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 		System.out.println("Orientation added successfully");
 		// STUDENTI
 		try {

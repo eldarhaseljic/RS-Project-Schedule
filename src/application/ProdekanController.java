@@ -269,6 +269,7 @@ public class ProdekanController implements Initializable {
 
 		Query q = em.createQuery("SELECT z FROM Zgrada z");
 		temp_list = q.getResultList();
+
 		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "There are no buildings!";
 			show(event, "/fxml_files/Info.fxml", "Info");
