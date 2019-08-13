@@ -114,7 +114,7 @@ public class createPeriodController implements Initializable {
 			
 			Query q1 = em.createQuery(
 					"SELECT c FROM Cas c JOIN c.grupa g "
-					+ "WHERE g.nastavnik = :grnast AND c.datumOdrzavanjaCasa = :dan "
+					+ "WHERE c.semestar = :sem AND g.nastavnik = :grnast AND c.datumOdrzavanjaCasa = :dan "
 					+ "AND (:pocvrijeme BETWEEN c.vrijemePocetkaCasaSat*60+c.vrijemePocetkaCasaMinuta "
 					+ "AND c.vrijemeZavrsetkaCasaSat*60+c.vrijemeZavrsetkaCasaMinuta OR "
 					+ ":krajvrijeme BETWEEN c.vrijemePocetkaCasaSat*60+c.vrijemePocetkaCasaMinuta "  
@@ -124,26 +124,27 @@ public class createPeriodController implements Initializable {
 			q1.setParameter("dan", danusedmici.getValue());
 			q1.setParameter("pocvrijeme", satipoc*60+minutepoc);
 			q1.setParameter("krajvrijeme", satikraj*60+minutekraj);
-			
+			q1.setParameter("sem", semester.getValue());
+
 			List<Cas> casoviSaNast=q1.getResultList();
 			if(!casoviSaNast.isEmpty()) {
 				errPeriod.setText("Teacher is busy at that time.");
 				return;	
 			}
 
-			Query q3 = em.createQuery("SELECT c FROM Cas c WHERE c.sala = :sala AND "
+			Query q3 = em.createQuery("SELECT c FROM Cas c WHERE c.semestar = :sem AND c.sala = :sa AND c.datumOdrzavanjaCasa = :dan AND "
 					+ "(:pocvrijeme BETWEEN c.vrijemePocetkaCasaSat*60+c.vrijemePocetkaCasaMinuta "
 					+ "AND c.vrijemeZavrsetkaCasaSat*60+c.vrijemeZavrsetkaCasaMinuta OR "
 					+ ":krajvrijeme BETWEEN c.vrijemePocetkaCasaSat*60+c.vrijemePocetkaCasaMinuta "
-					+ "AND c.vrijemeZavrsetkaCasaSat*60+c.vrijemeZavrsetkaCasaMinuta)"
-					+ " AND c.datumOdrzavanjaCasa = :dan");
+					+ "AND c.vrijemeZavrsetkaCasaSat*60+c.vrijemeZavrsetkaCasaMinuta)");
 			
-			q3.setParameter("sala", sala.getValue());
+			q3.setParameter("sem", semester.getValue());
+			q3.setParameter("sa", sala.getValue());
 			q3.setParameter("pocvrijeme", satipoc*60+minutepoc);
 			q3.setParameter("krajvrijeme", satikraj*60+minutekraj);
 			q3.setParameter("dan", danusedmici.getValue());
 
-			List<Cas> casoviSaSala=q1.getResultList();
+			List<Cas> casoviSaSala=q3.getResultList();
 			if(!casoviSaSala.isEmpty()) {
 				errPeriod.setText("Classroom is busy at that time.");
 				return;	
