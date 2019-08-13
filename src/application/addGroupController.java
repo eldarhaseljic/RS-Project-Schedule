@@ -81,7 +81,7 @@ public class addGroupController implements Initializable {
 		for (Object e : predmeti)
 			temp.add(((Predmet) e).getImePred());
 		subjects.setItems(FXCollections.observableList(temp).sorted());
-		
+
 		Query q1 = em.createQuery("SELECT n FROM Nastavnik n");
 		List<?> nastavnici = q1.getResultList();
 
@@ -110,33 +110,27 @@ public class addGroupController implements Initializable {
 		ObservableList<String> temp = students.getSelectionModel().getSelectedItems();
 		selectedStudents.setItems(temp.sorted());
 		selected = temp;
-		//students.setDisable(true);
-		/*
-		 * for(String s : selected) System.out.println(s);
-		 */
+		students.setDisable(true);
 	}
 
 	public void addGroup(ActionEvent event) throws Exception {
-		if (	type.getSelectionModel().isEmpty()
-				|| subjects.getSelectionModel().isEmpty() 
-				|| teacher.getSelectionModel().isEmpty()
-				|| students.getSelectionModel().isEmpty()) 
-		{
+		if (type.getSelectionModel().isEmpty() || subjects.getSelectionModel().isEmpty()
+				|| teacher.getSelectionModel().isEmpty() || students.getSelectionModel().isEmpty()) {
 			if (type.getSelectionModel().isEmpty())
 				errType.setText("You didn't choose the type");
 			else
 				errType.setText("");
-			
+
 			if (subjects.getSelectionModel().isEmpty())
 				errSubject.setText("You didn't choose the subject");
 			else
 				errSubject.setText("");
 
-		    if (teacher.getSelectionModel().isEmpty())
+			if (teacher.getSelectionModel().isEmpty())
 				errTeacher.setText("You didn't choose the teacher.");
 			else
 				errTeacher.setText("");
-		    
+
 			if (students.getSelectionModel().isEmpty())
 				errStudents.setText("You didn't choose students.");
 			else
@@ -146,7 +140,7 @@ public class addGroupController implements Initializable {
 			String tip = type.getValue();
 			String nastavnik = teacher.getValue();
 			String predmet = subjects.getValue();
-			
+
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -166,10 +160,9 @@ public class addGroupController implements Initializable {
 				Object stud = q3.getSingleResult();
 				studenti.add((Student) stud);
 			}
-			Query q4 = em.createQuery("SELECT n FROM Predmet n WHERE n.imePred = :in",
-					Predmet.class);
+			Query q4 = em.createQuery("SELECT n FROM Predmet n WHERE n.imePred = :in", Predmet.class);
 			q4.setParameter("in", predmet);
-			
+
 			@SuppressWarnings("unchecked")
 			List<Predmet> pred = q4.getResultList();
 

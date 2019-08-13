@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,27 +49,29 @@ public class deleteSubjectController implements Initializable {
 			List<Predmet> predmeti = q1.getResultList();
 
 			for (Predmet predmet : predmeti) {
-					em.getTransaction().begin();
-					em.remove(predmet);
-					em.getTransaction().commit();
+				em.getTransaction().begin();
+				em.remove(predmet);
+				em.getTransaction().commit();
 
-					ProdekanController.Information = "You deleted subject: " + naziv.getImePred() + " successfully.";
-					Stage primaryStage = new Stage();
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-					Scene scene = new Scene(root);
-					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					primaryStage.setScene(scene);
-					primaryStage.show();
-					
-					
-				}
+				ProdekanController.Information = "You deleted subject: " + naziv.getImePred() + " successfully.";
+				show(event);
+
+			}
 			em.close();
 			emf.close();
-			}
-
-		
 		}
 
+	}
+
+	private void show(ActionEvent event) throws IOException {
+		// TODO Auto-generated method stub
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

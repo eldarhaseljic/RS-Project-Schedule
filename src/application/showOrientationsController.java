@@ -13,19 +13,19 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class showOrientationsController implements Initializable {
-	
-	@FXML 
+
+	@FXML
 	TableView<Usmjerenje> table;
 	@FXML
-	TableColumn<Usmjerenje,String> title;
+	TableColumn<Usmjerenje, String> title;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		ObservableList<Usmjerenje> temp = FXCollections.observableArrayList();
 		for (Object e : ProdekanController.temp_list)
-			temp.add((Usmjerenje)e);
-		
+			temp.add((Usmjerenje) e);
+
 		title.setCellValueFactory(new PropertyValueFactory<Usmjerenje, String>("imeUsmjerenja"));
 		table.setItems(temp);
 	}

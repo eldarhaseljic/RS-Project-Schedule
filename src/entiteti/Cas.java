@@ -1,8 +1,5 @@
 package entiteti;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
 
 @Entity(name="Cas")
@@ -26,9 +24,11 @@ public class Cas {
 	@Column(name = "CAS_ID")
 	private int IdCasa;
 	
-	private LocalDate datumOdrzavanjaCasa;
-	private LocalTime vrijemePocetkaCasa;
-	private LocalTime vrijemeZavrsetkaCasa;
+	private String datumOdrzavanjaCasa;
+	private int vrijemePocetkaCasaSat;
+	private int vrijemeZavrsetkaCasaSat;
+	private int vrijemePocetkaCasaMinuta;
+	private int vrijemeZavrsetkaCasaMinuta;
 	
 	@ManyToOne
 	@JoinColumn(name = "GRUPA_ID")
@@ -37,29 +37,71 @@ public class Cas {
 	@ManyToOne
 	@JoinColumn(name = "SEMESTAR_ID")
 	private Semestar semestar;
+	
+	@OneToOne
+	@JoinColumn(name = "SALA_ID")
+	private Sala sala;
 
-	public LocalTime getVrijemeZavrsetkaCasa() {
-		return vrijemeZavrsetkaCasa;
+	public int getVrijemeZavrsetkaCasaSat() {
+		return vrijemeZavrsetkaCasaSat;
 	}
 
-	public void setVrijemeZavrsetkaCasa(LocalTime vrijemeZavrsetkaCasa) {
-		this.vrijemeZavrsetkaCasa = vrijemeZavrsetkaCasa;
+	public void setVrijemeZavrsetkaCasaSat(int vrijemeZavrsetkaCasa) {
+		this.vrijemeZavrsetkaCasaSat = vrijemeZavrsetkaCasa;
 	}
 
-	public LocalTime getVrijemePocetkaCasa() {
-		return vrijemePocetkaCasa;
+	public int getvrijemePocetkaCasaSat() {
+		return vrijemePocetkaCasaSat;
 	}
 
-	public void setVrijemePocetkaCasa(LocalTime vrijemePocetkaCasa) {
-		this.vrijemePocetkaCasa = vrijemePocetkaCasa;
+	public void setvrijemePocetkaCasaSat(int vrijemePocetkaCasa) {
+		this.vrijemePocetkaCasaSat = vrijemePocetkaCasa;
 	}
 
-	public LocalDate getDatumOdrzavanjaCasa() {
+	public String getDatumOdrzavanjaCasa() {
 		return datumOdrzavanjaCasa;
 	}
 
-	public void setDatumOdrzavanjaCasa(LocalDate datumOdrzavanjaCasa) {
+	public void setDatumOdrzavanjaCasa(String datumOdrzavanjaCasa) {
 		this.datumOdrzavanjaCasa = datumOdrzavanjaCasa;
+	}
+
+	public int getVrijemePocetkaCasaMinuta() {
+		return vrijemePocetkaCasaMinuta;
+	}
+
+	public void setVrijemePocetkaCasaMinuta(int vrijemePocetkaCasaMinuta) {
+		this.vrijemePocetkaCasaMinuta = vrijemePocetkaCasaMinuta;
+	}
+
+	public int getVrijemeZavrsetkaCasaMinuta() {
+		return vrijemeZavrsetkaCasaMinuta;
+	}
+
+	public void setVrijemeZavrsetkaCasaMinuta(int vrijemeZavrsetkaCasaMinuta) {
+		this.vrijemeZavrsetkaCasaMinuta = vrijemeZavrsetkaCasaMinuta;
+	}
+	
+	public void setGrupa(Grupa gr) {
+		this.grupa = gr;
+	}
+	
+	public void setSemestar(Semestar sem) {
+		this.semestar = sem;
+	}
+	
+	public void setSala(Sala sal) {
+		this.sala = sal;
+	}
+
+	public Object getId() {
+		// TODO Auto-generated method stub
+		return IdCasa;
+	}
+	
+	public String toString() {
+		return this.sala.getNazivSale() + " " + this.grupa.getImePredmeta().split(";")[0] + " " +this.grupa.getNastavnik().toString()+" "+ this.getDatumOdrzavanjaCasa()+ " "+ this.getvrijemePocetkaCasaSat()+ ":"+ this.getVrijemePocetkaCasaMinuta()
+		+ " - "+ this.getVrijemeZavrsetkaCasaSat()+":"+this.getVrijemeZavrsetkaCasaMinuta();
 	}
 	
 }

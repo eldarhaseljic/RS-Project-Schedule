@@ -33,7 +33,7 @@ public class addOrientationController {
 
 		else {
 			boolean exists = false;
-			String naziv = orientation.getText().toUpperCase();
+			String naziv = orientation.getText();
 
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
@@ -45,15 +45,9 @@ public class addOrientationController {
 			List<Usmjerenje> usmjerenja = q.getResultList();
 
 			for (Usmjerenje usmjerenje : usmjerenja) {
-				if (usmjerenje.getImeUsmjerenja().equals(naziv)) {
+				if (usmjerenje.getImeUsmjerenja().toLowerCase().equals(naziv.toLowerCase())) {
 					exists = true;
 					ProdekanController.Information = "Orientation already exists!";
-					Stage primaryStage = new Stage();
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-					Scene scene = new Scene(root);
-					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					primaryStage.setScene(scene);
-					primaryStage.show();
 					show(event);
 					break;
 				}
@@ -68,19 +62,14 @@ public class addOrientationController {
 				em.getTransaction().commit();
 
 				ProdekanController.Information = "Orientation successfuly added!";
-				Stage primaryStage = new Stage();
-				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-				Scene scene = new Scene(root);
-				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				primaryStage.setScene(scene);
-				primaryStage.show();
 				show(event);
-				}
+			}
 
 			em.close();
 			emf.close();
 		}
 	}
+
 	public void show(ActionEvent event) throws IOException {
 		// TODO Auto-generated method stub
 		Stage primaryStage = new Stage();
