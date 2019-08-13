@@ -218,7 +218,6 @@ public class createPeriodController implements Initializable {
 		emf.close();
 	}
 	
-	@SuppressWarnings("unused")
 	private void show(Event event) throws IOException {
 		Stage primaryStage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));

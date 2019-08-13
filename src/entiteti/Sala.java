@@ -49,6 +49,10 @@ public class Sala {
 	public int getSalaId() {
 		return salaId;
 	}
+	
+	public String toString() {
+		return this.nazivSale;
+	}
 
 	public String toString() {
 		return this.nazivSale;

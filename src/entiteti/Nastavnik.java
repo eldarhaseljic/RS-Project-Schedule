@@ -72,7 +72,7 @@ public class Nastavnik {
 	public String getIme() {
 		return this.toString();
 	}
-	
+
 	public int getId() {
 		return IdNastavnika;
 	}

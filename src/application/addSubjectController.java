@@ -1,7 +1,5 @@
 package application;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
@@ -15,14 +13,6 @@ import javax.persistence.Query;
 
 import entiteti.Nastavnik;
 import entiteti.Predmet;
-import entiteti.Sala;
-import entiteti.Semestar;
-import entiteti.Usmjerenje;
-import entiteti.Zgrada;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import entiteti.Semestar;
 import entiteti.Usmjerenje;
 import javafx.collections.FXCollections;
@@ -95,7 +85,6 @@ public class addSubjectController implements Initializable {
 			Collection<Nastavnik> teacherName = teachersTitle.getSelectionModel().getSelectedItems();
 			Collection<Usmjerenje> orientationName = orientationsTitle.getSelectionModel().getSelectedItems();
 			Collection<Semestar> semesterName = semesterTitle.getSelectionModel().getSelectedItems();
-			
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -121,7 +110,6 @@ public class addSubjectController implements Initializable {
 			em.getTransaction().commit();
 			em.close();
 			emf.close();
-
 			ProdekanController.Information = "Successfully added";
 			show(event);
 		}

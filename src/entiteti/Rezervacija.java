@@ -105,3 +105,20 @@ public class Rezervacija {
 	}
 
 }
+	public LocalTime getVrijemePocetka() {
+		return vrijemePocetka;
+	}
+
+	public void setVrijemePocetka(LocalTime vrijemePocetka) {
+		this.vrijemePocetka = vrijemePocetka;
+	}
+
+	public LocalTime getVrijemeZavrsetka() {
+		return vrijemeZavrsetka;
+	}
+
+	public void setVrijemeZavrsetka(LocalTime vrijemeZavrsetka) {
+		this.vrijemeZavrsetka = vrijemeZavrsetka;
+	}
+
+}

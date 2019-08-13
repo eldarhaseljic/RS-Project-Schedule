@@ -32,7 +32,7 @@ public class Cas {
 	@ManyToOne
 	@JoinColumn(name = "SEMESTAR_ID")
 	private Semestar semestar;
-	
+
 	@OneToOne
 	@JoinColumn(name = "SALA_ID")
 	private Sala sala;
@@ -96,9 +96,9 @@ public class Cas {
 
 	public String toString() {
 		return this.sala.getNazivSale() + " " + this.grupa.getImePredmeta().split(";")[0] + " "
-				+ this.grupa.getNastavnik().toString() + " " + this.getDatumOdrzavanjaCasa() + " "
-				+ this.getvrijemePocetkaCasaSat() + ":" + this.getVrijemePocetkaCasaMinuta() + " - "
-				+ this.getVrijemeZavrsetkaCasaSat() + ":" + this.getVrijemeZavrsetkaCasaMinuta();
+			+ this.grupa.getNastavnik().toString() + " " + this.getDatumOdrzavanjaCasa() + " "
+			+ this.getvrijemePocetkaCasaSat() + ":" + this.getVrijemePocetkaCasaMinuta() + " - "
+			+ this.getVrijemeZavrsetkaCasaSat() + ":" + this.getVrijemeZavrsetkaCasaMinuta();
 	}
 
 	public Grupa getGrupa() {
@@ -122,3 +122,4 @@ public class Cas {
 		return semestar;
 	}
 }
+
