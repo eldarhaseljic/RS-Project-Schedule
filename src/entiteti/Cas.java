@@ -104,4 +104,25 @@ public class Cas {
 		+ " - "+ this.getVrijemeZavrsetkaCasaSat()+":"+this.getVrijemeZavrsetkaCasaMinuta();
 	}
 	
+	public Grupa getGrupa() {
+		return grupa;
+	}
+	
+	public String getImePredmeta() {
+		return this.getGrupa().getImePredmeta();
+	}
+	
+	public String getBrojStudenata() {
+		int br = this.getGrupa().getStudente().size();
+		return Integer.toString(br);
+	}
+	
+	public String getImeSale() {
+		return this.sala.getNazivSale();
+	}
+	
+	public Semestar getSemestar() {
+		return semestar;
+	}
+	
 }

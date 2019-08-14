@@ -27,6 +27,10 @@ public class Korisnik {
 	public String getIme() {
 		return ime;
 	}
+	
+	public int getId() {
+		return id;
+	}
 
 	public void setIme(String ime) {
 		this.ime = ime;

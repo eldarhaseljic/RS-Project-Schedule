@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import entiteti.Korisnik;
 import entiteti.Nastavnik;
 import entiteti.Semestar;
 import entiteti.Usmjerenje;
@@ -448,6 +449,28 @@ public class ProdekanController implements Initializable {
 		show(event, "/fxml_files/showUsersScreen.fxml", "Users");
 	}
 
+	public void addUser(ActionEvent event) throws Exception {
+		show(event, "/fxml_files/addUserScreen.fxml", "New user");
+	}
+	
+	public void deleteUser(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+	
+		Query q = em.createQuery("SELECT p FROM Korisnik p WHERE p.isProdekan = :a",Korisnik.class);
+		q.setParameter("a", false);
+		temp_list = q.getResultList();
+		if (temp_list.size() > 1) {
+			show(event, "/fxml_files/deleteUserScreen.fxml", "New user");	
+		} else {
+			ProdekanController.Information = "There is only one user!";
+			show(event,"/fxml_files/Info.fxml","Info");
+		}
+		em.close();
+		emf.close();
+	}
 	// Funkcija za pokretanje bilo kojeg gui prozora
 	private void show(Event event, String resurs, String title) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource(resurs));

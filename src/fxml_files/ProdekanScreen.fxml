@@ -41,6 +41,8 @@
                   <MenuItem mnemonicParsing="false" onAction="#addSemester" text="Semester" />
                   <MenuItem mnemonicParsing="false" onAction="#addSubject" text="Subject" />
                   <MenuItem mnemonicParsing="false" onAction="#addGroup" text="Group" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#addUser" text="User" />
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Delete">
@@ -52,6 +54,8 @@
                   <MenuItem mnemonicParsing="false" onAction="#deleteSemester" text="Semester" />
                	  <MenuItem mnemonicParsing="false" onAction="#deleteSubject" text="Subject" />
                   <MenuItem mnemonicParsing="false" onAction="#deleteGroup" text="Group" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteUser" text="User" />
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Schedule">
