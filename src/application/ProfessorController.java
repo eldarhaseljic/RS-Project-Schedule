@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -10,15 +11,23 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import entiteti.Nastavnik;
+import entiteti.Semestar;
+import entiteti.Usmjerenje;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class ProfessorController implements Initializable {
 
 	// Sluzi za prosljedjivanje informacije
 	public static String Information;
+	public static Nastavnik nastavnik;
 
 	@FXML
 	private Label usr;
@@ -51,11 +60,34 @@ public class ProfessorController implements Initializable {
 		List<Nastavnik> nastavnici = q.getResultList();
 		for (Nastavnik n : nastavnici) {
 			if (MainController.trenutniKor.getIme().equals(n.getImeNast())
-					&& MainController.trenutniKor.getPrezime().equals(n.getPrezNast()))
+					&& MainController.trenutniKor.getPrezime().equals(n.getPrezNast())) {
+				ProfessorController.nastavnik = n;
 				titula.setText(n.getTitula());
+			}
+				
 		}
 		em.close();
 		emf.close();
 	}
+	
+	public void addReservation(ActionEvent event) throws Exception {
+		
 
+		show(event,"/fxml_files/addReservationScreen.fxml","New Reservation");
+
+	}
+	
+	// Funkcija za pokretanje bilo kojeg gui prozora
+		private void show(Event event, String resurs, String title) throws IOException {
+			Parent root = FXMLLoader.load(getClass().getResource(resurs));
+			Scene scene = new Scene(root);
+			Stage primaryStage = new Stage();
+			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
+			primaryStage.setTitle(title);
+			primaryStage.show();
+		}
+	
 }
+
+	

@@ -35,9 +35,40 @@ public class Rezervacija {
 	private Sala sala;
 
 	private LocalDate datumOdrzavanja;
-	private LocalTime vrijemePocetka;
-	private LocalTime vrijemeZavrsetka;
+	private int vrijemePocetkaCasaSat;
+	private int vrijemeZavrsetkaCasaSat;
+	private int vrijemePocetkaCasaMinuta;
+	private int vrijemeZavrsetkaCasaMinuta;
+	
+	public void setVrijemeZavrsetkaCasaSat(int vrijemeZavrsetkaCasa) {
+		this.vrijemeZavrsetkaCasaSat = vrijemeZavrsetkaCasa;
+	}
 
+	public int getvrijemePocetkaCasaSat() {
+		return vrijemePocetkaCasaSat;
+	}
+
+	public void setvrijemePocetkaCasaSat(int vrijemePocetkaCasa) {
+		this.vrijemePocetkaCasaSat = vrijemePocetkaCasa;
+	}	
+
+	public int getVrijemePocetkaCasaMinuta() {
+		return vrijemePocetkaCasaMinuta;
+	}
+
+	public void setVrijemePocetkaCasaMinuta(int vrijemePocetkaCasaMinuta) {
+		this.vrijemePocetkaCasaMinuta = vrijemePocetkaCasaMinuta;
+	}
+
+	public int getVrijemeZavrsetkaCasaMinuta() {
+		return vrijemeZavrsetkaCasaMinuta;
+	}
+
+	public void setVrijemeZavrsetkaCasaMinuta(int vrijemeZavrsetkaCasaMinuta) {
+		this.vrijemeZavrsetkaCasaMinuta = vrijemeZavrsetkaCasaMinuta;
+	}
+	
+	
 	public String getTipRezervacije() {
 		return tipRezervacije;
 	}
@@ -54,20 +85,15 @@ public class Rezervacija {
 		this.datumOdrzavanja = datumOdrzavanja;
 	}
 
-	public LocalTime getVrijemePocetka() {
-		return vrijemePocetka;
-	}
-
-	public void setVrijemePocetka(LocalTime vrijemePocetka) {
-		this.vrijemePocetka = vrijemePocetka;
-	}
-
-	public LocalTime getVrijemeZavrsetka() {
-		return vrijemeZavrsetka;
-	}
-
-	public void setVrijemeZavrsetka(LocalTime vrijemeZavrsetka) {
-		this.vrijemeZavrsetka = vrijemeZavrsetka;
-	}
+	
+	
+	public void setGrupa(Grupa g) { grupa = g;}
+	public Grupa getGrupa(){ return grupa;}
+	public Nastavnik getNastavnik() { return nastavnik;}
+	
+	public void setSala(Sala g) { sala = g;}
+	
+	public void setNastavnik(Nastavnik n) { nastavnik = n;}
+	
 
 }
