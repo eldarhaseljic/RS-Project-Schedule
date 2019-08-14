@@ -73,4 +73,3 @@
       <Button fx:id="createReservation" layoutX="160.0" layoutY="497.0" mnemonicParsing="false" onAction="#addReservation" text="Create" textFill="#4d1a1a" />
    </children>
 </AnchorPane>
-

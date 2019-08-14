@@ -12,6 +12,8 @@ import javax.persistence.Query;
 
 import entiteti.Cas;
 import entiteti.Nastavnik;
+import entiteti.Semestar;
+import entiteti.Usmjerenje;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -98,14 +100,32 @@ public class ProfessorController implements Initializable {
 				ProfessorController.nastavnik = n;
 			}
 		}
+				
+		
 		em.close();
 		emf.close();
 	}
-
+	
 	public void addReservation(ActionEvent event) throws Exception {
-
 		show(event, "/fxml_files/addReservationScreen.fxml", "New Reservation");
 
 	}
 
+
+
+	
+	
+	// Funkcija za pokretanje bilo kojeg gui prozora
+		private void show(Event event, String resurs, String title) throws IOException {
+			Parent root = FXMLLoader.load(getClass().getResource(resurs));
+			Scene scene = new Scene(root);
+			Stage primaryStage = new Stage();
+			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
+			primaryStage.setTitle(title);
+			primaryStage.show();
+		}
+	
 }
+
+	

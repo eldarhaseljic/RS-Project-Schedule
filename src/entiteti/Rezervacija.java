@@ -1,6 +1,7 @@
 package entiteti;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,11 +36,11 @@ public class Rezervacija {
 
 	private LocalDate datumOdrzavanja;
 	private int vrijemePocetkaCasaSat;
-	@SuppressWarnings("unused")
 	private int vrijemeZavrsetkaCasaSat;
 	private int vrijemePocetkaCasaMinuta;
 	private int vrijemeZavrsetkaCasaMinuta;
-
+	private String vrijemeTrajanja;
+	
 	public void setVrijemeZavrsetkaCasaSat(int vrijemeZavrsetkaCasa) {
 		this.vrijemeZavrsetkaCasaSat = vrijemeZavrsetkaCasa;
 	}
@@ -50,7 +51,7 @@ public class Rezervacija {
 
 	public void setvrijemePocetkaCasaSat(int vrijemePocetkaCasa) {
 		this.vrijemePocetkaCasaSat = vrijemePocetkaCasa;
-	}
+	}	
 
 	public int getVrijemePocetkaCasaMinuta() {
 		return vrijemePocetkaCasaMinuta;
@@ -67,7 +68,12 @@ public class Rezervacija {
 	public void setVrijemeZavrsetkaCasaMinuta(int vrijemeZavrsetkaCasaMinuta) {
 		this.vrijemeZavrsetkaCasaMinuta = vrijemeZavrsetkaCasaMinuta;
 	}
-
+	
+	public int getVrijemeZavrsetkaCasaSat(){
+		return this.vrijemeZavrsetkaCasaSat;
+	}
+	
+	
 	public String getTipRezervacije() {
 		return tipRezervacije;
 	}
@@ -83,42 +89,23 @@ public class Rezervacija {
 	public void setDatumOdrzavanja(LocalDate datumOdrzavanja) {
 		this.datumOdrzavanja = datumOdrzavanja;
 	}
-
-	public void setGrupa(Grupa g) {
-		grupa = g;
+	
+	public void setVrijemeTrajanja() {
+		vrijemeTrajanja = vrijemePocetkaCasaSat+":"+vrijemePocetkaCasaMinuta+" - "+vrijemeZavrsetkaCasaSat+":"+vrijemeZavrsetkaCasaMinuta;
 	}
 
-	public Grupa getGrupa() {
-		return grupa;
-	}
-
-	public Nastavnik getNastavnik() {
-		return nastavnik;
-	}
-
-	public void setSala(Sala g) {
-		sala = g;
-	}
-
-	public void setNastavnik(Nastavnik n) {
-		nastavnik = n;
-	}
-
-}
-	public LocalTime getVrijemePocetka() {
-		return vrijemePocetka;
-	}
-
-	public void setVrijemePocetka(LocalTime vrijemePocetka) {
-		this.vrijemePocetka = vrijemePocetka;
-	}
-
-	public LocalTime getVrijemeZavrsetka() {
-		return vrijemeZavrsetka;
-	}
-
-	public void setVrijemeZavrsetka(LocalTime vrijemeZavrsetka) {
-		this.vrijemeZavrsetka = vrijemeZavrsetka;
-	}
+	public String getVrijemeTrajanja() {return vrijemeTrajanja;}
+	
+	public String toString() { return this.datumOdrzavanja + " " + this.sala + " " + this.getVrijemeTrajanja();}
+	
+	
+	public void setGrupa(Grupa g) { grupa = g;}
+	public Grupa getGrupa(){ return grupa;}
+	public Nastavnik getNastavnik() { return nastavnik;}
+	
+	public void setSala(Sala g) { sala = g;}
+	
+	public void setNastavnik(Nastavnik n) { nastavnik = n;}
+	
 
 }
