@@ -140,6 +140,8 @@ public class deleteHallController implements Initializable {
 					listofhalls.add(((Sala) e).getNazivSale());
 				hallTitle.setItems(FXCollections.observableList(listofhalls).sorted());
 			}
+			em.close();
+			emf.close();
 		}
 	}
 

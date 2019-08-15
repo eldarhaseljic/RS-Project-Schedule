@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ReportController">
+   <children>
+      <Label layoutX="29.0" layoutY="26.0" text="UNIVERZITET U TUZLI" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="7.0" layoutY="32.0" text="FAKULTET : Fakultet elektrotehnike Tuzla" AnchorPane.leftAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="54.0" text="STUDIJSKI PROGRAM : Elektrotehnika i računarstvo" AnchorPane.leftAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="77.0" text="IZVRŠILAC :" AnchorPane.leftAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="593.0" layoutY="18.0" text="REDOVNI STUDIJ" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="213.0" layoutY="111.0" text="IZVJEŠTAJ O ODRŽANOJ NASTAVI/VJEŽBAMA">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="7.0" layoutY="148.0" prefHeight="228.0" prefWidth="725.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <columns>
+          <TableColumn fx:id="predmet" prefWidth="153.0" text="Predmet" />
+          <TableColumn fx:id="datum" prefWidth="104.0" text="Datum" />
+            <TableColumn fx:id="mjesto" prefWidth="211.0" text="Mjesto i vrijeme održavanja" />
+            <TableColumn fx:id="brstud" minWidth="0.0" prefWidth="188.0" text="Broj prisutnih studenata" />
+            <TableColumn fx:id="predavanja" minWidth="0.0" prefWidth="33.0" text="P" />
+            <TableColumn fx:id="vjezbe" prefWidth="37.0" text="V" />
+        </columns>
+      </TableView>
+      <Label layoutX="10.0" layoutY="427.0" text="Izvršilac:" AnchorPane.leftAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="380.0" text="*Spiskovi studenata se nalaze kod predmetnog nastavnika/saradnika">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="450.0" text="Datum podnošenja izvještaja:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="573.0" layoutY="379.0" text="Ukupno sati:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="ps" layoutX="675.0" layoutY="379.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="vs" layoutX="706.0" layoutY="379.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="418.0" layoutY="435.0" text="Prodekan za nastavu: dr.sc.Emir Mešković" AnchorPane.rightAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="425.0" layoutY="458.0" text="Dekan: dr.sc.Nerdina Mehinović">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="monthLabel" layoutX="150.0" layoutY="127.0" prefHeight="16.0" prefWidth="445.0" AnchorPane.leftAnchor="150.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="izvrsilac2" layoutX="87.0" layoutY="427.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="izvrsilac1" layoutX="105.0" layoutY="77.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="date" layoutX="235.0" layoutY="450.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

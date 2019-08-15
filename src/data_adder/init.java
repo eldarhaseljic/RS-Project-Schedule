@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -89,12 +90,18 @@ public class init {
 			FileReader readfile = new FileReader("name_rs.txt");
 			BufferedReader readbuffer = new BufferedReader(readfile);
 			String s;
+			Query q3 = em.createQuery("SELECT n FROM Usmjerenje n");
+			@SuppressWarnings("unchecked")
+			List<Usmjerenje> a = q3.getResultList();
+			Random rand = new Random();
+
 			while (readbuffer.read() != -1) {
 				Student stud = new Student();
 				s = readbuffer.readLine();
 				String[] parts = s.split(";");
 				stud.setImeStud(parts[0]);
 				stud.setPrezStud(parts[1]);
+				stud.setUsmjerenje(a.get(rand.nextInt(a.size())));
 				em.getTransaction().begin();
 				em.persist(stud);
 				em.getTransaction().commit();
@@ -106,7 +113,8 @@ public class init {
 				studkor.setEmail((stud.getImeStud() + "." + stud.getPrezStud() + "@fet.ba").toLowerCase());
 				String username = stud.getImeStud() + "." + stud.getPrezStud();
 				studkor.setUsername(username.toLowerCase());
-				studkor.setPassword(stud.getImeStud().toLowerCase() + "123");
+				// Password nam vise ne treba pa sam zakomentariso
+				// studkor.setPassword(stud.getImeStud().toLowerCase() + "123");
 				em.getTransaction().begin();
 				em.persist(studkor);
 				em.getTransaction().commit();
@@ -183,7 +191,7 @@ public class init {
 				s = readbuffer.readLine();
 				String[] parts = s.split(";");
 
-				 //System.out.println(parts[0]);
+				// System.out.println(parts[0]);
 				// System.out.println(parts[1]);
 
 				String[] naziv = parts[2].split(" ");
@@ -192,25 +200,30 @@ public class init {
 				Collection<Nastavnik> nastavnici = new ArrayList<Nastavnik>();
 
 				Query q2 = em.createQuery("SELECT n FROM Nastavnik n WHERE n.imeNast "
-										+ "	= :a and n.prezNast = :b and (n.titula = :c or n.titula = :d)",
-						Nastavnik.class);
+						+ "	= :a and n.prezNast = :b and (n.titula = :c or n.titula = :d)", Nastavnik.class);
 				q2.setParameter("a", naziv[0]);
 				q2.setParameter("b", naziv[1]);
 				q2.setParameter("c", "Profesor");
 				q2.setParameter("d", "Prodekan");
-				
+
 				@SuppressWarnings("unchecked")
 				List<Nastavnik> n = q2.getResultList();
 				nastavnici.add((Nastavnik) n.get(0));
 
 				Collection<Usmjerenje> usmjerenja = new ArrayList<Usmjerenje>();
+				Query q3;
 
-				Query q3 = em.createQuery("SELECT n FROM Usmjerenje n WHERE n.imeUsmjerenja = :in", Usmjerenje.class);
+				if (parts[1].equals("all")) {
+					q3 = em.createQuery("SELECT n FROM Usmjerenje n");
+				} else {
+					q3 = em.createQuery("SELECT n FROM Usmjerenje n WHERE n.imeUsmjerenja = :in", Usmjerenje.class);
+					q3.setParameter("in", parts[1]);
+				}
 
-				q3.setParameter("in", parts[1]);
 				@SuppressWarnings("unchecked")
 				List<Usmjerenje> a = q3.getResultList();
-				usmjerenja.add((Usmjerenje) a.get(0));
+				for (Usmjerenje current : a)
+					usmjerenja.add((Usmjerenje) current);
 
 				Predmet novi = new Predmet();
 				novi.setImePred(parts[0].toUpperCase());

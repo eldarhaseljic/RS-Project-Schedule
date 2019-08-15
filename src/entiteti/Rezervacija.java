@@ -1,7 +1,6 @@
 package entiteti;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,60 +11,97 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 
-@Entity(name="Rezervacija")
+@Entity(name = "Rezervacija")
 public class Rezervacija {
-	@TableGenerator(
-			name = "idRezerv",
-			allocationSize = 1,
-			initialValue = 1)
-	@Id 
-	@GeneratedValue(
-			strategy=GenerationType.TABLE, 
-			generator="idRezerv")
+	@TableGenerator(name = "idRezerv", allocationSize = 1, initialValue = 1)
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "idRezerv")
 	@Column(name = "REZERVACIJA_ID")
 	private int IdRezervacije;
-	
-	private String tipRezervacije; //seminar,simpozij,nadoknada,diplomski
-	
+
+	private String tipRezervacije; // seminar,simpozij,nadoknada,diplomski
+
 	@ManyToOne
 	@JoinColumn(name = "NASTAVNIK_ID")
 	private Nastavnik nastavnik;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "GRUPA_ID")
 	private Grupa grupa;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "SALA_ID")
 	private Sala sala;
-	
+
 	private LocalDate datumOdrzavanja;
-	private LocalTime vrijemePocetka;
-	private LocalTime vrijemeZavrsetka;
-	
+	private int vrijemePocetkaCasaSat;
+	@SuppressWarnings("unused")
+	private int vrijemeZavrsetkaCasaSat;
+	private int vrijemePocetkaCasaMinuta;
+	private int vrijemeZavrsetkaCasaMinuta;
+
+	public void setVrijemeZavrsetkaCasaSat(int vrijemeZavrsetkaCasa) {
+		this.vrijemeZavrsetkaCasaSat = vrijemeZavrsetkaCasa;
+	}
+
+	public int getvrijemePocetkaCasaSat() {
+		return vrijemePocetkaCasaSat;
+	}
+
+	public void setvrijemePocetkaCasaSat(int vrijemePocetkaCasa) {
+		this.vrijemePocetkaCasaSat = vrijemePocetkaCasa;
+	}
+
+	public int getVrijemePocetkaCasaMinuta() {
+		return vrijemePocetkaCasaMinuta;
+	}
+
+	public void setVrijemePocetkaCasaMinuta(int vrijemePocetkaCasaMinuta) {
+		this.vrijemePocetkaCasaMinuta = vrijemePocetkaCasaMinuta;
+	}
+
+	public int getVrijemeZavrsetkaCasaMinuta() {
+		return vrijemeZavrsetkaCasaMinuta;
+	}
+
+	public void setVrijemeZavrsetkaCasaMinuta(int vrijemeZavrsetkaCasaMinuta) {
+		this.vrijemeZavrsetkaCasaMinuta = vrijemeZavrsetkaCasaMinuta;
+	}
+
 	public String getTipRezervacije() {
 		return tipRezervacije;
 	}
+
 	public void setTipRezervacije(String tipRezervacije) {
 		this.tipRezervacije = tipRezervacije;
 	}
+
 	public LocalDate getDatumOdrzavanja() {
 		return datumOdrzavanja;
 	}
+
 	public void setDatumOdrzavanja(LocalDate datumOdrzavanja) {
 		this.datumOdrzavanja = datumOdrzavanja;
 	}
-	public LocalTime getVrijemePocetka() {
-		return vrijemePocetka;
+
+	public void setGrupa(Grupa g) {
+		grupa = g;
 	}
-	public void setVrijemePocetka(LocalTime vrijemePocetka) {
-		this.vrijemePocetka = vrijemePocetka;
+
+	public Grupa getGrupa() {
+		return grupa;
 	}
-	public LocalTime getVrijemeZavrsetka() {
-		return vrijemeZavrsetka;
+
+	public Nastavnik getNastavnik() {
+		return nastavnik;
 	}
-	public void setVrijemeZavrsetka(LocalTime vrijemeZavrsetka) {
-		this.vrijemeZavrsetka = vrijemeZavrsetka;
+
+	public void setSala(Sala g) {
+		sala = g;
 	}
-	
+
+	public void setNastavnik(Nastavnik n) {
+		nastavnik = n;
+	}
+
 }

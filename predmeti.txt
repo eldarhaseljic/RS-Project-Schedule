@@ -9,7 +9,7 @@
  Nelinearni sistemi upravljanja;Automatika i robotika;Jakub Osmic;
  Robotika i masinska vizija;Automatika i robotika;Naser Prljaca;
  Inteligentni sistemi;Automatika i robotika;Lejla Banjanovic-Mehmedovic;
- Projektovanje mikroprocesorskih sistema;Automatika i robotika;Lejla Banjanovic-Mehmedovic;
+ Projektovanje mikroprocesorskih sistema;Automatika i robotika;Naser Prljaca;
  Digitalni sistemi upravljanja i obrade signala I;Automatika i robotika;Zenan Sehic;
  Upravljanje mehatronickim sistemima;Automatika i robotika;Amila Dubravic;
  Optimalno upravljanje;Automatika i robotika;Amila Dubravic;
@@ -22,7 +22,7 @@
  Prepoznavanje uzoraka;Biomedicinski inzinjering;Damir Demirovic;
  Biomedicinski informacioni sistemi;Biomedicinski inzinjering;Amira Serifovic-Trbalic;
  Biomedicinska instrumentacija;Biomedicinski inzinjering;Amira Serifovic-Trbalic;
- Uvod u energetske sisteme;Elektroenergetske mreze i sistemi;Nedzmija Demirovic;
+ Uvod u energetske sisteme;all;Nedzmija Demirovic;
  Teorija elektricnih kola;Elektroenergetske mreze i sistemi;Mirza Kusljugic;
  Mjerenja u elektrotehnici;Elektroenergetske mreze i sistemi;Tatjana Konjic;
  Matricne metode u elektrotehnici;Elektroenergetske mreze i sistemi;Amir Tokic;
@@ -34,6 +34,7 @@
  Elektroenergetske prenosne i distributivne mreze;Elektroenergetske mreze i sistemi;Tatjana Konjic;
  Oprimizacione metode u elektrotehnici;Elektroenergetske mreze i sistemi;Amir Nuhanovic;
  Modeliranje sistema;Elektroenergetske mreze i sistemi;Amir Tokic;
+ Modeliranje i simulacija sistema;Elektroenergetske mreze i sistemi;Amir Tokic;
  Elektroenergetske stanice;Elektroenergetske mreze i sistemi;Suad Halilcevic;
  Tehnika visokog napona;Elektroenergetske mreze i sistemi;Amir Tokic;
  Relejna tehnika;Elektroenergetske mreze i sistemi;Suad Halilcevic;
@@ -44,8 +45,8 @@
  Elektrane;Elektroenergetske mreze i sistemi;Suad Halilcevic;
  Upravljanje elektroenergetskog sistema;Elektroenergetske mreze i sistemi;Suad Halilcevic;
  Numericki postupci u projektovanju;Elektroenergetske mreze i sistemi;Amir Nuhanovic;
- Osnovi elektrotehnike 1;Elektroenergetski sistemi konverzije energije;Izudin Kapetanovic;
- Osnovi elektrotehnike 2;Elektroenergetski sistemi konverzije energije;Izudin Kapetanovic;
+ Osnovi elektrotehnike 1;all;Izudin Kapetanovic;
+ Osnovi elektrotehnike 2;all;Izudin Kapetanovic;
  Elektromehanicka konverzija energije;Elektroenergetski sistemi konverzije energije;Vlado Madzarevic;
  Ekonomika i organizacija poslovanja;Elektroenergetski sistemi konverzije energije;Izudin Kapetanovic;
  Elektricna mjerenja;Elektroenergetski sistemi konverzije energije;Mensur Kasumovic;
@@ -64,8 +65,8 @@
  Proizvodnja energije;Elektroenergetski sistemi konverzije energije;Mensur Kasumovic;
  Upravljanje elektromotornih pogona;Elektroenergetski sistemi konverzije energije;Suad Halilcevic;
  Energetika i okolina;Elektroenergetski sistemi konverzije energije;Nerdina Mehinovic;
- Osnovi racunarstva;Racunarstvo i informatika;Nermin Sarajlic;
- Osnovi programiranja;Racunarstvo i informatika;Nermin Sarajlic;
+ Osnovi racunarstva;all;Nermin Sarajlic;
+ Osnovi programiranja;all;Nermin Sarajlic;
  Arhitektura racunara;Racunarstvo i informatika;Amer Hasanovic;
  Objektno orijentirano programiranje;Racunarstvo i informatika;Amer Hasanovic;
  Uvod u racunarske algoritme;Racunarstvo i informatika;Edin Pjanic;
@@ -80,7 +81,7 @@
  Racunarske mreze;Racunarstvo i informatika;Amer Hasanovic;
  Sistemsko programiranje;Racunarstvo i informatika;Amer Hasanovic;
  Razvoj web aplikacija;Racunarstvo i informatika;Edin Pjanic;
- Tehnologije za podrsku tehnickom pisanju;Telekomunikacije;Asmir Gogic;
+ Tehnologije za podrsku tehnickom pisanju;all;Asmir Gogic;
  Sekvencijalni sklopovi;Telekomunikacije;Samra Mujacic;
  Telekomunikacijiski protokoli;Telekomunikacije;Samra Mujacic;
  Obrada digitalnih signala;Telekomunikacije;Nermin Suljanovic;
@@ -100,3 +101,8 @@
  Multimedijski sistemi i komunikacije;Telekomunikacije;Samra Mujacic;
  Satelitske telekomunikacije;Telekomunikacije;Asmir Gogic;
  Mikroprocesorski sitemi u telekomunikacijama;Telekomunikacije;Asmir Gogic;
+ Matematika 1;all;Mirela Garic-Demirovic;
+ Matematika 2;all;Elvis Barakovic;
+ Matematika 3;all;Enes Duvnjakovic;
+ Fizika 1;all;Izet Gazdic;
+ Fizika 2;all;Senada Avdic;

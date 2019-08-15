@@ -13,25 +13,25 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class showHallsController implements Initializable {
-	
-	@FXML 
+
+	@FXML
 	TableView<Sala> table;
 	@FXML
-	TableColumn<Sala,String> title;
+	TableColumn<Sala, String> title;
 	@FXML
-	TableColumn<Sala,String> building;
-	
+	TableColumn<Sala, String> building;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		ObservableList<Sala> temp = FXCollections.observableArrayList();
 		for (Object e : ProdekanController.temp_list)
-			temp.add((Sala)e);
-		
+			temp.add((Sala) e);
+
 		title.setCellValueFactory(new PropertyValueFactory<Sala, String>("nazivSale"));
 		building.setCellValueFactory(new PropertyValueFactory<Sala, String>("nazivZgrade"));
 		table.setItems(temp);
-		
+
 	}
 
 }

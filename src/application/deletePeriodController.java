@@ -1,6 +1,5 @@
 package application;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import entiteti.Predmet;
-import entiteti.Semestar;
+import entiteti.Cas;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,37 +23,42 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class deleteSubjectController implements Initializable {
+public class deletePeriodController implements Initializable {
 
 	@FXML
-	private ComboBox<Predmet> listbox;
+	private ComboBox<Cas> listbox;
 
 	@FXML
 	private Label errBuild;
 
-	public void deleteSubject(ActionEvent event) throws Exception {
+	public void deletePeriod(ActionEvent event) throws Exception {
 		if (listbox.getSelectionModel().isEmpty())
-			errBuild.setText("You didn't choose the subject.");
+			errBuild.setText("You didn't choose the period.");
 		else {
-			Predmet naziv = listbox.getValue();
+			Cas naziv = listbox.getValue();
 
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 			EntityManager em = emf.createEntityManager();
 
-			Query q1 = em.createQuery("SELECT s FROM Predmet s WHERE s.IdPredmeta = :n", Predmet.class);
+			Query q1 = em.createQuery("SELECT s FROM Cas s WHERE s.IdCasa = :n", Cas.class);
 			q1.setParameter("n", naziv.getId());
 			@SuppressWarnings("unchecked")
-			List<Predmet> predmeti = q1.getResultList();
+			List<Cas> casovi = q1.getResultList();
 
-			for (Predmet predmet : predmeti) {
+			for (Cas cas : casovi) {
 				em.getTransaction().begin();
-				em.remove(predmet);
+				em.remove(cas);
 				em.getTransaction().commit();
 
-				ProdekanController.Information = "You deleted subject: " + naziv.getImePred() + " successfully.";
-				show(event);
+				ProdekanController.Information = "You deleted period successfully.";
+				Stage primaryStage = new Stage();
+				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+				Scene scene = new Scene(root);
+				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				primaryStage.setScene(scene);
+				primaryStage.show();
 
 			}
 			em.close();
@@ -64,23 +67,13 @@ public class deleteSubjectController implements Initializable {
 
 	}
 
-	private void show(ActionEvent event) throws IOException {
-		// TODO Auto-generated method stub
-		Stage primaryStage = new Stage();
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-		Scene scene = new Scene(root);
-		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		primaryStage.setScene(scene);
-		primaryStage.show();
-	}
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 
-		List<Predmet> temp = new ArrayList<>();
+		List<Cas> temp = new ArrayList<>();
 		for (Object e : ProdekanController.temp_list)
-			temp.add(((Predmet) e));
+			temp.add(((Cas) e));
 		listbox.setItems(FXCollections.observableList(temp).sorted());
 	}
 

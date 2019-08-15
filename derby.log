@@ -933,15 +933,26 @@ ERROR XSDB6: Another instance of Derby may have already booted the database /hom
 ============= end nested exception, level (3) ===========
 Cleanup action completed
 ----------------------------------------------------------------
+<<<<<<< HEAD
 Tue Aug 13 18:43:19 CEST 2019:
 Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance f81e0010-016c-8bdc-ac87-000004e7b300 
 on database directory /home/mahha/MyDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@3b9a45b3 
 Loaded from file:/home/mahha/razvoj_projekat/derby.jar
+=======
+Thu Aug 15 15:27:29 CEST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-016c-9576-3870-000002865ce0 
+on database directory /home/eldar/MyDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/eldar/Radna%20povr%c5%a1ina/drive-download-20190803T174544Z-001/derby.jar
+>>>>>>> haselja_login
 java.vendor=Ubuntu
 java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
 user.dir=/home/mahha/razvoj_projekat/raspored
 os.name=Linux
 os.arch=amd64
+<<<<<<< HEAD
 os.version=4.15.0-55-generic
+=======
+os.version=5.0.0-25-generic
+>>>>>>> haselja_login
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

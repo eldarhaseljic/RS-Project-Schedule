@@ -28,6 +28,10 @@ public class Korisnik {
 		return ime;
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	public void setIme(String ime) {
 		this.ime = ime;
 	}

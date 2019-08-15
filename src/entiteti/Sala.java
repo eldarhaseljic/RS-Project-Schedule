@@ -50,4 +50,8 @@ public class Sala {
 		return salaId;
 	}
 
+	public String toString() {
+		return this.nazivSale;
+	}
+
 }

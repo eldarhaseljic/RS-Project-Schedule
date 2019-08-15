@@ -34,9 +34,7 @@
                </items></Menu>
           <Menu mnemonicParsing="false" text="Reservation">
                <items>
-                  <MenuItem mnemonicParsing="false" text="New" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Update" />
+                  <MenuItem mnemonicParsing="false" onAction="#addReservation" text="New" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Delete" />
                </items>
@@ -74,7 +72,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="199.0" layoutY="316.0" prefHeight="40.0" prefWidth="205.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Reports" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+      <JFXButton fx:id="report" layoutX="199.0" layoutY="316.0" onAction="#makeReport" prefHeight="40.0" prefWidth="205.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Report" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
