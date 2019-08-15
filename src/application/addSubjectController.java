@@ -110,7 +110,7 @@ public class addSubjectController implements Initializable {
 			em.getTransaction().commit();
 			em.close();
 			emf.close();
-			
+
 			ProdekanController.Information = "Successfully added";
 			show(event);
 		}

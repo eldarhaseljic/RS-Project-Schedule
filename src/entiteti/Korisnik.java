@@ -27,7 +27,7 @@ public class Korisnik {
 	public String getIme() {
 		return ime;
 	}
-	
+
 	public int getId() {
 		return id;
 	}

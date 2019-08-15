@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Reflection?>
@@ -32,16 +33,13 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <Label fx:id="lblStatus" layoutX="44.0" layoutY="350.0" prefHeight="22.0" prefWidth="264.0" textFill="#bf0909" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="42.0">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <JFXTextField fx:id="txtUsername" focusColor="#7c0909" layoutX="67.0" layoutY="268.0" prefHeight="26.0" prefWidth="240.0" promptText="Username" style="color: #7c0909;" unFocusColor="#7e7e7e">
+      <Label fx:id="lblStatus" alignment="CENTER" layoutX="33.0" layoutY="351.0" prefHeight="22.0" prefWidth="284.0" textFill="#bf0909" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" />
+      <JFXTextField fx:id="txtUsername" focusColor="#7c0909" layoutX="67.0" layoutY="268.0" prefHeight="26.0" prefWidth="173.0" promptText="Username" style="color: #7c0909;" unFocusColor="#7e7e7e">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXTextField>
-      <JFXPasswordField fx:id="txtPassword" focusColor="#7c0909" layoutX="67.0" layoutY="307.0" prefHeight="26.0" prefWidth="240.0" promptText="Password" style="color: #7c0909;" unFocusColor="#7e7e7e">
+      <JFXPasswordField fx:id="txtPassword" focusColor="#7c0909" layoutX="67.0" layoutY="307.0" prefHeight="26.0" prefWidth="173.0" promptText="Password" style="color: #7c0909;" unFocusColor="#7e7e7e">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -101,5 +99,18 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
+      <CheckBox fx:id="checkStudent" layoutX="253.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#testStudent" prefHeight="26.0" prefWidth="83.0" text="Student">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#545353" />
+                  <Stop color="#7c6f6f" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </CheckBox>
    </children>
 </AnchorPane>

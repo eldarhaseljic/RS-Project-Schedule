@@ -27,7 +27,7 @@ public class StudentController implements Initializable {
 	private Label brIndex;
 	@FXML
 	private Label orientation;
-	
+
 	public static List<?> temp_list;
 
 	public void close(ActionEvent event) throws Exception {
@@ -49,27 +49,23 @@ public class StudentController implements Initializable {
 		Query q = em.createQuery("SELECT n FROM Student n");
 		@SuppressWarnings("unchecked")
 		List<Student> studenti = q.getResultList();
-		//int i = 0;
+		// int i = 0;
 		for (Student n : studenti) {
-			/*if(i==0)
-			{
-				System.out.println(MainController.trenutniKor.getIme());
-				System.out.println(n.getIme());
-				System.out.println(MainController.trenutniKor.getPrezime());
-				System.out.println(n.getPrezStud());
-				++i;
-			}
-			*/
+			/*
+			 * if(i==0) { System.out.println(MainController.trenutniKor.getIme());
+			 * System.out.println(n.getIme());
+			 * System.out.println(MainController.trenutniKor.getPrezime());
+			 * System.out.println(n.getPrezStud()); ++i; }
+			 */
 			if (MainController.trenutniKor.getIme().equals(n.getImeStud())
-					&& MainController.trenutniKor.getPrezime().equals(n.getPrezStud()))
-				{
-					//ako cemo index
-					int index = n.getIDStud();
-					brIndex.setText(""+index+"");
-				
-					//ako cemo smijer
-					orientation.setText(n.getUsmjerenje());
-				}
+					&& MainController.trenutniKor.getPrezime().equals(n.getPrezStud())) {
+				// ako cemo index
+				int index = n.getIDStud();
+				brIndex.setText("" + index + "");
+
+				// ako cemo smijer
+				orientation.setText(n.getUsmjerenje());
+			}
 		}
 		em.close();
 		emf.close();

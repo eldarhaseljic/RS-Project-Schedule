@@ -93,7 +93,8 @@ public class init {
 				studkor.setEmail((stud.getImeStud() + "." + stud.getPrezStud() + "@fet.ba").toLowerCase());
 				String username = stud.getImeStud() + "." + stud.getPrezStud();
 				studkor.setUsername(username.toLowerCase());
-				studkor.setPassword(stud.getImeStud().toLowerCase() + "123");
+				// Password nam vise ne treba pa sam zakomentariso
+				// studkor.setPassword(stud.getImeStud().toLowerCase() + "123");
 				em.getTransaction().begin();
 				em.persist(studkor);
 				em.getTransaction().commit();
@@ -170,7 +171,7 @@ public class init {
 				s = readbuffer.readLine();
 				String[] parts = s.split(";");
 
-				 //System.out.println(parts[0]);
+				// System.out.println(parts[0]);
 				// System.out.println(parts[1]);
 
 				String[] naziv = parts[2].split(" ");
@@ -179,32 +180,29 @@ public class init {
 				Collection<Nastavnik> nastavnici = new ArrayList<Nastavnik>();
 
 				Query q2 = em.createQuery("SELECT n FROM Nastavnik n WHERE n.imeNast "
-										+ "	= :a and n.prezNast = :b and (n.titula = :c or n.titula = :d)",
-						Nastavnik.class);
+						+ "	= :a and n.prezNast = :b and (n.titula = :c or n.titula = :d)", Nastavnik.class);
 				q2.setParameter("a", naziv[0]);
 				q2.setParameter("b", naziv[1]);
 				q2.setParameter("c", "Profesor");
 				q2.setParameter("d", "Prodekan");
-				
+
 				@SuppressWarnings("unchecked")
 				List<Nastavnik> n = q2.getResultList();
 				nastavnici.add((Nastavnik) n.get(0));
 
 				Collection<Usmjerenje> usmjerenja = new ArrayList<Usmjerenje>();
 				Query q3;
-				
-				if(parts[1].equals("all")) {
+
+				if (parts[1].equals("all")) {
 					q3 = em.createQuery("SELECT n FROM Usmjerenje n");
-				}
-				else 
-				{
+				} else {
 					q3 = em.createQuery("SELECT n FROM Usmjerenje n WHERE n.imeUsmjerenja = :in", Usmjerenje.class);
 					q3.setParameter("in", parts[1]);
 				}
-				
+
 				@SuppressWarnings("unchecked")
 				List<Usmjerenje> a = q3.getResultList();
-				for(Usmjerenje current: a)
+				for (Usmjerenje current : a)
 					usmjerenja.add((Usmjerenje) current);
 
 				Predmet novi = new Predmet();

@@ -185,33 +185,26 @@ public class ProdekanController implements Initializable {
 		Query q2 = em.createQuery("SELECT x FROM Usmjerenje x");
 		@SuppressWarnings("unchecked")
 		List<Usmjerenje> temp2_list = q2.getResultList();
-		
+
 		Query q3 = em.createQuery("SELECT x FROM Semestar x");
 		@SuppressWarnings("unchecked")
 		List<Semestar> temp3_list = q3.getResultList();
-		
+
 		em.close();
 		emf.close();
-		
-		if(temp_list.isEmpty())
-		{	
-			ProdekanController.Information ="You must have at least one teacher";
-			show(event,"/fxml_files/Info.fxml","Error");
-		}
-		else if(temp2_list.isEmpty())
-		{
-			ProdekanController.Information ="You must have at least one orientation";
-			show(event,"/fxml_files/Info.fxml","Error");
-		}
-		else if(temp3_list.isEmpty())
-		{	
-			
-			ProdekanController.Information ="You must have at least one semester";
-			show(event,"/fxml_files/Info.fxml","Error");
-		}
-		else 
-		{
-			show(event,"/fxml_files/addSubjectScreen.fxml","New Subject");
+
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "You must have at least one teacher";
+			show(event, "/fxml_files/Info.fxml", "Error");
+		} else if (temp2_list.isEmpty()) {
+			ProdekanController.Information = "You must have at least one orientation";
+			show(event, "/fxml_files/Info.fxml", "Error");
+		} else if (temp3_list.isEmpty()) {
+
+			ProdekanController.Information = "You must have at least one semester";
+			show(event, "/fxml_files/Info.fxml", "Error");
+		} else {
+			show(event, "/fxml_files/addSubjectScreen.fxml", "New Subject");
 		}
 	}
 
@@ -251,27 +244,21 @@ public class ProdekanController implements Initializable {
 
 		em.close();
 		emf.close();
-		
-		if(predmeti.isEmpty())
-		{	
-			ProdekanController.Information ="You must have at least one subject";
-			show(event,"/fxml_files/Info.fxml","Error");
+
+		if (predmeti.isEmpty()) {
+			ProdekanController.Information = "You must have at least one subject";
+			show(event, "/fxml_files/Info.fxml", "Error");
+		} else if (nastavnici.isEmpty()) {
+			ProdekanController.Information = "You must have at least one teacher";
+			show(event, "/fxml_files/Info.fxml", "Error");
+		} else if (studenti.isEmpty()) {
+
+			ProdekanController.Information = "You must have at least one student";
+			show(event, "/fxml_files/Info.fxml", "Error");
+		} else {
+			show(event, "/fxml_files/addGroupScreen.fxml", "Add Group");
 		}
-		else if(nastavnici.isEmpty())
-		{
-			ProdekanController.Information ="You must have at least one teacher";
-			show(event,"/fxml_files/Info.fxml","Error");
-		}
-		else if(studenti.isEmpty())
-		{	
-			
-			ProdekanController.Information ="You must have at least one student";
-			show(event,"/fxml_files/Info.fxml","Error");
-		}
-		else 
-		{
-		show(event, "/fxml_files/addGroupScreen.fxml", "Add Group");
-		};
+		;
 	}
 
 	public void showBuildings(ActionEvent event) throws Exception {
@@ -282,7 +269,7 @@ public class ProdekanController implements Initializable {
 
 		Query q = em.createQuery("SELECT z FROM Zgrada z");
 		temp_list = q.getResultList();
-		
+
 		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "There are no buildings!";
 			show(event, "/fxml_files/Info.fxml", "Info");
@@ -324,9 +311,9 @@ public class ProdekanController implements Initializable {
 
 		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "There are no groups!";
-			show(event,"/fxml_files/Info.fxml","Info");
+			show(event, "/fxml_files/Info.fxml", "Info");
 		} else {
-			show(event,"/fxml_files/showGroupsScreen.fxml","Groups");
+			show(event, "/fxml_files/showGroupsScreen.fxml", "Groups");
 		}
 		em.close();
 		emf.close();
@@ -403,23 +390,18 @@ public class ProdekanController implements Initializable {
 		List<?> sale = q1.getResultList();
 
 		Query q2 = em.createQuery("SELECT s FROM Semestar s");
-		List<?>  semestri= q2.getResultList();
+		List<?> semestri = q2.getResultList();
 
 		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "You must have at least one group!";
 			show(event, "/fxml_files/Info.fxml", "Info");
-		}
-		else if(sale.isEmpty())
-		{
-			ProdekanController.Information ="You must have at least one hall";
-			show(event,"/fxml_files/Info.fxml","Error");
-		}
-		else if(semestri.isEmpty())
-		{	
-			ProdekanController.Information ="You must have at least one semester";
-			show(event,"/fxml_files/Info.fxml","Error");
-		}
-		else {
+		} else if (sale.isEmpty()) {
+			ProdekanController.Information = "You must have at least one hall";
+			show(event, "/fxml_files/Info.fxml", "Error");
+		} else if (semestri.isEmpty()) {
+			ProdekanController.Information = "You must have at least one semester";
+			show(event, "/fxml_files/Info.fxml", "Error");
+		} else {
 			show(event, "/fxml_files/createPeriodScreen.fxml", "Groups");
 		}
 		em.close();
@@ -431,15 +413,15 @@ public class ProdekanController implements Initializable {
 		EntityManagerFactory emf;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
-	
+
 		Query q = em.createQuery("SELECT p FROM Cas p");
 		temp_list = q.getResultList();
-	
+
 		if (temp_list.size() < 1) {
 			ProdekanController.Information = "There are no groups!";
-			show(event,"/fxml_files/Info.fxml","Info");
+			show(event, "/fxml_files/Info.fxml", "Info");
 		} else {
-			show(event,"/fxml_files/deletePeriodScreen.fxml","Groups");
+			show(event, "/fxml_files/deletePeriodScreen.fxml", "Groups");
 		}
 		em.close();
 		emf.close();
@@ -452,25 +434,26 @@ public class ProdekanController implements Initializable {
 	public void addUser(ActionEvent event) throws Exception {
 		show(event, "/fxml_files/addUserScreen.fxml", "New user");
 	}
-	
+
 	public void deleteUser(ActionEvent event) throws Exception {
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
-	
-		Query q = em.createQuery("SELECT p FROM Korisnik p WHERE p.isProdekan = :a",Korisnik.class);
+
+		Query q = em.createQuery("SELECT p FROM Korisnik p WHERE p.isProdekan = :a", Korisnik.class);
 		q.setParameter("a", false);
 		temp_list = q.getResultList();
 		if (temp_list.size() > 1) {
-			show(event, "/fxml_files/deleteUserScreen.fxml", "New user");	
+			show(event, "/fxml_files/deleteUserScreen.fxml", "New user");
 		} else {
 			ProdekanController.Information = "There is only one user!";
-			show(event,"/fxml_files/Info.fxml","Info");
+			show(event, "/fxml_files/Info.fxml", "Info");
 		}
 		em.close();
 		emf.close();
 	}
+
 	// Funkcija za pokretanje bilo kojeg gui prozora
 	private void show(Event event, String resurs, String title) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource(resurs));

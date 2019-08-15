@@ -55,9 +55,9 @@ public class Student {
 	}
 
 	public void setIDStud(int id) {
-		this.IdStudenta =  id;
+		this.IdStudenta = id;
 	}
-	
+
 	public void setUsmjerenje(Usmjerenje usmjerenje) {
 		this.usmjerenje = usmjerenje;
 	}
@@ -65,6 +65,7 @@ public class Student {
 	public String getUsmjerenje() {
 		return usmjerenje.getImeUsmjerenja();
 	}
+
 	public void setSemestar(Semestar semestar) {
 		this.semestar = semestar;
 	}

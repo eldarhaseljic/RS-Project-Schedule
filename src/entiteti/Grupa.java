@@ -99,4 +99,8 @@ public class Grupa {
 			temp += stud.getImeStud() + " " + stud.getPrezStud() + "\n";
 		return temp;
 	}
+
+	public String toString() {
+		return this.getId() + " " + this.getImePredmeta() + " " + this.getImeNastavnika();
+	}
 }

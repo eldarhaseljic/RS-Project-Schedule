@@ -26,6 +26,7 @@ public class ProfessorController implements Initializable {
 
 	// Sluzi za prosljedjivanje informacije
 	public static String Information;
+	public static Nastavnik nastavnik;
 
 	@FXML
 	private Label usr;
@@ -36,7 +37,7 @@ public class ProfessorController implements Initializable {
 	@FXML
 	private Label titula;
 	public static List<?> temp_list;
-	
+
 	private void show(Event event, String resurs, String title) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource(resurs));
 		Scene scene = new Scene(root);
@@ -50,17 +51,19 @@ public class ProfessorController implements Initializable {
 	public void close(ActionEvent event) throws Exception {
 		System.exit(0);
 	}
-	
+
 	public void makeReport(ActionEvent event) throws Exception {
-		
+
 		String ime = MainController.trenutniKor.getIme() + " " + MainController.trenutniKor.getPrezime();
-		
+
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
 
-		Query q = em.createQuery("SELECT c FROM Cas c WHERE CONCAT(c.grupa.nastavnik.imeNast, ' ', c.grupa.nastavnik.prezNast) = :in", Cas.class);
+		Query q = em.createQuery(
+				"SELECT c FROM Cas c WHERE CONCAT(c.grupa.nastavnik.imeNast, ' ', c.grupa.nastavnik.prezNast) = :in",
+				Cas.class);
 		q.setParameter("in", ime);
 		temp_list = q.getResultList();
 
@@ -68,7 +71,7 @@ public class ProfessorController implements Initializable {
 			ProdekanController.Information = "There are no periods in the schedule for you!";
 			show(event, "/fxml_files/Info.fxml", "Info");
 		}
-		
+
 		else
 			show(event, "/fxml_files/Report.fxml", "Report");
 	}
@@ -90,11 +93,19 @@ public class ProfessorController implements Initializable {
 		List<Nastavnik> nastavnici = q.getResultList();
 		for (Nastavnik n : nastavnici) {
 			if (MainController.trenutniKor.getIme().equals(n.getImeNast())
-					&& MainController.trenutniKor.getPrezime().equals(n.getPrezNast()))
+					&& MainController.trenutniKor.getPrezime().equals(n.getPrezNast())) {
 				titula.setText(n.getTitula());
+				ProfessorController.nastavnik = n;
+			}
 		}
 		em.close();
 		emf.close();
+	}
+
+	public void addReservation(ActionEvent event) throws Exception {
+
+		show(event, "/fxml_files/addReservationScreen.fxml", "New Reservation");
+
 	}
 
 }

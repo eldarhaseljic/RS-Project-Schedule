@@ -48,26 +48,24 @@ public class deletePeriodController implements Initializable {
 			List<Cas> casovi = q1.getResultList();
 
 			for (Cas cas : casovi) {
-					em.getTransaction().begin();
-					em.remove(cas);
-					em.getTransaction().commit();
+				em.getTransaction().begin();
+				em.remove(cas);
+				em.getTransaction().commit();
 
-					ProdekanController.Information = "You deleted period successfully.";
-					Stage primaryStage = new Stage();
-					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
-					Scene scene = new Scene(root);
-					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					primaryStage.setScene(scene);
-					primaryStage.show();
-					
-				}
+				ProdekanController.Information = "You deleted period successfully.";
+				Stage primaryStage = new Stage();
+				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
+				Scene scene = new Scene(root);
+				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				primaryStage.setScene(scene);
+				primaryStage.show();
+
+			}
 			em.close();
 			emf.close();
-			}
-
-		
 		}
 
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
