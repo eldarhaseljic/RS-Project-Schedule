@@ -13,6 +13,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import entiteti.Cas;
 import entiteti.Grupa;
 import entiteti.Nastavnik;
 import entiteti.Sala;
@@ -29,6 +30,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -68,6 +71,17 @@ public class addReservationController implements Initializable {
 	private DatePicker date = new DatePicker();
 	
 	@FXML
+	private Label errHall = new Label();
+	
+	@FXML
+	private Label errType = new Label();
+	
+	@FXML
+	private Label errDate = new Label();
+	
+	
+	
+	@FXML
 	private TableView tabela = new TableView<Object>();
 	@FXML
 	private TableColumn<Rezervacija,LocalDate> DatumRezervacije = new TableColumn<Rezervacija, LocalDate>("Datum rezervacije");
@@ -85,12 +99,40 @@ public class addReservationController implements Initializable {
 
 	public void addReservation(ActionEvent event) throws Exception {
 	
+		
+		if(classCombo.getSelectionModel().isEmpty() || date.getValue() == null || tipCombo.getSelectionModel().isEmpty()) 
+		{
+					if(classCombo.getSelectionModel().isEmpty())
+					{
+						errHall.setText("You didn't chose hall.");
+					}
+					else {
+						errHall.setText("");
+					}
+					
+					if(date.getValue() == null) {
+						errDate.setText("You didn't set day.");
+					}
+					else {
+						errDate.setText("");
+					}
+					if(tipCombo.getSelectionModel().isEmpty())
+					{
+						errType.setText("You didn't chose type.");
+					}else {
+						errType.setText("");
+					}
+						
+					
+		}
+		else {
 		if( date.getValue().isBefore(LocalDate.now()) )
 		{
 			System.out.println(" Samo buduci datumi su dozvoljeni. ");
 			return;
 		}
 		
+
 		LocalDate dateOfReservation = date.getValue();
 		long satipoc = Math.round(satistart.getValue());
 		long minutepoc = Math.round(minutestart.getValue());
@@ -98,14 +140,17 @@ public class addReservationController implements Initializable {
 		long minutekraj = Math.round(minuteend.getValue());
 		
 		if(satipoc > satikraj || (satipoc == satikraj && minutepoc > minutekraj)) {
-			System.out.println(" Vrijeme nije validno ");
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Time alert");
+			alert.setHeaderText("Invalid time of reservation");
+			alert.setContentText("Adjust time of reservation.");
 			return;
 		}
 		
 		String type = tipCombo.getValue();
 		Sala sala = classCombo.getValue();
 		
-		if(mogucaRezervacija(dateOfReservation,satipoc,minutepoc,satikraj,minutekraj)) {
+		if(mogucaRezervacija(dateOfReservation,satipoc,minutepoc,satikraj,minutekraj, sala)) {
 			if(type.contentEquals("Nadoknada"))
 			{
 				addReservationForGroup(sala,type,groupCombo.getValue(),dateOfReservation,(int)satipoc,(int)minutepoc,(int)satikraj,(int)minutekraj);
@@ -114,14 +159,72 @@ public class addReservationController implements Initializable {
 			{
 				addReservationForNonGroup(sala,type,dateOfReservation,(int)satipoc,(int)minutepoc,(int)satikraj,(int)minutekraj);
 			}
+			
+			ProdekanController.Information ="Reservation was successfuly placed";
+			show(event);
 		}
 		
+		
+	}		
 }
 	
-	boolean mogucaRezervacija(LocalDate date, long hs, long ms, long hend, long mend) {
-		return true;
+	boolean mogucaRezervacija(LocalDate date, long hs, long ms, long hend, long mend, Sala sala) {
 		
-		//PROVJERI KOLIZIJU SA CASOVIMA
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+		
+		Query q1 = em.createQuery("SELECT g FROM Rezervacija g WHERE g.sala = :x ").setParameter("x", sala);
+		List<Rezervacija> temp_list1 = q1.getResultList();
+		
+		Query q2 = em.createQuery("SELECT g FROM Cas g WHERE g.sala = :x ").setParameter("x", sala);
+		List<Cas> temp_list2 = q2.getResultList();
+		
+		long startRez = hs*60+ms;
+		long endRez = hend*60+mend;
+		for(Rezervacija rez : temp_list1) {
+			
+			if(date.isEqual(rez.getDatumOdrzavanja())){
+				long startRez2 = rez.getvrijemePocetkaCasaSat()*60+rez.getVrijemePocetkaCasaMinuta();
+				long endRez2 = rez.getVrijemeZavrsetkaCasaSat()*60 + rez.getVrijemeZavrsetkaCasaMinuta();
+				if(startRez < endRez2 && startRez2 < endRez) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Time alert");
+					alert.setHeaderText("Reservation overlaps with another one");
+					alert.setContentText("Adjust your time.");
+
+					alert.showAndWait();
+					return false;
+				}
+			}
+		}
+		
+		for(Cas cas : temp_list2) {
+
+			if(date.isAfter(cas.getSemestar().getDatumPocetkaSemestra()) && date.isBefore(cas.getSemestar().getDatumZavrsetkaSemestra())) {
+				if(date.getDayOfWeek().toString().equals(cas.getDatumOdrzavanjaCasa().toUpperCase())){
+					long startRez2 = cas.getvrijemePocetkaCasaSat()*60+cas.getVrijemePocetkaCasaMinuta();
+					long endRez2 = cas.getVrijemeZavrsetkaCasaSat()*60 + cas.getVrijemeZavrsetkaCasaMinuta();
+					if(startRez < endRez2 && startRez2 < endRez) {
+						
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Time alert");
+						alert.setHeaderText("Reservation overlaps with Period: "+ cas);
+						alert.setContentText("Adjust your time.");
+
+						alert.showAndWait();
+						return false;
+					}
+				
+			}
+			
+			}
+		}
+		
+		
+		
+		return true;
 	}
 	
 	void addReservationForGroup(Sala sala, String type, Grupa grupa,LocalDate date, int hs, int ms, int hend, int mend ) {
@@ -140,6 +243,7 @@ public class addReservationController implements Initializable {
 		rez.setVrijemeZavrsetkaCasaMinuta(mend);
 		rez.setVrijemeZavrsetkaCasaSat(hend);
 		rez.setNastavnik(ProfessorController.nastavnik);
+		rez.setVrijemeTrajanja();
 		
 		em.getTransaction().begin();
 		em.persist(rez);
@@ -165,10 +269,13 @@ public class addReservationController implements Initializable {
 		rez.setVrijemeZavrsetkaCasaMinuta(mend);
 		rez.setVrijemeZavrsetkaCasaSat(hend);
 		rez.setNastavnik(ProfessorController.nastavnik);
+		rez.setVrijemeTrajanja();
 		
 		em.getTransaction().begin();
 		em.persist(rez);
 		em.getTransaction().commit();
+		
+	
 		em.close();
 		emf.close();
 	}
@@ -217,7 +324,7 @@ public class addReservationController implements Initializable {
 		
 		
 		
-		tabela.getColumns().addAll(DatumRezervacije, nastavnikRezervisan, //vrijemeRezervacije, 
+		tabela.getColumns().addAll(DatumRezervacije, nastavnikRezervisan, vrijemeRezervacije, 
 				tipRezervacije, grupaStudenata);
 		
 		
@@ -225,8 +332,15 @@ public class addReservationController implements Initializable {
 		 
 		 DatumRezervacije.setCellValueFactory(new PropertyValueFactory<Rezervacija, LocalDate>("datumOdrzavanja"));
 		 nastavnikRezervisan.setCellValueFactory(new PropertyValueFactory<Rezervacija, Nastavnik>("nastavnik"));
+		 vrijemeRezervacije.setCellValueFactory(new PropertyValueFactory<Rezervacija, String>("vrijemeTrajanja"));
 		 tipRezervacije.setCellValueFactory(new PropertyValueFactory<Rezervacija, String>("tipRezervacije"));
 		 grupaStudenata.setCellValueFactory(new PropertyValueFactory<Rezervacija, Grupa>("grupa"));
+		 
+		 DatumRezervacije.prefWidthProperty().bind(tabela.widthProperty().divide(5));
+		 nastavnikRezervisan.prefWidthProperty().bind(tabela.widthProperty().divide(5));
+		vrijemeRezervacije.prefWidthProperty().bind(tabela.widthProperty().divide(5));
+		 tipRezervacije.prefWidthProperty().bind(tabela.widthProperty().divide(5));
+		 grupaStudenata.prefWidthProperty().bind(tabela.widthProperty().divide(5));
 		 
 
 		 classCombo.valueProperty().addListener(new ChangeListener<Sala>() {
@@ -252,8 +366,9 @@ public class addReservationController implements Initializable {
 			}
 			 
 		});
-		em.close();
-		emf.close();
+		 
+
+	  
 	}
 
 	public void createReservation() {

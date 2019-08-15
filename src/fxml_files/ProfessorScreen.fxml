@@ -36,7 +36,7 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#addReservation" text="New" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteReservation" text="Delete" />
                </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Report">

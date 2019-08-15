@@ -77,6 +77,13 @@ public class ProfessorController implements Initializable {
 
 	}
 	
+	public void deleteReservation(ActionEvent event) throws Exception {
+		
+
+		show(event,"/fxml_files/deleteReservationScreen.fxml","Delete Reservation");
+
+	}
+	
 	// Funkcija za pokretanje bilo kojeg gui prozora
 		private void show(Event event, String resurs, String title) throws IOException {
 			Parent root = FXMLLoader.load(getClass().getResource(resurs));
