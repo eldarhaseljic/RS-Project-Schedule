@@ -66,6 +66,9 @@ public class MainController {
 				Scene scene = new Scene(root);
 				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				primaryStage.setScene(scene);
+				primaryStage.setWidth(602);
+				primaryStage.setHeight(395);
+				primaryStage.setTitle("Welcome Student");
 				primaryStage.show();
 			} else {
 				if (korisnici.get(0).isNastavnik() == false && korisnici.get(0).isProdekan() == false) {
@@ -78,6 +81,9 @@ public class MainController {
 							Scene scene = new Scene(root);
 							primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 							primaryStage.setScene(scene);
+							primaryStage.setWidth(602);
+							primaryStage.setHeight(395);
+							primaryStage.setTitle("Welcome Professor");
 							primaryStage.show();
 						} else {
 							Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/ProdekanScreen.fxml"));
