@@ -70,10 +70,6 @@ public class Student {
 		this.semestar = semestar;
 	}
 
-	public void setUsmjerenje(Usmjerenje usmjerenje) {
-		this.usmjerenje = usmjerenje;
-	}
-
 	public Collection<Grupa> getGrupe() {
 		return grupe;
 	}

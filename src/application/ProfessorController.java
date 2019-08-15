@@ -40,16 +40,6 @@ public class ProfessorController implements Initializable {
 	private Label titula;
 	public static List<?> temp_list;
 
-	private void show(Event event, String resurs, String title) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource(resurs));
-		Scene scene = new Scene(root);
-		Stage primaryStage = new Stage();
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setTitle(title);
-		primaryStage.show();
-	}
-
 	public void close(ActionEvent event) throws Exception {
 		System.exit(0);
 	}

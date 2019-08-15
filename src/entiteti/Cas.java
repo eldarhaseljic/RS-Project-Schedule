@@ -126,10 +126,6 @@ public class Cas {
 	public String getImeSale() {
 		return this.sala.getNazivSale();
 	}
-
-	public Semestar getSemestar() {
-		return semestar;
-	}
 	
 }
 

@@ -54,8 +54,4 @@ public class Sala {
 		return this.nazivSale;
 	}
 
-	public String toString() {
-		return this.nazivSale;
-	}
-
 }

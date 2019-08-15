@@ -1,7 +1,6 @@
 package entiteti;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,13 +33,15 @@ public class Rezervacija {
 	@JoinColumn(name = "SALA_ID")
 	private Sala sala;
 
+	private String vrijemeTrajanja;
 	private LocalDate datumOdrzavanja;
 	private int vrijemePocetkaCasaSat;
+
+@SuppressWarnings("unused")
 	private int vrijemeZavrsetkaCasaSat;
 	private int vrijemePocetkaCasaMinuta;
 	private int vrijemeZavrsetkaCasaMinuta;
-	private String vrijemeTrajanja;
-	
+
 	public void setVrijemeZavrsetkaCasaSat(int vrijemeZavrsetkaCasa) {
 		this.vrijemeZavrsetkaCasaSat = vrijemeZavrsetkaCasa;
 	}
@@ -51,7 +52,7 @@ public class Rezervacija {
 
 	public void setvrijemePocetkaCasaSat(int vrijemePocetkaCasa) {
 		this.vrijemePocetkaCasaSat = vrijemePocetkaCasa;
-	}	
+	}
 
 	public int getVrijemePocetkaCasaMinuta() {
 		return vrijemePocetkaCasaMinuta;
@@ -68,11 +69,10 @@ public class Rezervacija {
 	public void setVrijemeZavrsetkaCasaMinuta(int vrijemeZavrsetkaCasaMinuta) {
 		this.vrijemeZavrsetkaCasaMinuta = vrijemeZavrsetkaCasaMinuta;
 	}
-	
+
 	public int getVrijemeZavrsetkaCasaSat(){
 		return this.vrijemeZavrsetkaCasaSat;
 	}
-	
 	
 	public String getTipRezervacije() {
 		return tipRezervacije;
@@ -89,9 +89,9 @@ public class Rezervacija {
 	public void setDatumOdrzavanja(LocalDate datumOdrzavanja) {
 		this.datumOdrzavanja = datumOdrzavanja;
 	}
-	
+
 	public void setVrijemeTrajanja() {
-		vrijemeTrajanja = vrijemePocetkaCasaSat+":"+vrijemePocetkaCasaMinuta+" - "+vrijemeZavrsetkaCasaSat+":"+vrijemeZavrsetkaCasaMinuta;
+		this.vrijemeTrajanja = vrijemePocetkaCasaSat+":"+vrijemePocetkaCasaMinuta+" - "+vrijemeZavrsetkaCasaSat+":"+vrijemeZavrsetkaCasaMinuta;
 	}
 
 	public String getVrijemeTrajanja() {return vrijemeTrajanja;}
