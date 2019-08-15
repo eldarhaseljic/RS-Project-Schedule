@@ -98,7 +98,11 @@ public class Cas {
 		// TODO Auto-generated method stub
 		return IdCasa;
 	}
-
+	
+	public Semestar getSemestar() {
+		return this.semestar;
+	}
+	
 	public String toString() {
 		return this.sala.getNazivSale() + " " + this.grupa.getImePredmeta().split(";")[0] + " "
 			+ this.grupa.getNastavnik().toString() + " " + this.getDatumOdrzavanjaCasa() + " "
