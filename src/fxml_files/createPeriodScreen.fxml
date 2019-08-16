@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.createPeriodController">
    <children>
-      <TableView fx:id="table" layoutX="3.0" layoutY="34.0" prefHeight="439.0" prefWidth="455.0">
+      <TableView fx:id="table" layoutX="3.0" layoutY="34.0" prefHeight="439.0" prefWidth="455.0" tableMenuButtonVisible="true">
         <columns>
           <TableColumn fx:id="type" prefWidth="75.0" text="Type" />
           <TableColumn fx:id="teacher" prefWidth="106.0" text="Teacher" />

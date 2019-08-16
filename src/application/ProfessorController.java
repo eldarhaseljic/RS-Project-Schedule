@@ -12,6 +12,7 @@ import javax.persistence.Query;
 
 import entiteti.Cas;
 import entiteti.Nastavnik;
+import entiteti.Rezervacija;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -125,8 +126,47 @@ public class ProfessorController implements Initializable {
 		}
 	}
 	
+	public void myReservations(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT z FROM Rezervacija z WHERE z.nastavnik = :a", Rezervacija.class);
+		q.setParameter("a", ProfessorController.nastavnik);
+		temp_list = q.getResultList();
+
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "You don't have any reservations!";
+			show(event, "/fxml_files/Info.fxml", "Info");
+		} 
+		else 
+		{
+			show(event,"/fxml_files/myReservationScreen.fxml","My reservations");
+		}
+	}
+	
+	public void otherReservations(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT z FROM Rezervacija z WHERE z.nastavnik != :a", Rezervacija.class);
+		q.setParameter("a", ProfessorController.nastavnik);
+		temp_list = q.getResultList();
+
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "There are no other reservations!";
+			show(event, "/fxml_files/Info.fxml", "Info");
+		} 
+		else 
+		{
+			show(event,"/fxml_files/otherReservationScreen.fxml","Other reservations");
+		}
+	}
 	// Funkcija za pokretanje bilo kojeg gui prozora
-		private void show(Event event, String resurs, String title) throws IOException {
+	private void show(Event event, String resurs, String title) throws IOException {
 			Parent root = FXMLLoader.load(getClass().getResource(resurs));
 			Scene scene = new Scene(root);
 			Stage primaryStage = new Stage();

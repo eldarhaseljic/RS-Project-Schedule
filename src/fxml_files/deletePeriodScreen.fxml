@@ -29,7 +29,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TableView fx:id="table" layoutX="6.0" layoutY="7.0" prefHeight="412.0" prefWidth="630.0">
+      <TableView fx:id="table" layoutX="6.0" layoutY="7.0" prefHeight="412.0" prefWidth="630.0" tableMenuButtonVisible="true">
         <columns>
           <TableColumn fx:id="hall" prefWidth="124.0" sortable="false" text="Hall" />
           <TableColumn fx:id="subject" prefWidth="143.0" sortable="false" text="Subject" />

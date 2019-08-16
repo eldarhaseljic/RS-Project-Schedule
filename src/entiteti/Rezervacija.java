@@ -37,7 +37,7 @@ public class Rezervacija {
 	private LocalDate datumOdrzavanja;
 	private int vrijemePocetkaCasaSat;
 
-private int vrijemeZavrsetkaCasaSat;
+	private int vrijemeZavrsetkaCasaSat;
 	private int vrijemePocetkaCasaMinuta;
 	private int vrijemeZavrsetkaCasaMinuta;
 
@@ -104,7 +104,10 @@ private int vrijemeZavrsetkaCasaSat;
 	
 	public void setSala(Sala g) { sala = g;}
 	
+	public Sala getSala() {
+		return sala;
+	}
+
 	public void setNastavnik(Nastavnik n) { nastavnik = n;}
 	
-
 }
