@@ -418,7 +418,7 @@ public class ProdekanController implements Initializable {
 		temp_list = q.getResultList();
 
 		if (temp_list.size() < 1) {
-			ProdekanController.Information = "There are no groups!";
+			ProdekanController.Information = "There are no periods!";
 			show(event, "/fxml_files/Info.fxml", "Info");
 		} else {
 			show(event, "/fxml_files/deletePeriodScreen.fxml", "Groups");

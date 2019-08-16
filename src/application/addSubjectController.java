@@ -11,11 +11,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.jfoenix.controls.JFXTextField;
+
 import entiteti.Nastavnik;
 import entiteti.Predmet;
 import entiteti.Semestar;
 import entiteti.Usmjerenje;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -27,7 +31,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class addSubjectController implements Initializable {
@@ -35,7 +42,13 @@ public class addSubjectController implements Initializable {
 	private TextField subjectTitle = new TextField();
 
 	@FXML
-	private ListView<Nastavnik> teachersTitle = new ListView<>();
+	private TableView<Nastavnik> table;
+	
+	@FXML
+	private TableColumn<Nastavnik,String> teacher;
+	
+	@FXML
+	private JFXTextField searchField;
 
 	@FXML
 	private ListView<Usmjerenje> orientationsTitle = new ListView<>();
@@ -59,14 +72,14 @@ public class addSubjectController implements Initializable {
 	private Label errSemester = new Label();
 
 	public void addSubject(ActionEvent event) throws Exception {
-		if (subjectTitle.getText().isBlank() || teachersTitle.getSelectionModel().isEmpty()
+		if (subjectTitle.getText().isBlank() || table.getSelectionModel().isEmpty()
 				|| orientationsTitle.getSelectionModel().isEmpty() || semesterTitle.getSelectionModel().isEmpty()) {
 			if (subjectTitle.getText().isBlank())
 				errSubject.setText("You didn't set the title of the subject");
 			else
 				errSubject.setText("");
 
-			if (teachersTitle.getSelectionModel().isEmpty())
+			if (table.getSelectionModel().isEmpty())
 				errTeachers.setText("You didn't choose the teacher.");
 			else
 				errTeachers.setText("");
@@ -82,10 +95,9 @@ public class addSubjectController implements Initializable {
 				errSemester.setText("");
 		} else {
 			String subjectName = subjectTitle.getText().toUpperCase();
-			Collection<Nastavnik> teacherName = teachersTitle.getSelectionModel().getSelectedItems();
+			Collection<Nastavnik> teacherName = table.getSelectionModel().getSelectedItems();
 			Collection<Usmjerenje> orientationName = orientationsTitle.getSelectionModel().getSelectedItems();
 			Collection<Semestar> semesterName = semesterTitle.getSelectionModel().getSelectedItems();
-			
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -111,7 +123,7 @@ public class addSubjectController implements Initializable {
 			em.getTransaction().commit();
 			em.close();
 			emf.close();
-
+			
 			ProdekanController.Information = "Successfully added";
 			show(event);
 		}
@@ -120,7 +132,7 @@ public class addSubjectController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		teachersTitle.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		orientationsTitle.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		semesterTitle.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		String PERSISTENCE_UNIT_NAME = "raspored";
@@ -131,9 +143,22 @@ public class addSubjectController implements Initializable {
 		Query q = em.createQuery("SELECT x FROM Nastavnik x");
 		@SuppressWarnings("unchecked")
 		List<Nastavnik> temp_list = q.getResultList();
-
-		if (temp_list != null)
-			teachersTitle.setItems(FXCollections.observableArrayList(temp_list).sorted());
+		
+		ObservableList<Nastavnik> temp = FXCollections.observableArrayList();
+		
+		for(Nastavnik n : temp_list)
+			temp.add(n);
+		
+		teacher.setCellValueFactory(new PropertyValueFactory<Nastavnik, String>("ime"));
+		
+		FilteredList<Nastavnik> nastavnici = new FilteredList<Nastavnik>(temp,p->true);
+		
+		table.setItems(nastavnici);
+		
+		searchField.setOnKeyReleased(keyEvent ->
+		{
+			nastavnici.setPredicate(p -> p.getIme().toLowerCase().contains(searchField.getText().trim()));
+		});
 
 		Query q2 = em.createQuery("SELECT x FROM Usmjerenje x");
 		@SuppressWarnings("unchecked")

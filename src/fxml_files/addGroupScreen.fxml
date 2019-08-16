@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addGroupController">
    <children>      
-      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="21.0" layoutY="25.0" prefHeight="39.0" prefWidth="95.0" text="Type" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="95.0" text="Type" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-     <JFXButton layoutX="66.0" layoutY="363.0" onAction="#addGroup" prefHeight="79.0" prefWidth="203.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Create Group" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+     <JFXButton layoutX="88.0" layoutY="464.0" onAction="#addGroup" prefHeight="39.0" prefWidth="203.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Create Group" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -27,36 +30,12 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
-      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="21.0" layoutY="100.0" prefHeight="39.0" prefWidth="95.0" text="Subject" textAlignment="RIGHT">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="type" layoutX="128.0" layoutY="25.0" prefHeight="39.0" prefWidth="203.0" />
-      <ComboBox fx:id="subjects" layoutX="128.0" layoutY="100.0" prefHeight="39.0" prefWidth="203.0" />
-      <Label fx:id="errType" alignment="CENTER" layoutX="128.0" layoutY="73.0" prefHeight="18.0" prefWidth="203.0" textFill="#bf0909" />
-      <Label fx:id="errSubject" alignment="CENTER" layoutX="128.0" layoutY="145.0" prefHeight="18.0" prefWidth="203.0" textFill="#bf0909" />
-      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="21.0" layoutY="169.0" prefHeight="39.0" prefWidth="95.0" text="Teacher" textAlignment="RIGHT">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="teacher" layoutX="128.0" layoutY="169.0" prefHeight="39.0" prefWidth="203.0" />
-      <Label fx:id="errTeacher" alignment="CENTER" layoutX="128.0" layoutY="214.0" prefHeight="18.0" prefWidth="203.0" textFill="#bf0909" />
-      <JFXListView fx:id="students" layoutX="355.0" layoutY="37.0" prefHeight="187.0" prefWidth="323.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="355.0" layoutY="13.0" prefHeight="24.0" prefWidth="323.0" text="All students" textAlignment="RIGHT">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Label>
-      <Label fx:id="errStudents" alignment="CENTER" layoutX="354.0" layoutY="267.0" prefHeight="18.0" prefWidth="323.0" textFill="#bf0909" />
-      <JFXListView fx:id="selectedStudents" layoutX="355.0" layoutY="309.0" prefHeight="187.0" prefWidth="323.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="355.0" layoutY="285.0" prefHeight="24.0" prefWidth="323.0" text="Selected students" textAlignment="RIGHT">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Label>
-      <JFXButton layoutX="357.0" layoutY="232.0" onAction="#selectStudents" prefHeight="26.0" prefWidth="136.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909;" text="Select Students" textFill="WHITE" viewOrder="2.0">
+      <ComboBox fx:id="type" layoutX="128.0" layoutY="14.0" prefHeight="39.0" prefWidth="203.0" />
+      <Label fx:id="errType" alignment="CENTER" layoutX="128.0" layoutY="53.0" prefHeight="12.0" prefWidth="203.0" textFill="#bf0909" />
+      <Label fx:id="errSubject" alignment="CENTER" layoutX="88.0" layoutY="442.0" prefHeight="16.0" prefWidth="203.0" textFill="#bf0909" />
+      <Label fx:id="errTeacher" alignment="CENTER" layoutX="79.0" layoutY="244.0" prefHeight="18.0" prefWidth="203.0" textFill="#bf0909" />
+      <Label fx:id="errStudents" alignment="CENTER" layoutX="360.0" layoutY="266.0" prefHeight="18.0" prefWidth="323.0" textFill="#bf0909" />
+      <JFXButton layoutX="448.0" layoutY="231.0" onAction="#selectStudents" prefHeight="26.0" prefWidth="136.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909;" text="Select Students" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -64,5 +43,32 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
+      <TableView fx:id="table3" layoutX="19.0" layoutY="275.0" prefHeight="131.0" prefWidth="323.0">
+        <columns>
+          <TableColumn fx:id="subject" prefWidth="322.0" text="Subject" />
+        </columns>
+      </TableView>
+      <TableView fx:id="table2" layoutX="19.0" layoutY="69.0" prefHeight="131.0" prefWidth="323.0">
+        <columns>
+          <TableColumn fx:id="teacher" prefWidth="322.0" text="Teacher" />
+        </columns>
+      </TableView>
+      <JFXTextField fx:id="searchField2" alignment="CENTER" focusColor="#7c0909" layoutX="94.0" layoutY="214.0" promptText="Search here" unFocusColor="BLACK">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="searchField3" alignment="CENTER" focusColor="#7c0909" layoutX="103.0" layoutY="406.0" promptText="Search here" unFocusColor="BLACK">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXTextField>
+      <ListView fx:id="students" layoutX="357.0" layoutY="39.0" prefHeight="175.0" prefWidth="323.0" />
+      <Label layoutX="457.0" layoutY="14.0" text="All Students" textFill="#9e9e9e">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="selectedStudents" layoutX="360.0" layoutY="300.0" prefHeight="203.0" prefWidth="323.0" />
    </children>
 </AnchorPane>

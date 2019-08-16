@@ -8,9 +8,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.jfoenix.controls.JFXTextField;
+
 import entiteti.Grupa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -38,6 +42,10 @@ public class deleteGroupsController implements Initializable {
 	@FXML
 	private TableColumn<Grupa, String> students;
 	@FXML
+	private ChoiceBox<String> choices;
+	@FXML
+	private JFXTextField searchField;
+	@FXML
 	private Label errGroup;
 
 	@Override
@@ -46,12 +54,37 @@ public class deleteGroupsController implements Initializable {
 		ObservableList<Grupa> temp = FXCollections.observableArrayList();
 		for (Object e : ProdekanController.temp_list)
 			temp.add((Grupa) e);
+		
+		FilteredList<Grupa> grupe = new FilteredList<Grupa>(temp,p->true);
+		
 		type.setCellValueFactory(new PropertyValueFactory<Grupa, String>("tipgrupe"));
 		teacher.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imeNastavnika"));
 		students.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imenaStudenata"));
 		subject.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imePredmeta"));
-		table.setItems(temp);
+		
+		table.setItems(grupe);
 		table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
+		choices.getItems().addAll("Type","Subject","Teacher","Students");
+		
+		searchField.setOnKeyReleased(keyEvent ->
+		{
+			switch(choices.getValue())
+			{
+			case "Students":
+				grupe.setPredicate(p -> p.getImenaStudenata().toLowerCase().contains(searchField.getText().trim()));
+				break;
+			case "Subject":
+				grupe.setPredicate(p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().trim()));
+				break;
+			case "Teacher":
+				grupe.setPredicate(p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().trim()));
+				break;
+			case "Type":
+				grupe.setPredicate(p -> p.getTipgrupe().toLowerCase().contains(searchField.getText().trim()));
+				break;
+			}
+		});
 	}
 
 	public void deleteGroup(ActionEvent event) throws Exception {

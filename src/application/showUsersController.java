@@ -9,12 +9,16 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.jfoenix.controls.JFXTextField;
+
 import entiteti.Nastavnik;
 import entiteti.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,6 +33,10 @@ public class showUsersController implements Initializable {
 	TableColumn<Nastavnik, String> teachers;
 	@FXML
 	TableColumn<Student, String> students;
+	@FXML 
+	JFXTextField searchField;
+	@FXML
+	ChoiceBox<String> choices;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -57,9 +65,37 @@ public class showUsersController implements Initializable {
 
 		teachers.setCellValueFactory(new PropertyValueFactory<Nastavnik, String>("ime"));
 		students.setCellValueFactory(new PropertyValueFactory<Student, String>("ime"));
+		
+		FilteredList<Nastavnik> nastavnici = new FilteredList<Nastavnik>(temp1,p->true);
+		FilteredList<Student> studenti = new FilteredList<Student>(temp2,p->true);
 
-		teachersTable.setItems(temp1);
-		studTable.setItems(temp2);
+		teachersTable.setItems(nastavnici);
+		studTable.setItems(studenti);
+		
+		choices.getItems().addAll("Students","Teachers");
+		
+		searchField.setOnKeyReleased(keyEvent ->
+		{
+			switch(choices.getValue())
+			{
+			case "Students":
+				studenti.setPredicate(p -> p.getIme().toLowerCase().contains(searchField.getText().trim()));
+				break;
+			case "Teachers":
+				nastavnici.setPredicate(p -> p.toString().toLowerCase().contains(searchField.getText().trim()));
+				break;
+			}
+		});
+		
+		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) ->
+        {
+            if (newVal != null)
+            {
+                searchField.setText("");
+                studenti.setPredicate(null);
+                nastavnici.setPredicate(null);
+            }
+        });
 
 		em.close();
 		emf.close();

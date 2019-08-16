@@ -29,24 +29,8 @@ public class ProfessorController implements Initializable {
 	public static Nastavnik nastavnik;
 
 	@FXML
-	private Label usr;
-
-	@FXML
-	private Label email;
-
-	@FXML
-	private Label titula;
+	private Label usr, email, titula;
 	public static List<?> temp_list;
-
-	private void show(Event event, String resurs, String title) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource(resurs));
-		Scene scene = new Scene(root);
-		Stage primaryStage = new Stage();
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.setTitle(title);
-		primaryStage.show();
-	}
 
 	public void close(ActionEvent event) throws Exception {
 		System.exit(0);
@@ -98,14 +82,60 @@ public class ProfessorController implements Initializable {
 				ProfessorController.nastavnik = n;
 			}
 		}
+				
+		
 		em.close();
 		emf.close();
 	}
-
+	
 	public void addReservation(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
 
-		show(event, "/fxml_files/addReservationScreen.fxml", "New Reservation");
+		Query q = em.createQuery("SELECT z FROM Sala z");
+		temp_list = q.getResultList();
 
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "The Vice Dean didn't enter any halls!";
+			show(event, "/fxml_files/Info.fxml", "Info");
+		} else 
+		{
+			show(event, "/fxml_files/addReservationScreen.fxml", "New Reservation");
+		}
 	}
 
+	public void deleteReservation(ActionEvent event) throws Exception {
+		String PERSISTENCE_UNIT_NAME = "raspored";
+		EntityManagerFactory emf;
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		EntityManager em = emf.createEntityManager();
+
+		Query q = em.createQuery("SELECT z FROM Rezervacija z");
+		temp_list = q.getResultList();
+
+		if (temp_list.isEmpty()) {
+			ProdekanController.Information = "There are no reservations!";
+			show(event, "/fxml_files/Info.fxml", "Info");
+		} 
+		else 
+		{
+			show(event,"/fxml_files/deleteReservationScreen.fxml","Delete Reservation");
+		}
+	}
+	
+	// Funkcija za pokretanje bilo kojeg gui prozora
+		private void show(Event event, String resurs, String title) throws IOException {
+			Parent root = FXMLLoader.load(getClass().getResource(resurs));
+			Scene scene = new Scene(root);
+			Stage primaryStage = new Stage();
+			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
+			primaryStage.setTitle(title);
+			primaryStage.show();
+		}
+	
 }
+
+	

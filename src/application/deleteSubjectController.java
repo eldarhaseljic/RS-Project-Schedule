@@ -2,17 +2,19 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.ResourceBundle;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+
+import com.jfoenix.controls.JFXTextField;
 
 import entiteti.Predmet;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,43 +22,47 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class deleteSubjectController implements Initializable {
 
 	@FXML
-	private ComboBox<Predmet> listbox;
-
+	private TableView<Predmet> table;
+	@FXML
+	private TableColumn<Predmet,String> subject;
+	@FXML
+	private JFXTextField searchField;
 	@FXML
 	private Label errBuild;
 
 	public void deleteSubject(ActionEvent event) throws Exception {
-		if (listbox.getSelectionModel().isEmpty())
+		if (table.getSelectionModel().isEmpty())
 			errBuild.setText("You didn't choose the subject.");
+		
 		else {
-			Predmet naziv = listbox.getValue();
+			ObservableList<Predmet> temp = table.getSelectionModel().getSelectedItems();
 
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 			EntityManager em = emf.createEntityManager();
 
-			Query q1 = em.createQuery("SELECT s FROM Predmet s WHERE s.IdPredmeta = :n", Predmet.class);
-			q1.setParameter("n", naziv.getId());
-			@SuppressWarnings("unchecked")
-			List<Predmet> predmeti = q1.getResultList();
-
-			for (Predmet predmet : predmeti) {
+			for (Predmet predmet : temp) {
+				
+				Predmet p = em.find(Predmet.class, predmet.getId());
 				em.getTransaction().begin();
-				em.remove(predmet);
+				em.remove(p);
 				em.getTransaction().commit();
 
-				ProdekanController.Information = "You deleted subject: " + naziv.getImePred() + " successfully.";
+				ProdekanController.Information = "You deleted subject: " + p.getImePred() + " successfully.";
 				show(event);
 
 			}
+			
 			em.close();
 			emf.close();
 		}
@@ -77,10 +83,20 @@ public class deleteSubjectController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 
-		List<Predmet> temp = new ArrayList<>();
+		ObservableList<Predmet> temp = FXCollections.observableArrayList();
 		for (Object e : ProdekanController.temp_list)
 			temp.add(((Predmet) e));
-		listbox.setItems(FXCollections.observableList(temp).sorted());
+		
+		subject.setCellValueFactory(new PropertyValueFactory<Predmet, String>("imePred"));
+		
+		FilteredList<Predmet> predmeti = new FilteredList<Predmet>(temp,p->true);
+		
+		table.setItems(predmeti.sorted());
+		
+		searchField.setOnKeyReleased(keyEvent ->
+		{    
+			predmeti.setPredicate(p -> p.toString().toLowerCase().contains(searchField.getText().trim()));
+		});
 	}
 
 }

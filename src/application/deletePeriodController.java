@@ -1,17 +1,17 @@
 package application;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+import com.jfoenix.controls.JFXTextField;
 
 import entiteti.Cas;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,62 +19,116 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class deletePeriodController implements Initializable {
 
 	@FXML
-	private ComboBox<Cas> listbox;
-
+	private TableView<Cas> table;
+	@FXML
+	private TableColumn<Cas,String> hall;
+	@FXML
+	private TableColumn<Cas,String> subject;
+	@FXML
+	private TableColumn<Cas,String> time;
+	@FXML
+	private TableColumn<Cas,String> type;
+	@FXML
+	private TableColumn<Cas,String> teacher;
+	@FXML
+	private ChoiceBox<String> choices;
+	@FXML
+	private JFXTextField searchField;
 	@FXML
 	private Label errBuild;
 
 	public void deletePeriod(ActionEvent event) throws Exception {
-		if (listbox.getSelectionModel().isEmpty())
+		if (table.getSelectionModel().isEmpty())
 			errBuild.setText("You didn't choose the period.");
+		
 		else {
-			Cas naziv = listbox.getValue();
+			ObservableList<Cas> temp = table.getSelectionModel().getSelectedItems();
 
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 			EntityManager em = emf.createEntityManager();
 
-			Query q1 = em.createQuery("SELECT s FROM Cas s WHERE s.IdCasa = :n", Cas.class);
-			q1.setParameter("n", naziv.getId());
-			@SuppressWarnings("unchecked")
-			List<Cas> casovi = q1.getResultList();
-
-			for (Cas cas : casovi) {
+			for (Cas cas : temp) 
+			{
+				Cas c = em.find(Cas.class, cas.getId());
 				em.getTransaction().begin();
-				em.remove(cas);
-				em.getTransaction().commit();
-
-				ProdekanController.Information = "You deleted period successfully.";
+				em.remove(c);
+			   	em.getTransaction().commit();
+			   	ProdekanController.Information = "You deleted a period successfully.";
 				Stage primaryStage = new Stage();
 				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
 				Scene scene = new Scene(root);
 				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				primaryStage.setScene(scene);
 				primaryStage.show();
-
 			}
+			
 			em.close();
 			emf.close();
-		}
+ }
 
-	}
+}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 
-		List<Cas> temp = new ArrayList<>();
+		ObservableList<Cas> temp = FXCollections.observableArrayList();
 		for (Object e : ProdekanController.temp_list)
 			temp.add(((Cas) e));
-		listbox.setItems(FXCollections.observableList(temp).sorted());
+		
+		hall.setCellValueFactory(new PropertyValueFactory<Cas,String>("imeSale"));
+		subject.setCellValueFactory(new PropertyValueFactory<Cas,String>("imePredmeta"));
+		time.setCellValueFactory(new PropertyValueFactory<Cas,String>("vrijeme"));
+		teacher.setCellValueFactory(new PropertyValueFactory<Cas,String>("imeNastavnika"));
+		type.setCellValueFactory(new PropertyValueFactory<Cas,String>("tip"));
+		
+		FilteredList<Cas> casovi = new FilteredList<Cas>(temp,p->true);
+		
+		table.setItems(casovi);
+		
+		choices.getItems().addAll("Hall","Subject","Time","Teacher","Type");
+		
+		searchField.setOnKeyReleased(keyEvent ->
+		{
+			switch(choices.getValue())
+			{
+			case "Hall":
+				casovi.setPredicate(p -> p.getImeSale().toLowerCase().contains(searchField.getText().trim()));
+				break;
+			case "Subject":
+				casovi.setPredicate(p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().trim()));
+				break;
+			case "Time":
+				casovi.setPredicate(p -> p.getVrijeme().toLowerCase().contains(searchField.getText().trim()));
+				break;
+			case "Teacher":
+				casovi.setPredicate(p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().trim()));
+				break;
+			case "Type":
+				casovi.setPredicate(p -> p.getTip().toLowerCase().contains(searchField.getText().trim()));
+				break;
+			}
+		});
+		
+		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) ->
+        {
+            if (newVal != null)
+            {
+                searchField.setText("");
+                casovi.setPredicate(null);
+            }
+        });
 	}
-
 }

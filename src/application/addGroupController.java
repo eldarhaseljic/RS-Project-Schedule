@@ -12,12 +12,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.jfoenix.controls.JFXTextField;
+
 import entiteti.Grupa;
 import entiteti.Nastavnik;
 import entiteti.Predmet;
 import entiteti.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,26 +32,33 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class addGroupController implements Initializable {
 
 	@FXML
+	private ListView<String> students , selectedStudents;
+	@FXML
 	private ComboBox<String> type;
 	@FXML
-	private ComboBox<String> subjects;
+	private TableView<Predmet> table3;
 	@FXML
-	private ComboBox<String> teacher;
+	private TableColumn<Predmet,String> subject;
 	@FXML
-	private ListView<String> students;
+	private TableView<Nastavnik> table2;
 	@FXML
-	private ListView<String> selectedStudents;
+	private TableColumn<Nastavnik,String> teacher;
+	@FXML
+	private JFXTextField searchField2,searchField3;
 
 	private Collection<String> selected;
 
 	@FXML
 	Label errType, errSubject, errTeacher, errStudents;
-
+	
 	public void show(ActionEvent event) throws IOException {
 		// TODO Auto-generated method stub
 		Stage primaryStage = new Stage();
@@ -59,6 +69,7 @@ public class addGroupController implements Initializable {
 		primaryStage.show();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -74,33 +85,47 @@ public class addGroupController implements Initializable {
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
 
-		Query q = em.createQuery("SELECT p FROM Predmet p");
-		List<?> predmeti = q.getResultList();
+		Query q3 = em.createQuery("SELECT p FROM Predmet p");
+		List<Predmet> predmeti = q3.getResultList();
 
-		List<String> temp = new ArrayList<String>();
-		for (Object e : predmeti)
-			temp.add(((Predmet) e).getImePred());
-		subjects.setItems(FXCollections.observableList(temp).sorted());
+		ObservableList<Predmet> temp3 = FXCollections.observableArrayList();
+		for (Predmet e : predmeti)
+			temp3.add(e);
 
-		Query q1 = em.createQuery("SELECT n FROM Nastavnik n");
-		List<?> nastavnici = q1.getResultList();
+		Query q2 = em.createQuery("SELECT n FROM Nastavnik n");
+		List<Nastavnik> nastavnici = q2.getResultList();
+
+		ObservableList<Nastavnik> temp2 = FXCollections.observableArrayList();
+		for (Nastavnik e : nastavnici)
+			temp2.add(e);
+
+		Query q1 = em.createQuery("SELECT s FROM Student s");
+		List<Student> studenti = q1.getResultList();
 
 		List<String> temp1 = new ArrayList<String>();
-		for (Object e : nastavnici)
-			temp1.add(((Nastavnik) e).getImeNast() + " " + ((Nastavnik) e).getPrezNast());
-		teacher.setItems(FXCollections.observableList(temp1).sorted());
-
-		Query q2 = em.createQuery("SELECT s FROM Student s");
-		List<?> studenti = q2.getResultList();
-
-		List<String> temp2 = new ArrayList<String>();
 		for (Object e : studenti)
-			temp2.add(((Student) e).getImeStud() + " " + ((Student) e).getPrezStud());
-		students.setItems(FXCollections.observableList(temp2).sorted());
-
-		// Ovo selektuje vise ali kad drzis CTRL
-		// pa odkomentarisi ako bude trebalo dalje
+			temp1.add(((Student) e).getImeStud() + " " + ((Student) e).getPrezStud());
+		students.setItems(FXCollections.observableList(temp1).sorted());
 		students.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
+		teacher.setCellValueFactory(new PropertyValueFactory<Nastavnik, String>("ime"));
+		subject.setCellValueFactory(new PropertyValueFactory<Predmet, String>("imePred"));
+		
+		FilteredList<Nastavnik> nast = new FilteredList<Nastavnik>(temp2,p->true);
+		FilteredList<Predmet> pred = new FilteredList<Predmet>(temp3,p->true);
+		
+		table2.setItems(nast);
+		table3.setItems(pred);
+		
+		searchField2.setOnKeyReleased(keyEvent ->
+		{
+			nast.setPredicate(p -> p.getIme().toLowerCase().contains(searchField2.getText().trim()));
+		});
+		
+		searchField3.setOnKeyReleased(keyEvent ->
+		{
+			pred.setPredicate(p -> p.getImePred().toLowerCase().contains(searchField3.getText().trim()));
+		});
 
 		em.close();
 		emf.close();
@@ -114,19 +139,21 @@ public class addGroupController implements Initializable {
 	}
 
 	public void addGroup(ActionEvent event) throws Exception {
-		if (type.getSelectionModel().isEmpty() || subjects.getSelectionModel().isEmpty()
-				|| teacher.getSelectionModel().isEmpty() || students.getSelectionModel().isEmpty()) {
+		if (	type.getSelectionModel().isEmpty() 
+				|| table3.getSelectionModel().isEmpty()
+				|| table2.getSelectionModel().isEmpty() 
+				|| students.getSelectionModel().isEmpty()) {
 			if (type.getSelectionModel().isEmpty())
 				errType.setText("You didn't choose the type");
 			else
 				errType.setText("");
 
-			if (subjects.getSelectionModel().isEmpty())
+			if (table3.getSelectionModel().isEmpty())
 				errSubject.setText("You didn't choose the subject");
 			else
 				errSubject.setText("");
 
-			if (teacher.getSelectionModel().isEmpty())
+			if (table2.getSelectionModel().isEmpty())
 				errTeacher.setText("You didn't choose the teacher.");
 			else
 				errTeacher.setText("");
@@ -136,22 +163,24 @@ public class addGroupController implements Initializable {
 			else
 				errStudents.setText("");
 		} else {
+			if(!students.isDisabled())
+			{
+				errSubject.setText("");
+				errTeacher.setText("");
+				errType.setText("");
+				errStudents.setText("Click on select students to confirm selection");
+			}
+			else 
+			{
 			Collection<Student> studenti = new ArrayList<Student>();
 			String tip = type.getValue();
-			String nastavnik = teacher.getValue();
-			String predmet = subjects.getValue();
+			Nastavnik nastavnik = table2.getSelectionModel().getSelectedItem();
+			Predmet predmet = table3.getSelectionModel().getSelectedItem();
 
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 			EntityManager em = emf.createEntityManager();
-
-			Query q2 = em.createQuery("SELECT n FROM Nastavnik n WHERE CONCAT(n.imeNast,' ',n.prezNast) = :in",
-					Nastavnik.class);
-			q2.setParameter("in", nastavnik);
-			@SuppressWarnings("unchecked")
-			List<Nastavnik> n = q2.getResultList();
-			Nastavnik nast = n.get(0);
 
 			for (String s : selected) {
 				Query q3 = em.createQuery("SELECT s FROM Student s WHERE CONCAT(s.imeStud,' ',s.prezStud) = :is",
@@ -160,18 +189,13 @@ public class addGroupController implements Initializable {
 				Object stud = q3.getSingleResult();
 				studenti.add((Student) stud);
 			}
-			Query q4 = em.createQuery("SELECT n FROM Predmet n WHERE n.imePred = :in", Predmet.class);
-			q4.setParameter("in", predmet);
-
-			@SuppressWarnings("unchecked")
-			List<Predmet> pred = q4.getResultList();
 
 			Grupa g = new Grupa();
 			g.setTipgrupe(tip);
-			g.setNastavnika(nast);
-			g.setPredmet(pred.get(0));
+			g.setNastavnika(nastavnik);
+			g.setPredmet(predmet);
 			g.setStudente(studenti);
-			nast.getGrupe().add(g);
+			nastavnik.getGrupe().add(g);
 			for (Student s : studenti)
 				s.getGrupe().add(g);
 
@@ -184,6 +208,7 @@ public class addGroupController implements Initializable {
 
 			ProdekanController.Information = "Successfully added";
 			show(event);
+		}
 		}
 	}
 }
