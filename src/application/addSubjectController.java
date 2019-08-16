@@ -1,7 +1,5 @@
 package application;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
@@ -15,14 +13,6 @@ import javax.persistence.Query;
 
 import entiteti.Nastavnik;
 import entiteti.Predmet;
-import entiteti.Sala;
-import entiteti.Semestar;
-import entiteti.Usmjerenje;
-import entiteti.Zgrada;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import entiteti.Semestar;
 import entiteti.Usmjerenje;
 import javafx.collections.FXCollections;

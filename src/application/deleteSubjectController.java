@@ -12,7 +12,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import entiteti.Predmet;
-import entiteti.Semestar;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
