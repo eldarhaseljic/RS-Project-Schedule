@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #7c0909;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.showOrientationsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="388.0" style="-fx-background-color: #7c0909;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.showOrientationsController">
    <children>
-      <TableView fx:id="table" layoutX="17.0" layoutY="59.0" prefHeight="342.0" prefWidth="580.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <TableView fx:id="table" layoutX="17.0" layoutY="59.0" prefHeight="342.0" prefWidth="369.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="10.0">
         <columns>
-          <TableColumn fx:id="title" prefWidth="579.0" resizable="false" sortable="false" text="Title" />
+          <TableColumn fx:id="title" prefWidth="368.0" resizable="false" sortable="false" text="Title" />
         </columns>
          <effect>
             <Glow />
          </effect>
       </TableView>
-      <JFXTextField fx:id="searchField" alignment="CENTER" focusColor="WHITE" layoutX="223.0" layoutY="360.0" promptText="Search here" style="-fx-background-color: #ffffff;" unFocusColor="BLACK">
+      <JFXTextField fx:id="searchField" alignment="CENTER" focusColor="WHITE" layoutX="108.0" layoutY="372.0" promptText="Search here" style="-fx-background-color: #ffffff;" unFocusColor="BLACK">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

@@ -101,6 +101,6 @@ public class Grupa {
 	}
 
 	public String toString() {
-		return this.getId() + " " + this.getImePredmeta() + " " + this.getImeNastavnika();
+		return this.getImePredmeta() + " GR" + this.getId();
 	}
 }
