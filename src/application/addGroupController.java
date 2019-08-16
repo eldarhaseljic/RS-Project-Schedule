@@ -78,7 +78,7 @@ public class addGroupController implements Initializable {
 		tip_vjezbi.add("Lecture");
 		tip_vjezbi.add("Auditory");
 		tip_vjezbi.add("Laboratory");
-		type.setItems(FXCollections.observableList(tip_vjezbi));
+		type.setItems(FXCollections.observableList(tip_vjezbi).sorted());
 
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
@@ -114,17 +114,17 @@ public class addGroupController implements Initializable {
 		FilteredList<Nastavnik> nast = new FilteredList<Nastavnik>(temp2,p->true);
 		FilteredList<Predmet> pred = new FilteredList<Predmet>(temp3,p->true);
 		
-		table2.setItems(nast);
-		table3.setItems(pred);
+		table2.setItems(nast.sorted());
+		table3.setItems(pred.sorted());
 		
 		searchField2.setOnKeyReleased(keyEvent ->
 		{
-			nast.setPredicate(p -> p.getIme().toLowerCase().contains(searchField2.getText().trim()));
+			nast.setPredicate(p -> p.getIme().toLowerCase().contains(searchField2.getText().toLowerCase().trim()));
 		});
 		
 		searchField3.setOnKeyReleased(keyEvent ->
 		{
-			pred.setPredicate(p -> p.getImePred().toLowerCase().contains(searchField3.getText().trim()));
+			pred.setPredicate(p -> p.getImePred().toLowerCase().contains(searchField3.getText().toLowerCase().trim()));
 		});
 
 		em.close();

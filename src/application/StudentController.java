@@ -18,15 +18,7 @@ import javafx.scene.control.Label;
 public class StudentController implements Initializable {
 
 	@FXML
-	private Label usr;
-
-	@FXML
-	private Label email;
-
-	@FXML
-	private Label brIndex;
-	@FXML
-	private Label orientation;
+	private Label usr, email, brIndex, orientation;
 
 	public static List<?> temp_list;
 

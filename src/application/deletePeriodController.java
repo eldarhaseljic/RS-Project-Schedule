@@ -31,15 +31,7 @@ public class deletePeriodController implements Initializable {
 	@FXML
 	private TableView<Cas> table;
 	@FXML
-	private TableColumn<Cas,String> hall;
-	@FXML
-	private TableColumn<Cas,String> subject;
-	@FXML
-	private TableColumn<Cas,String> time;
-	@FXML
-	private TableColumn<Cas,String> type;
-	@FXML
-	private TableColumn<Cas,String> teacher;
+	private TableColumn<Cas,String> hall, subject, time, type, teacher;
 	@FXML
 	private ChoiceBox<String> choices;
 	@FXML
@@ -96,28 +88,29 @@ public class deletePeriodController implements Initializable {
 		
 		FilteredList<Cas> casovi = new FilteredList<Cas>(temp,p->true);
 		
-		table.setItems(casovi);
+		table.setItems(casovi.sorted());
 		
 		choices.getItems().addAll("Hall","Subject","Time","Teacher","Type");
+		choices.setValue("Hall");
 		
 		searchField.setOnKeyReleased(keyEvent ->
 		{
 			switch(choices.getValue())
 			{
 			case "Hall":
-				casovi.setPredicate(p -> p.getImeSale().toLowerCase().contains(searchField.getText().trim()));
+				casovi.setPredicate(p -> p.getImeSale().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Subject":
-				casovi.setPredicate(p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().trim()));
+				casovi.setPredicate(p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Time":
-				casovi.setPredicate(p -> p.getVrijeme().toLowerCase().contains(searchField.getText().trim()));
+				casovi.setPredicate(p -> p.getVrijeme().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Teacher":
-				casovi.setPredicate(p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().trim()));
+				casovi.setPredicate(p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Type":
-				casovi.setPredicate(p -> p.getTip().toLowerCase().contains(searchField.getText().trim()));
+				casovi.setPredicate(p -> p.getTip().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			}
 		});

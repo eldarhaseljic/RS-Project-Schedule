@@ -30,13 +30,7 @@ public class ProdekanController implements Initializable {
 	public static String Information;
 
 	@FXML
-	private Label usr;
-
-	@FXML
-	private Label email;
-
-	@FXML
-	private Label titula;
+	private Label usr, email, titula;
 	public static List<?> temp_list;
 
 	public void close(ActionEvent event) throws Exception {

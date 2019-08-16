@@ -24,10 +24,7 @@ import javafx.stage.Stage;
 public class addBuildingController {
 
 	@FXML
-	private TextField buildtitle;
-
-	@FXML
-	private TextField addr;
+	private TextField buildtitle, addr;
 
 	@FXML
 	private Label errBuild;

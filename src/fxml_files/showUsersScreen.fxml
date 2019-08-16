@@ -12,12 +12,12 @@
    <children>
       <TableView fx:id="studTable" layoutX="40.0" layoutY="27.0" prefHeight="360.0" prefWidth="304.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
         <columns>
-          <TableColumn fx:id="teachers" prefWidth="303.0" text="Students" />
+          <TableColumn fx:id="teachers" prefWidth="303.0" resizable="false" sortable="false" text="Students" />
         </columns>
       </TableView>
       <TableView fx:id="teachersTable" layoutX="332.0" layoutY="26.0" prefHeight="360.0" prefWidth="304.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <columns>
-          <TableColumn fx:id="students" prefWidth="303.0" text="Teachers" />
+          <TableColumn fx:id="students" prefWidth="303.0" resizable="false" sortable="false" text="Teachers" />
         </columns>
       </TableView>
       <ChoiceBox fx:id="choices" layoutX="87.0" layoutY="406.0" prefWidth="150.0" />

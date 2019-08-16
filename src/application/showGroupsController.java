@@ -21,13 +21,7 @@ public class showGroupsController implements Initializable {
 	@FXML
 	private TableView<Grupa> table;
 	@FXML
-	private TableColumn<Grupa, String> teacher;
-	@FXML
-	private TableColumn<Grupa, String> subject;
-	@FXML
-	private TableColumn<Grupa, String> type;
-	@FXML
-	private TableColumn<Grupa, String> students;
+	private TableColumn<Grupa, String> teacher ,subject ,type ,students;
 	@FXML
 	ChoiceBox<String> choices;
 	@FXML
@@ -47,25 +41,26 @@ public class showGroupsController implements Initializable {
 		
 		FilteredList<Grupa> grupe = new FilteredList<Grupa>(temp,p->true);
 		
-		table.setItems(grupe);
+		table.setItems(grupe.sorted());
 		
 		choices.getItems().addAll("Teacher","Subject","Students","Type");
+		choices.setValue("Teacher");
 		
 		searchField.setOnKeyReleased(keyEvent ->
 		{
 			switch(choices.getValue())
 			{
 			case "Students":
-				grupe.setPredicate(p -> p.getImenaStudenata().toLowerCase().contains(searchField.getText().trim()));
+				grupe.setPredicate(p -> p.getImenaStudenata().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Teacher":
-				grupe.setPredicate(p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().trim()));
+				grupe.setPredicate(p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Type":
-				grupe.setPredicate(p -> p.getTipgrupe().toLowerCase().contains(searchField.getText().trim()));
+				grupe.setPredicate(p -> p.getTipgrupe().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Subject":
-				grupe.setPredicate(p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().trim()));
+				grupe.setPredicate(p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			}
 		});

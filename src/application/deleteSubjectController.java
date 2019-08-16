@@ -95,7 +95,7 @@ public class deleteSubjectController implements Initializable {
 		
 		searchField.setOnKeyReleased(keyEvent ->
 		{    
-			predmeti.setPredicate(p -> p.toString().toLowerCase().contains(searchField.getText().trim()));
+			predmeti.setPredicate(p -> p.toString().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 		});
 	}
 

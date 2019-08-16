@@ -17,6 +17,9 @@
           <TableColumn fx:id="name" prefWidth="163.0" text="Name" />
             <TableColumn fx:id="lastname" prefWidth="182.0" text="Last Name" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <JFXButton layoutX="108.0" layoutY="451.0" onAction="#deleteUser" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Delete User" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>

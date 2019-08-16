@@ -11,7 +11,7 @@
    <children>
       <TableView fx:id="table" layoutX="17.0" layoutY="59.0" prefHeight="342.0" prefWidth="580.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <columns>
-          <TableColumn fx:id="title" prefWidth="579.0" text="Title" />
+          <TableColumn fx:id="title" prefWidth="579.0" resizable="false" sortable="false" text="Title" />
         </columns>
          <effect>
             <Glow />

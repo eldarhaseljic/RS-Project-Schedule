@@ -41,13 +41,7 @@ public class createPeriodController implements Initializable {
 	@FXML
 	private TableView<Grupa> table;
 	@FXML
-	private TableColumn<Grupa, String> type;
-	@FXML
-	private TableColumn<Grupa, String> teacher;
-	@FXML
-	private TableColumn<Grupa, String> subject;
-	@FXML
-	private TableColumn<Grupa, String> students;
+	private TableColumn<Grupa, String> type, teacher, subject, students;
 	@FXML
 	private ComboBox<String> danusedmici;
 	@FXML
@@ -55,17 +49,9 @@ public class createPeriodController implements Initializable {
 	@FXML
 	private ComboBox<Sala> sala;
 	@FXML
-	private JFXTextField start;
+	private JFXTextField start, end;
 	@FXML
-	private JFXTextField end;
-	@FXML
-	private Slider satistart;
-	@FXML
-	private Slider minutestart;
-	@FXML
-	private Slider satiend;
-	@FXML
-	private Slider minuteend;
+	private Slider satistart, minutestart, satiend,minuteend;
 	@FXML
 	private Label errPeriod = new Label();
 

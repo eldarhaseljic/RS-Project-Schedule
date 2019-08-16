@@ -18,6 +18,9 @@
             <TableColumn fx:id="subject" prefWidth="89.0" text="Subject" />
             <TableColumn fx:id="students" prefWidth="184.0" text="Students" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <Label layoutX="199.0" layoutY="11.0" text="Groups" AnchorPane.topAnchor="11.0">
          <font>

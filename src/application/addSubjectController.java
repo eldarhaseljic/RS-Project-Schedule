@@ -153,11 +153,11 @@ public class addSubjectController implements Initializable {
 		
 		FilteredList<Nastavnik> nastavnici = new FilteredList<Nastavnik>(temp,p->true);
 		
-		table.setItems(nastavnici);
+		table.setItems(nastavnici.sorted());
 		
 		searchField.setOnKeyReleased(keyEvent ->
 		{
-			nastavnici.setPredicate(p -> p.getIme().toLowerCase().contains(searchField.getText().trim()));
+			nastavnici.setPredicate(p -> p.getIme().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 		});
 
 		Query q2 = em.createQuery("SELECT x FROM Usmjerenje x");

@@ -33,16 +33,10 @@ import javafx.stage.Stage;
 public class deleteHallController implements Initializable {
 
 	@FXML
-	private ComboBox<String> buildingTitle;
+	private ComboBox<String> buildingTitle,hallTitle;
 
 	@FXML
-	private ComboBox<String> hallTitle;
-
-	@FXML
-	private Label errBuild;
-
-	@FXML
-	private Label errHall;
+	private Label errBuild,errHall;
 
 	public void deleteHall(ActionEvent event) throws Exception {
 		if (hallTitle.getSelectionModel().isEmpty() && buildingTitle.getSelectionModel().isEmpty()) {

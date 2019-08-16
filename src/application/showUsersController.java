@@ -69,20 +69,21 @@ public class showUsersController implements Initializable {
 		FilteredList<Nastavnik> nastavnici = new FilteredList<Nastavnik>(temp1,p->true);
 		FilteredList<Student> studenti = new FilteredList<Student>(temp2,p->true);
 
-		teachersTable.setItems(nastavnici);
-		studTable.setItems(studenti);
+		teachersTable.setItems(nastavnici.sorted());
+		studTable.setItems(studenti.sorted());
 		
 		choices.getItems().addAll("Students","Teachers");
+		choices.setValue("Students");
 		
 		searchField.setOnKeyReleased(keyEvent ->
 		{
 			switch(choices.getValue())
 			{
 			case "Students":
-				studenti.setPredicate(p -> p.getIme().toLowerCase().contains(searchField.getText().trim()));
+				studenti.setPredicate(p -> p.getIme().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Teachers":
-				nastavnici.setPredicate(p -> p.toString().toLowerCase().contains(searchField.getText().trim()));
+				nastavnici.setPredicate(p -> p.toString().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			}
 		});

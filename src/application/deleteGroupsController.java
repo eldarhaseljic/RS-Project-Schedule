@@ -34,13 +34,7 @@ public class deleteGroupsController implements Initializable {
 	@FXML
 	private TableView<Grupa> table;
 	@FXML
-	private TableColumn<Grupa, String> teacher;
-	@FXML
-	private TableColumn<Grupa, String> subject;
-	@FXML
-	private TableColumn<Grupa, String> type;
-	@FXML
-	private TableColumn<Grupa, String> students;
+	private TableColumn<Grupa, String> teacher , subject,type,students;
 	@FXML
 	private ChoiceBox<String> choices;
 	@FXML
@@ -62,26 +56,27 @@ public class deleteGroupsController implements Initializable {
 		students.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imenaStudenata"));
 		subject.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imePredmeta"));
 		
-		table.setItems(grupe);
+		table.setItems(grupe.sorted());
 		table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		choices.getItems().addAll("Type","Subject","Teacher","Students");
+		choices.setValue("Type");
 		
 		searchField.setOnKeyReleased(keyEvent ->
 		{
 			switch(choices.getValue())
 			{
 			case "Students":
-				grupe.setPredicate(p -> p.getImenaStudenata().toLowerCase().contains(searchField.getText().trim()));
+				grupe.setPredicate(p -> p.getImenaStudenata().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Subject":
-				grupe.setPredicate(p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().trim()));
+				grupe.setPredicate(p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Teacher":
-				grupe.setPredicate(p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().trim()));
+				grupe.setPredicate(p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Type":
-				grupe.setPredicate(p -> p.getTipgrupe().toLowerCase().contains(searchField.getText().trim()));
+				grupe.setPredicate(p -> p.getTipgrupe().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			}
 		});

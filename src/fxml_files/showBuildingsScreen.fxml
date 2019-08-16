@@ -13,8 +13,8 @@
    <children>
       <TableView fx:id="table" layoutX="17.0" layoutY="59.0" prefHeight="344.0" prefWidth="580.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <columns>
-          <TableColumn fx:id="title" prefWidth="215.0" text="Title" />
-          <TableColumn fx:id="address" minWidth="0.0" prefWidth="364.0" text="Address" />
+          <TableColumn fx:id="title" prefWidth="282.0" resizable="false" sortable="false" text="Title" />
+          <TableColumn fx:id="address" minWidth="0.0" prefWidth="297.0" resizable="false" sortable="false" text="Address" />
         </columns>
          <effect>
             <Glow />

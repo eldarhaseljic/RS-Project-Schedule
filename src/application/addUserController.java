@@ -105,7 +105,7 @@ public class addUserController implements Initializable {
 			temp.add("Viši asistent");
 			temp.add("Asistent");
 		}
-		list.setItems(FXCollections.observableList(temp));
+		list.setItems(FXCollections.observableList(temp).sorted());
 		em.close();
 		emf.close();
 	}

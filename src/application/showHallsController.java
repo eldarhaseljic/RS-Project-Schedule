@@ -21,9 +21,7 @@ public class showHallsController implements Initializable {
 	@FXML
 	TableView<Sala> table;
 	@FXML
-	TableColumn<Sala, String> title;
-	@FXML
-	TableColumn<Sala, String> building;
+	TableColumn<Sala, String> title, building;
 	@FXML
 	ChoiceBox<String> choices;
 	@FXML
@@ -39,21 +37,22 @@ public class showHallsController implements Initializable {
 		title.setCellValueFactory(new PropertyValueFactory<Sala, String>("nazivSale"));
 		building.setCellValueFactory(new PropertyValueFactory<Sala, String>("nazivZgrade"));
 		
-		FilteredList<Sala> sale = new FilteredList<Sala>(temp,p->true);
+		FilteredList<Sala> sale = new FilteredList<Sala>(temp.sorted(),p->true);
 		
-		table.setItems(sale);
+		table.setItems(sale.sorted());
 		
 		choices.getItems().addAll("Title","Building");
+		choices.setValue("Title");
 		
 		searchField.setOnKeyReleased(keyEvent ->
 		{
 			switch(choices.getValue())
 			{
 			case "Title":
-				sale.setPredicate(p -> p.getNazivSale().toLowerCase().contains(searchField.getText().trim()));
+				sale.setPredicate(p -> p.getNazivSale().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Building":
-				sale.setPredicate(p -> p.getNazivZgrade().toLowerCase().contains(searchField.getText().trim()));
+				sale.setPredicate(p -> p.getNazivZgrade().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			}
 		});

@@ -32,6 +32,9 @@
         <columns>
           <TableColumn fx:id="subject" prefWidth="459.0" sortable="false" text="Subject" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <JFXTextField fx:id="searchField" alignment="CENTER" focusColor="#7c0909" layoutX="218.0" layoutY="386.0" prefHeight="26.0" prefWidth="264.0" promptText="Search here" unFocusColor="BLACK">
          <font>

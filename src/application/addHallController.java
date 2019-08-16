@@ -38,10 +38,7 @@ public class addHallController implements Initializable {
 	private TextField hallTitle;
 
 	@FXML
-	private Label errBuild;
-
-	@FXML
-	private Label errHall;
+	private Label errBuild, errHall;
 
 	public void addHall(ActionEvent event) throws Exception {
 		if (hallTitle.getText().isBlank() || buildingTitle.getSelectionModel().isEmpty()) {
