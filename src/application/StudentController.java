@@ -28,6 +28,7 @@ public class StudentController implements Initializable {
 	private Label usr, email, brIndex, orientation;
 
 	public static List<?> temp_list;
+	public static Student student;
 
 	public void close(ActionEvent event) throws Exception {
 		System.exit(0);
@@ -64,6 +65,7 @@ public class StudentController implements Initializable {
 
 				// ako cemo smijer
 				orientation.setText(n.getUsmjerenje());
+		
 			}
 		}
 		em.close();
