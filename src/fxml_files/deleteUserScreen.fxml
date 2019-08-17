@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="368.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.deleteUserController">
+   <children>
+      <TableView fx:id="usrTable" layoutX="10.0" layoutY="75.0" prefHeight="342.0" prefWidth="346.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="75.0">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="163.0" text="Name" />
+            <TableColumn fx:id="lastname" prefWidth="182.0" text="Last Name" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <JFXButton layoutX="108.0" layoutY="451.0" onAction="#deleteUser" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Delete User" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </JFXButton>
+      <CheckBox fx:id="checkTeacher" layoutX="91.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#testTeacher" text="Teachers" />
+      <CheckBox fx:id="checkStudent" layoutX="196.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#testStudent" text="Students" />
+      <CheckBox fx:id="checkAll" layoutX="299.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#testAll" text="All" />
+      <Label alignment="CENTER" layoutX="27.0" layoutY="21.0" prefHeight="26.0" prefWidth="49.0" text="Show" textFill="#7c7c7c">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="errCheck" alignment="CENTER" layoutX="91.0" layoutY="47.0" prefHeight="18.0" prefWidth="253.0" textFill="#bf0909" />
+      <Label fx:id="errTable" alignment="CENTER" layoutX="10.0" layoutY="422.0" prefHeight="26.0" prefWidth="346.0" textFill="#bf0909" />
+   </children>
+</AnchorPane>
