@@ -35,6 +35,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class addGroupController implements Initializable {
@@ -55,7 +56,9 @@ public class addGroupController implements Initializable {
 	private JFXTextField searchField2,searchField3;
 
 	private Collection<String> selected;
-
+	private FilteredList<Predmet> pred;
+	private FilteredList<Nastavnik> nast;
+	
 	@FXML
 	Label errType, errSubject, errTeacher, errStudents;
 	
@@ -111,8 +114,8 @@ public class addGroupController implements Initializable {
 		teacher.setCellValueFactory(new PropertyValueFactory<Nastavnik, String>("ime"));
 		subject.setCellValueFactory(new PropertyValueFactory<Predmet, String>("imePred"));
 		
-		FilteredList<Nastavnik> nast = new FilteredList<Nastavnik>(temp2,p->true);
-		FilteredList<Predmet> pred = new FilteredList<Predmet>(temp3,p->true);
+		nast = new FilteredList<Nastavnik>(temp2,p->true);
+		pred = new FilteredList<Predmet>(temp3,p->true);
 		
 		table2.setItems(nast.sorted());
 		table3.setItems(pred.sorted());
@@ -136,6 +139,36 @@ public class addGroupController implements Initializable {
 		selectedStudents.setItems(temp.sorted());
 		selected = temp;
 		students.setDisable(true);
+	}
+	
+	public void test(MouseEvent event) throws IOException {
+		if (!table2.getSelectionModel().isEmpty())
+		{
+			ObservableList<Predmet> temp2 = FXCollections.observableArrayList();
+			for(int i = 0; i<table2.getSelectionModel().getSelectedItem().getPredmeti().size();++i)
+				temp2.add((Predmet) table2.getSelectionModel().getSelectedItem().getPredmeti().toArray()[i]);
+			FilteredList<Predmet> novi = new FilteredList<Predmet>(temp2,p->true);
+			table3.setItems(novi.sorted());
+		}
+		else
+		{
+			table3.setItems(pred.sorted());
+		}
+	}
+	
+	public void test2(MouseEvent event) throws IOException {
+		if (!table3.getSelectionModel().isEmpty())
+		{
+			ObservableList<Nastavnik> temp2 = FXCollections.observableArrayList();
+			for(int i = 0; i<table3.getSelectionModel().getSelectedItem().getNastavnike().size();++i)
+				temp2.add((Nastavnik) table3.getSelectionModel().getSelectedItem().getNastavnike().toArray()[i]);
+			FilteredList<Nastavnik> novi = new FilteredList<Nastavnik>(temp2,p->true);
+			table2.setItems(novi.sorted());
+		}
+		else
+		{
+			table2.setItems(nast.sorted());
+		}
 	}
 
 	public void addGroup(ActionEvent event) throws Exception {
@@ -176,7 +209,7 @@ public class addGroupController implements Initializable {
 			String tip = type.getValue();
 			Nastavnik nastavnik = table2.getSelectionModel().getSelectedItem();
 			Predmet predmet = table3.getSelectionModel().getSelectedItem();
-
+			
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);

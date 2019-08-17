@@ -39,7 +39,7 @@ public class addUserController implements Initializable {
 	TextField name, lastName;
 
 	@FXML
-	Label errName, errLastName, errCheck, errList;
+	Label errName, errLastName, errCheck, errList, text;
 
 	@FXML
 	ComboBox<String> list;
@@ -57,9 +57,11 @@ public class addUserController implements Initializable {
 	public void testTeacher(MouseEvent event) throws IOException {
 		list.setValue("");
 		if (checkTeacher.isSelected()) {
+			text.setText("Rank");
 			checkStudent.setDisable(true);
 			list.setDisable(false);
 		} else {
+			text.setText("");
 			checkStudent.setDisable(false);
 			list.setDisable(true);
 		}
@@ -68,9 +70,11 @@ public class addUserController implements Initializable {
 	public void testStudent(MouseEvent event) throws IOException {
 		list.setValue("");
 		if (checkStudent.isSelected()) {
+			text.setText("Orientation");
 			checkTeacher.setDisable(true);
 			list.setDisable(false);
 		} else {
+			text.setText("");
 			checkTeacher.setDisable(false);
 			list.setDisable(true);
 		}
