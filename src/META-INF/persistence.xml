@@ -15,7 +15,7 @@
 		<class>entiteti.Usmjerenje</class>
 		<class>entiteti.Zgrada</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby:/home/eldar/MyDB;create=true"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:/home/mahha/MyDB;create=true"/>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
 			<property name="javax.persistence.jdbc.password" value=""/>
 			<property name="javax.persistence.jdbc.user" value=""/>
