@@ -94,7 +94,7 @@ public class addSubjectController implements Initializable {
 			else
 				errSemester.setText("");
 		} else {
-			String subjectName = subjectTitle.getText().toUpperCase();
+			String subjectName = subjectTitle.getText();
 			Collection<Nastavnik> teacherName = table.getSelectionModel().getSelectedItems();
 			Collection<Usmjerenje> orientationName = orientationsTitle.getSelectionModel().getSelectedItems();
 			Collection<Semestar> semesterName = semesterTitle.getSelectionModel().getSelectedItems();
@@ -103,20 +103,23 @@ public class addSubjectController implements Initializable {
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 			EntityManager em = emf.createEntityManager();
 
-			Query q = em.createQuery("SELECT x FROM Predmet x WHERE x.imePred = :n", Predmet.class);
-			q.setParameter("n", subjectName);
+			Query q = em.createQuery("SELECT x FROM Predmet x");
 
 			@SuppressWarnings("unchecked")
 			List<Predmet> predmeti = q.getResultList();
 
-			if (predmeti.size() > 0) {
-				ProdekanController.Information = "The entity is already in the database!";
-				show(event);
-				em.close();
-				emf.close();
-				return;
+			for(Predmet e:predmeti) 
+			{
+				if (e.getImePred().toLowerCase().equals(subjectName.toLowerCase()))
+				{
+					ProdekanController.Information = "The entity is already in the database!";
+					show(event);
+					em.close();
+					emf.close();
+					return;
+				}
 			}
-
+			
 			Predmet noviPredmet = new Predmet(subjectName, teacherName, orientationName, semesterName);
 			em.getTransaction().begin();
 			em.persist(noviPredmet);

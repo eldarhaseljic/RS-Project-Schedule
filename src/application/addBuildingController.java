@@ -47,8 +47,8 @@ public class addBuildingController {
 
 		else {
 			boolean exists = false;
-			String naziv = buildtitle.getText().toUpperCase();
-			String adresa = addr.getText().toLowerCase();
+			String naziv = buildtitle.getText();
+			String adresa = addr.getText();
 
 			String nazivBaza;
 			String adresaBaza;
@@ -79,12 +79,12 @@ public class addBuildingController {
 				nazivBaza = zgrada.getNazivZg();
 				adresaBaza = zgrada.getAdresaZg();
 
-				if (nazivBaza.equals(naziv) && adresaBaza.equals(adresa)) {
+				if (nazivBaza.toLowerCase().equals(naziv.toLowerCase()) && adresaBaza.toLowerCase().equals(adresa.toLowerCase())) {
 					exists = true;
 					ProdekanController.Information = "The entity already exists in the database!";
 					show(event);
 					break;
-				} else if (nazivBaza.equals(naziv)) {
+				} else if (nazivBaza.toLowerCase().equals(naziv.toLowerCase())) {
 					exists = true;
 					zgrada.setAdresaZg(adresa);
 					em.getTransaction().begin();

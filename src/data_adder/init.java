@@ -212,7 +212,7 @@ public class init {
 					usmjerenja.add((Usmjerenje) current);
 
 				Predmet novi = new Predmet();
-				novi.setImePred(parts[0].toUpperCase());
+				novi.setImePred(parts[0]);
 				novi.setNastavnici(nastavnici);
 				novi.setUsmjerenja(usmjerenja);
 				em.getTransaction().begin();
