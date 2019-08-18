@@ -33,7 +33,7 @@ public class showUsersController implements Initializable {
 	TableColumn<Nastavnik, String> teachers;
 	@FXML
 	TableColumn<Student, String> students;
-	@FXML 
+	@FXML
 	JFXTextField searchField;
 	@FXML
 	ChoiceBox<String> choices;
@@ -65,38 +65,36 @@ public class showUsersController implements Initializable {
 
 		teachers.setCellValueFactory(new PropertyValueFactory<Nastavnik, String>("ime"));
 		students.setCellValueFactory(new PropertyValueFactory<Student, String>("ime"));
-		
-		FilteredList<Nastavnik> nastavnici = new FilteredList<Nastavnik>(temp1,p->true);
-		FilteredList<Student> studenti = new FilteredList<Student>(temp2,p->true);
+
+		FilteredList<Nastavnik> nastavnici = new FilteredList<Nastavnik>(temp1, p -> true);
+		FilteredList<Student> studenti = new FilteredList<Student>(temp2, p -> true);
 
 		teachersTable.setItems(nastavnici.sorted());
 		studTable.setItems(studenti.sorted());
-		
-		choices.getItems().addAll("Students","Teachers");
+
+		choices.getItems().addAll("Students", "Teachers");
 		choices.setValue("Students");
-		
-		searchField.setOnKeyReleased(keyEvent ->
-		{
-			switch(choices.getValue())
-			{
+
+		searchField.setOnKeyReleased(keyEvent -> {
+			switch (choices.getValue()) {
 			case "Students":
-				studenti.setPredicate(p -> p.getIme().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				studenti.setPredicate(
+						p -> p.getIme().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Teachers":
-				nastavnici.setPredicate(p -> p.toString().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				nastavnici.setPredicate(
+						p -> p.toString().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			}
 		});
-		
-		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) ->
-        {
-            if (newVal != null)
-            {
-                searchField.setText("");
-                studenti.setPredicate(null);
-                nastavnici.setPredicate(null);
-            }
-        });
+
+		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal != null) {
+				searchField.setText("");
+				studenti.setPredicate(null);
+				nastavnici.setPredicate(null);
+			}
+		});
 
 		em.close();
 		emf.close();

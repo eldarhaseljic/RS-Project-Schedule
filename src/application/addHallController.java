@@ -69,21 +69,14 @@ public class addHallController implements Initializable {
 
 			for (Zgrada z : zgrade) {
 				Collection<Sala> sale = z.getSale();
-
-				if (sale.isEmpty()) {
-					Sala s = new Sala();
-					s.setNazivSale(nazivS);
-					s.setZgrada(z);
-					z.getSale().add(s);
-					em.getTransaction().begin();
-					em.persist(s);
-					em.getTransaction().commit();
-
-					ProdekanController.Information = "The entity is successfully added to the database.";
-					show(event);
-					break;
-				}
-
+				/*
+				 * if (sale.isEmpty()) { Sala s = new Sala(); s.setNazivSale(nazivS);
+				 * s.setZgrada(z); z.getSale().add(s); em.getTransaction().begin();
+				 * em.persist(s); em.getTransaction().commit();
+				 * 
+				 * ProdekanController.Information =
+				 * "The entity is successfully added to the database."; show(event); break; }
+				 */
 				for (Sala s : sale) {
 					if (s.getNazivSale().equals(nazivS)) {
 						exists = true;
@@ -104,6 +97,7 @@ public class addHallController implements Initializable {
 
 					ProdekanController.Information = "The entity is successfully added to the database.";
 					show(event);
+					break;
 				}
 			}
 

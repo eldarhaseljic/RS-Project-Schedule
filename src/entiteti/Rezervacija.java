@@ -69,10 +69,10 @@ public class Rezervacija {
 		this.vrijemeZavrsetkaCasaMinuta = vrijemeZavrsetkaCasaMinuta;
 	}
 
-	public int getVrijemeZavrsetkaCasaSat(){
+	public int getVrijemeZavrsetkaCasaSat() {
 		return this.vrijemeZavrsetkaCasaSat;
 	}
-	
+
 	public String getTipRezervacije() {
 		return tipRezervacije;
 	}
@@ -90,24 +90,40 @@ public class Rezervacija {
 	}
 
 	public void setVrijemeTrajanja() {
-		this.vrijemeTrajanja = vrijemePocetkaCasaSat+":"+vrijemePocetkaCasaMinuta+" - "+vrijemeZavrsetkaCasaSat+":"+vrijemeZavrsetkaCasaMinuta;
+		this.vrijemeTrajanja = vrijemePocetkaCasaSat + ":" + vrijemePocetkaCasaMinuta + " - " + vrijemeZavrsetkaCasaSat
+				+ ":" + vrijemeZavrsetkaCasaMinuta;
 	}
 
-	public String getVrijemeTrajanja() {return vrijemeTrajanja;}
-	
-	public String toString() { return this.datumOdrzavanja + " " + this.sala + " " + this.getVrijemeTrajanja();}
-	
-	
-	public void setGrupa(Grupa g) { grupa = g;}
-	public Grupa getGrupa(){ return grupa;}
-	public Nastavnik getNastavnik() { return nastavnik;}
-	
-	public void setSala(Sala g) { sala = g;}
-	
+	public String getVrijemeTrajanja() {
+		return vrijemeTrajanja;
+	}
+
+	public String toString() {
+		return this.datumOdrzavanja + " " + this.sala + " " + this.getVrijemeTrajanja();
+	}
+
+	public void setGrupa(Grupa g) {
+		grupa = g;
+	}
+
+	public Grupa getGrupa() {
+		return grupa;
+	}
+
+	public Nastavnik getNastavnik() {
+		return nastavnik;
+	}
+
+	public void setSala(Sala g) {
+		sala = g;
+	}
+
 	public Sala getSala() {
 		return sala;
 	}
 
-	public void setNastavnik(Nastavnik n) { nastavnik = n;}
-	
+	public void setNastavnik(Nastavnik n) {
+		nastavnik = n;
+	}
+
 }

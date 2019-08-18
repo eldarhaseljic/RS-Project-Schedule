@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -11,9 +12,14 @@ import javax.persistence.Query;
 
 import entiteti.Student;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class StudentController implements Initializable {
 
@@ -21,6 +27,7 @@ public class StudentController implements Initializable {
 	private Label usr, email, brIndex, orientation;
 
 	public static List<?> temp_list;
+	public static Student student;
 
 	public void close(ActionEvent event) throws Exception {
 		System.exit(0);
@@ -57,10 +64,26 @@ public class StudentController implements Initializable {
 
 				// ako cemo smijer
 				orientation.setText(n.getUsmjerenje());
+
 			}
 		}
 		em.close();
 		emf.close();
 	}
 
+	public void openSched(ActionEvent event) throws Exception {
+		show(event, "/fxml_files/Schedule.fxml", "Schedule");
+	}
+
+	// Funkcija za pokretanje bilo kojeg gui prozora
+	private void show(Event event, String resurs, String title) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource(resurs));
+		Scene scene = new Scene(root);
+		Stage primaryStage = new Stage();
+
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(true);
+		primaryStage.setTitle(title);
+		primaryStage.show();
+	}
 }

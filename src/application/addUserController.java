@@ -115,11 +115,8 @@ public class addUserController implements Initializable {
 	}
 
 	public void addUser(ActionEvent event) throws Exception {
-		if (name.getText().isBlank() 
-		|| lastName.getText().isBlank() 
-		|| list.isDisable()
-		|| list.getSelectionModel().isEmpty()) 
-		{
+		if (name.getText().isBlank() || lastName.getText().isBlank() || list.isDisable()
+				|| list.getSelectionModel().isEmpty()) {
 			if (name.getText().isBlank())
 				errName.setText("You didn't enter the name.");
 			else
@@ -130,11 +127,11 @@ public class addUserController implements Initializable {
 			else
 				errLastName.setText("");
 
-			if (list.isDisable()) 
+			if (list.isDisable())
 				errCheck.setText("You didn't selected the student or teacher option");
 			else
 				errCheck.setText("");
-			
+
 			if (list.getSelectionModel().isEmpty() && checkStudent.isSelected()) {
 				errList.setText("You didn't selected the orientation for the student ");
 			} else if (list.getSelectionModel().isEmpty() && checkTeacher.isSelected()) {

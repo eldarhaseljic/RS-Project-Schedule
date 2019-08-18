@@ -51,7 +51,7 @@ public class createPeriodController implements Initializable {
 	@FXML
 	private JFXTextField start, end;
 	@FXML
-	private Slider satistart, minutestart, satiend,minuteend;
+	private Slider satistart, minutestart, satiend, minuteend;
 	@FXML
 	private Label errPeriod = new Label();
 
@@ -203,7 +203,7 @@ public class createPeriodController implements Initializable {
 		em.close();
 		emf.close();
 	}
-	
+
 	private void show(Event event) throws IOException {
 		Stage primaryStage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));

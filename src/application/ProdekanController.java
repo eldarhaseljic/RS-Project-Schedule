@@ -19,6 +19,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -59,6 +60,18 @@ public class ProdekanController implements Initializable {
 
 		em.close();
 		emf.close();
+	}
+
+	public void Teacher(ActionEvent event) throws Exception {
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/ProfessorScreen.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.setWidth(602);
+		primaryStage.setHeight(395);
+		primaryStage.setTitle("Welcome Professor");
+		primaryStage.show();
 	}
 
 	public void addBuilding(ActionEvent event) throws Exception {

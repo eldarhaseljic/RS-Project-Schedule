@@ -85,5 +85,20 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
+      <AnchorPane layoutX="244.0" layoutY="198.0" prefHeight="26.0" prefWidth="150.0">
+         <children>
+            <JFXButton fx:id="button" layoutX="-8.0" layoutY="-13.0" onAction="#Dean" prefHeight="26.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Dean mod" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

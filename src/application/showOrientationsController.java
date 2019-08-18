@@ -32,14 +32,14 @@ public class showOrientationsController implements Initializable {
 			temp.add((Usmjerenje) e);
 
 		title.setCellValueFactory(new PropertyValueFactory<Usmjerenje, String>("imeUsmjerenja"));
-		
-		FilteredList<Usmjerenje> usmjerenja = new FilteredList<Usmjerenje>(temp.sorted(),p->true);
-		
+
+		FilteredList<Usmjerenje> usmjerenja = new FilteredList<Usmjerenje>(temp.sorted(), p -> true);
+
 		table.setItems(usmjerenja.sorted());
-		
-		searchField.setOnKeyReleased(keyEvent ->
-		{
-			usmjerenja.setPredicate(p -> p.toString().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+
+		searchField.setOnKeyReleased(keyEvent -> {
+			usmjerenja
+					.setPredicate(p -> p.toString().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 		});
 	}
 

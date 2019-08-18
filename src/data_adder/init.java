@@ -110,7 +110,7 @@ public class init {
 			FileReader readfile = new FileReader("name_nast.txt");
 			BufferedReader readbuffer = new BufferedReader(readfile);
 			String s;
-			//boolean middle = true;
+			// boolean middle = true;
 			while (readbuffer.read() != -1) {
 				Nastavnik nast = new Nastavnik();
 				s = readbuffer.readLine();
@@ -119,16 +119,11 @@ public class init {
 				nast.setPrezNast(parts[1]);
 				nast.setTitula(parts[2]);
 				/*
-				if (nast.getImeNast().equals(ime) && nast.getPrezNast().equals(prezime)) {
-					nast.setTitula("Prodekan");
-					middle = false;
-				} else if (middle) {
-					nast.setTitula("Profesor");
-				} else {
-					nast.setTitula("Asistent");
-				}
+				 * if (nast.getImeNast().equals(ime) && nast.getPrezNast().equals(prezime)) {
+				 * nast.setTitula("Prodekan"); middle = false; } else if (middle) {
+				 * nast.setTitula("Profesor"); } else { nast.setTitula("Asistent"); }
 				 */
-				
+
 				em.getTransaction().begin();
 				em.persist(nast);
 				em.getTransaction().commit();
@@ -140,7 +135,7 @@ public class init {
 				// nece ni trebati ali ja sam samo zakomentarisao
 				//
 				// Haselja
-				
+
 				String ime = "Emir";
 				String prezime = "Meskovic";
 
@@ -174,26 +169,25 @@ public class init {
 				s = readbuffer.readLine();
 				String[] parts = s.split(";");
 
-				//System.out.println(parts[0]);
-				//System.out.println(parts[1]);
+				// System.out.println(parts[0]);
+				// System.out.println(parts[1]);
 
 				String[] napredmetu = parts[2].split(",");
-				//System.out.println(napredmetu);
+				// System.out.println(napredmetu);
 
 				Collection<Nastavnik> nastavnici = new ArrayList<Nastavnik>();
 
-				for(int i = 0; i<napredmetu.length; ++i) 
-				{
-					String naziv [] = napredmetu[i].split(" ");
-					//System.out.println(naziv);
-					/*for(int j = 0; j<n.size();++i)
-					{
-						if(n.get(j).getImeNast().equals(naziv[0]) && n.get(j).getPrezNast().equals(naziv[1]))
-							nastavnici.add((Nastavnik) n.get(j));
-					}
-					*/
-					Query q2 = em.createQuery("SELECT n FROM Nastavnik n WHERE n.imeNast "
-							+ "	= :a and n.prezNast = :b", Nastavnik.class);
+				for (int i = 0; i < napredmetu.length; ++i) {
+					String naziv[] = napredmetu[i].split(" ");
+					// System.out.println(naziv);
+					/*
+					 * for(int j = 0; j<n.size();++i) { if(n.get(j).getImeNast().equals(naziv[0]) &&
+					 * n.get(j).getPrezNast().equals(naziv[1])) nastavnici.add((Nastavnik)
+					 * n.get(j)); }
+					 */
+					Query q2 = em.createQuery(
+							"SELECT n FROM Nastavnik n WHERE n.imeNast " + "	= :a and n.prezNast = :b",
+							Nastavnik.class);
 					q2.setParameter("a", naziv[0]);
 					q2.setParameter("b", naziv[1]);
 
@@ -201,7 +195,7 @@ public class init {
 					List<Nastavnik> n = q2.getResultList();
 					nastavnici.add((Nastavnik) n.get(0));
 				}
-				
+
 				Collection<Usmjerenje> usmjerenja = new ArrayList<Usmjerenje>();
 				Query q3;
 

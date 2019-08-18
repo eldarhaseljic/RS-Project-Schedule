@@ -10,34 +10,29 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
 
-@Entity(name="Cas")
+@Entity(name = "Cas")
 public class Cas {
-	
-	@TableGenerator(
-			name = "idCas",
-			allocationSize = 1,
-			initialValue = 1)
-	@Id 
-	@GeneratedValue(
-			strategy=GenerationType.TABLE, 
-			generator="idCas")
+
+	@TableGenerator(name = "idCas", allocationSize = 1, initialValue = 1)
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "idCas")
 	@Column(name = "CAS_ID")
 	private int IdCasa;
-	
+
 	private String datumOdrzavanjaCasa;
 	private int vrijemePocetkaCasaSat;
 	private int vrijemeZavrsetkaCasaSat;
 	private int vrijemePocetkaCasaMinuta;
 	private int vrijemeZavrsetkaCasaMinuta;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "GRUPA_ID")
 	private Grupa grupa;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "SEMESTAR_ID")
 	private Semestar semestar;
-	
+
 	@OneToOne
 	@JoinColumn(name = "SALA_ID")
 	private Sala sala;
@@ -81,15 +76,15 @@ public class Cas {
 	public void setVrijemeZavrsetkaCasaMinuta(int vrijemeZavrsetkaCasaMinuta) {
 		this.vrijemeZavrsetkaCasaMinuta = vrijemeZavrsetkaCasaMinuta;
 	}
-	
+
 	public void setGrupa(Grupa gr) {
 		this.grupa = gr;
 	}
-	
+
 	public void setSemestar(Semestar sem) {
 		this.semestar = sem;
 	}
-	
+
 	public void setSala(Sala sal) {
 		this.sala = sal;
 	}
@@ -98,43 +93,46 @@ public class Cas {
 		// TODO Auto-generated method stub
 		return IdCasa;
 	}
-	
+
 	public String toString() {
-		return this.sala.getNazivSale() + " " + this.grupa.getImePredmeta().split(";")[0] + " " +this.grupa.getNastavnik().toString()+" "+ this.getDatumOdrzavanjaCasa()+ " "+ this.getvrijemePocetkaCasaSat()+ ":"+ this.getVrijemePocetkaCasaMinuta()
-		+ " - "+ this.getVrijemeZavrsetkaCasaSat()+":"+this.getVrijemeZavrsetkaCasaMinuta();
+		return this.sala.getNazivSale() + " " + this.grupa.getImePredmeta().split(";")[0] + " "
+				+ this.grupa.getNastavnik().toString() + " " + this.getDatumOdrzavanjaCasa() + " "
+				+ this.getvrijemePocetkaCasaSat() + ":" + this.getVrijemePocetkaCasaMinuta() + " - "
+				+ this.getVrijemeZavrsetkaCasaSat() + ":" + this.getVrijemeZavrsetkaCasaMinuta();
 	}
-	
+
 	public Grupa getGrupa() {
 		return grupa;
 	}
-	
+
 	public String getImePredmeta() {
 		return this.getGrupa().getImePredmeta();
 	}
-	
+
 	public String getBrojStudenata() {
 		int br = this.getGrupa().getStudente().size();
 		return Integer.toString(br);
 	}
-	
+
 	public String getImeSale() {
 		return this.sala.getNazivSale();
 	}
-	
+
 	public Semestar getSemestar() {
 		return semestar;
 	}
-	
+
 	public String getVrijeme() {
-		return this.getDatumOdrzavanjaCasa() + " " + this.vrijemePocetkaCasaSat + ":" + this.vrijemePocetkaCasaMinuta + "-" + this.vrijemeZavrsetkaCasaSat + ":" + this.vrijemeZavrsetkaCasaMinuta;
+		return this.getDatumOdrzavanjaCasa() + " " + this.vrijemePocetkaCasaSat + ":" + this.vrijemePocetkaCasaMinuta
+				+ "-" + this.vrijemeZavrsetkaCasaSat + ":" + this.vrijemeZavrsetkaCasaMinuta;
 	}
-	
+
 	public String getImeNastavnika() {
 		return this.getGrupa().getImeNastavnika();
 	}
-	
+
 	public String getTip() {
 		return this.getGrupa().getTipgrupe();
 	}
-	
+
 }

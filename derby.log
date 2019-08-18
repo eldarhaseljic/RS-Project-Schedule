@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sat Aug 17 17:19:43 CEST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-016c-a029-aeb9-000001c115c8 
+Sun Aug 18 20:51:34 CEST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-016c-a612-0216-000002ed5c30 
 on database directory /home/eldar/MyDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@3b9a45b3 
 Loaded from file:/home/eldar/Radna%20povr%c5%a1ina/drive-download-20190803T174544Z-001/derby.jar
 java.vendor=Ubuntu

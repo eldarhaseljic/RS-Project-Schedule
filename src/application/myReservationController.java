@@ -26,9 +26,9 @@ public class myReservationController implements Initializable {
 	@FXML
 	TableColumn<Rezervacija, String> type, time;
 	@FXML
-	TableColumn<Rezervacija, Sala>hall;
+	TableColumn<Rezervacija, Sala> hall;
 	@FXML
-	TableColumn<Rezervacija, Grupa>group;
+	TableColumn<Rezervacija, Grupa> group;
 	@FXML
 	TableColumn<Rezervacija, LocalDate> date;
 	@FXML
@@ -48,43 +48,44 @@ public class myReservationController implements Initializable {
 		time.setCellValueFactory(new PropertyValueFactory<Rezervacija, String>("vrijemeTrajanja"));
 		hall.setCellValueFactory(new PropertyValueFactory<Rezervacija, Sala>("sala"));
 		group.setCellValueFactory(new PropertyValueFactory<Rezervacija, Grupa>("grupa"));
-		
-		FilteredList<Rezervacija> rezervacije = new FilteredList<Rezervacija>(temp,p->true);
-		
+
+		FilteredList<Rezervacija> rezervacije = new FilteredList<Rezervacija>(temp, p -> true);
+
 		table.setItems(rezervacije.sorted());
-		
-        choices.getItems().addAll("Type","Maintenance date", "Maintenance time", "Hall", "ID of Group");
-        choices.setValue("Type");
-        
-		searchField.setOnKeyReleased(keyEvent ->
-		{
-			switch(choices.getValue())
-			{
+
+		choices.getItems().addAll("Type", "Maintenance date", "Maintenance time", "Hall", "ID of Group");
+		choices.setValue("Type");
+
+		searchField.setOnKeyReleased(keyEvent -> {
+			switch (choices.getValue()) {
 			case "Type":
-				rezervacije.setPredicate(p -> p.getTipRezervacije().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				rezervacije.setPredicate(
+						p -> p.getTipRezervacije().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Maintenance date":
-				rezervacije.setPredicate(p -> p.getDatumOdrzavanja().toString().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				rezervacije.setPredicate(p -> p.getDatumOdrzavanja().toString().toLowerCase()
+						.contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Maintenance time":
-				rezervacije.setPredicate(p -> p.getVrijemeTrajanja().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				rezervacije.setPredicate(
+						p -> p.getVrijemeTrajanja().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Hall":
-				rezervacije.setPredicate(p -> p.getSala().getNazivSale().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				rezervacije.setPredicate(p -> p.getSala().getNazivSale().toLowerCase()
+						.contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "ID of Group":
-				rezervacije.setPredicate(p -> p.getGrupa().toString().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				rezervacije.setPredicate(p -> p.getGrupa().toString().toLowerCase()
+						.contains(searchField.getText().toLowerCase().trim()));
 				break;
 			}
 		});
-		
-		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) ->
-        {
-            if (newVal != null)
-            {
-                searchField.setText("");
-                rezervacije.setPredicate(null);
-            }
-        });
+
+		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal != null) {
+				searchField.setText("");
+				rezervacije.setPredicate(null);
+			}
+		});
 	}
 }

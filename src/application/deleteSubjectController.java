@@ -2,7 +2,6 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
-
 import java.util.ResourceBundle;
 
 import javax.persistence.EntityManager;
@@ -33,7 +32,7 @@ public class deleteSubjectController implements Initializable {
 	@FXML
 	private TableView<Predmet> table;
 	@FXML
-	private TableColumn<Predmet,String> subject;
+	private TableColumn<Predmet, String> subject;
 	@FXML
 	private JFXTextField searchField;
 	@FXML
@@ -42,7 +41,7 @@ public class deleteSubjectController implements Initializable {
 	public void deleteSubject(ActionEvent event) throws Exception {
 		if (table.getSelectionModel().isEmpty())
 			errBuild.setText("You didn't choose the subject.");
-		
+
 		else {
 			ObservableList<Predmet> temp = table.getSelectionModel().getSelectedItems();
 
@@ -52,7 +51,7 @@ public class deleteSubjectController implements Initializable {
 			EntityManager em = emf.createEntityManager();
 
 			for (Predmet predmet : temp) {
-				
+
 				Predmet p = em.find(Predmet.class, predmet.getId());
 				em.getTransaction().begin();
 				em.remove(p);
@@ -62,7 +61,7 @@ public class deleteSubjectController implements Initializable {
 				show(event);
 
 			}
-			
+
 			em.close();
 			emf.close();
 		}
@@ -86,15 +85,14 @@ public class deleteSubjectController implements Initializable {
 		ObservableList<Predmet> temp = FXCollections.observableArrayList();
 		for (Object e : ProdekanController.temp_list)
 			temp.add(((Predmet) e));
-		
+
 		subject.setCellValueFactory(new PropertyValueFactory<Predmet, String>("imePred"));
-		
-		FilteredList<Predmet> predmeti = new FilteredList<Predmet>(temp,p->true);
-		
+
+		FilteredList<Predmet> predmeti = new FilteredList<Predmet>(temp, p -> true);
+
 		table.setItems(predmeti.sorted());
-		
-		searchField.setOnKeyReleased(keyEvent ->
-		{    
+
+		searchField.setOnKeyReleased(keyEvent -> {
 			predmeti.setPredicate(p -> p.toString().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 		});
 	}

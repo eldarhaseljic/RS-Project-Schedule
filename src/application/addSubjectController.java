@@ -43,10 +43,10 @@ public class addSubjectController implements Initializable {
 
 	@FXML
 	private TableView<Nastavnik> table;
-	
+
 	@FXML
-	private TableColumn<Nastavnik,String> teacher;
-	
+	private TableColumn<Nastavnik, String> teacher;
+
 	@FXML
 	private JFXTextField searchField;
 
@@ -123,7 +123,7 @@ public class addSubjectController implements Initializable {
 			em.getTransaction().commit();
 			em.close();
 			emf.close();
-			
+
 			ProdekanController.Information = "Successfully added";
 			show(event);
 		}
@@ -143,20 +143,19 @@ public class addSubjectController implements Initializable {
 		Query q = em.createQuery("SELECT x FROM Nastavnik x");
 		@SuppressWarnings("unchecked")
 		List<Nastavnik> temp_list = q.getResultList();
-		
+
 		ObservableList<Nastavnik> temp = FXCollections.observableArrayList();
-		
-		for(Nastavnik n : temp_list)
+
+		for (Nastavnik n : temp_list)
 			temp.add(n);
-		
+
 		teacher.setCellValueFactory(new PropertyValueFactory<Nastavnik, String>("ime"));
-		
-		FilteredList<Nastavnik> nastavnici = new FilteredList<Nastavnik>(temp,p->true);
-		
+
+		FilteredList<Nastavnik> nastavnici = new FilteredList<Nastavnik>(temp, p -> true);
+
 		table.setItems(nastavnici.sorted());
-		
-		searchField.setOnKeyReleased(keyEvent ->
-		{
+
+		searchField.setOnKeyReleased(keyEvent -> {
 			nastavnici.setPredicate(p -> p.getIme().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 		});
 
