@@ -34,6 +34,7 @@ import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 public class SchedController implements Initializable{
 	
@@ -118,12 +119,14 @@ Query q4 = em.createQuery("SELECT s from GrupaStudenata s");
 		grupaCombo.setPromptText("Select group");
 		nastavnikCombo.setPromptText("Select teacher");
 
-		grid.add(new Label("You need to select semester"), 0, 0);
+		Label label = new Label("You need to select semester!");
+		label.setTextFill(Color.RED);
+		grid.add(label, 0, 0);
 		grid.add(semestarCombo, 0, 1);
-		grid.add(usCombo, 1, 1);
-		grid.add(salaCombo, 2, 1);
-		grid.add(grupaCombo, 3, 1);
-		grid.add(nastavnikCombo, 4, 1);
+		grid.add(usCombo, 0, 2);
+		grid.add(salaCombo, 0, 3);
+		grid.add(grupaCombo, 0, 4);
+		grid.add(nastavnikCombo,0 , 5);
 		dialog.getDialogPane().setContent(grid);
 		
 		dialog.setResultConverter(dialogButton -> {
