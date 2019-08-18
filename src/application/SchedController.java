@@ -15,6 +15,8 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import entiteti.Cas;
+import entiteti.Grupa;
+import entiteti.Nastavnik;
 import entiteti.Sala;
 import entiteti.Semestar;
 import entiteti.Usmjerenje;
@@ -24,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
@@ -46,14 +49,22 @@ public class SchedController implements Initializable{
 	
 	@FXML
 	private ComboBox<Sala> salaCombo = new  ComboBox<Sala>();
+
+	@FXML
+	private ComboBox<Grupa> grupaCombo = new  ComboBox<Grupa>();
+	
+	@FXML
+	private ComboBox<Nastavnik> nastavnikCombo = new  ComboBox<Nastavnik>();
 	
 	public ReturnClass resultData;
 	public class ReturnClass{
 		public Semestar semestar;
 		public Usmjerenje usmjerenje;
 		public Sala sala;
-		public ReturnClass(Semestar s, Usmjerenje u, Sala sa) {
-			semestar=s; usmjerenje = u; sala=sa;
+		public Grupa grupa;
+		public Nastavnik nastavnik;
+		public ReturnClass(Semestar s, Usmjerenje u, Sala sa, Grupa gg, Nastavnik n) {
+			semestar=s; usmjerenje = u; sala=sa; grupa=gg; nastavnik=n;
 		}
 	}
 	
@@ -86,30 +97,51 @@ public class SchedController implements Initializable{
 		us.add(null);
 		usCombo.setItems(FXCollections.observableArrayList(us).sorted());
 		
-		Query q3 = em.createQuery("SELECT s from Sala s");
+Query q3 = em.createQuery("SELECT s from Sala s");
 		List<Sala> salaL =  q3.getResultList();
 		salaL.add(null);
 		salaCombo.setItems(FXCollections.observableArrayList(salaL).sorted());
 		
+Query q4 = em.createQuery("SELECT s from GrupaStudenata s");
+		List<Grupa> grupe =  q4.getResultList();
+		grupe.add(null);
+		grupaCombo.setItems(FXCollections.observableArrayList(grupe).sorted());
+		
+		Query q5 = em.createQuery("SELECT s from Nastavnik s");
+		List<Nastavnik> nast =  q5.getResultList();
+		nast.add(null);
+		nastavnikCombo.setItems(FXCollections.observableArrayList(nast).sorted());
+		
 		semestarCombo.setPromptText("Select semester");
 		usCombo.setPromptText("Select orientation");
 		salaCombo.setPromptText("Select hall");
+		grupaCombo.setPromptText("Select group");
+		nastavnikCombo.setPromptText("Select teacher");
 
-		grid.add(semestarCombo, 0, 0);
-		grid.add(usCombo, 1, 0);
-		grid.add(salaCombo, 2, 0);
+		grid.add(new Label("You need to select semester"), 0, 0);
+		grid.add(semestarCombo, 0, 1);
+		grid.add(usCombo, 1, 1);
+		grid.add(salaCombo, 2, 1);
+		grid.add(grupaCombo, 3, 1);
+		grid.add(nastavnikCombo, 4, 1);
 		dialog.getDialogPane().setContent(grid);
 		
 		dialog.setResultConverter(dialogButton -> {
-		    if (dialogButton == loginButtonType) {
-		        return new ReturnClass(semestarCombo.getValue(), usCombo.getValue(), salaCombo.getValue());
+		
+			if (dialogButton == loginButtonType) {
+		        return new ReturnClass(semestarCombo.getValue(), usCombo.getValue(), 
+		        		salaCombo.getValue(),grupaCombo.getValue(),
+		        		nastavnikCombo.getValue());
 		    }
 		    return null;
 		});
 		
-		Optional<ReturnClass> result = dialog.showAndWait();
-		resultData = result.get();
-	
+		do {
+			
+			Optional<ReturnClass> result = dialog.showAndWait();
+			resultData = result.get();
+		}while(resultData.semestar == null);
+			
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1){
@@ -149,6 +181,8 @@ public class SchedController implements Initializable{
 			for(Cas c : casovi) {
 			boolean proceed = false;
 			boolean proceed2 = false;
+			boolean proceed3 = false;
+			boolean proceed4 = false;
 			for(Usmjerenje u : c.getGrupa().getPredmet().getUsmjerenja()) {
 					if(resultData.usmjerenje == null || u.getImeUsmjerenja().equals( resultData.usmjerenje.getImeUsmjerenja())  ) {
 						proceed = true;
@@ -167,6 +201,30 @@ public class SchedController implements Initializable{
 	        		 proceed2=true;
 	         }
 	         if(!proceed2) continue;
+	         
+	         if(resultData.grupa==null)
+	        	 proceed3=true;
+	         else
+	         {
+	        	 if(!(resultData.grupa.getId() == c.getGrupa().getId()))
+	        		 proceed3=false;
+	        	 else
+	        		 proceed3=true;
+	         }
+	         if(!proceed3) continue;
+	         
+	         if(resultData.nastavnik==null)
+	        	 proceed4=true;
+	         else
+	         {
+	        	 if(!(resultData.nastavnik.getId() == c.getGrupa().getNastavnik().getId()))
+	        		 proceed4=false;
+	        	 else
+	        		 proceed4=true;
+	         }
+	         if(!proceed4) continue;
+	         
+	         
 	         
 	        		 
 				
