@@ -126,13 +126,19 @@ public class SchedController implements Initializable {
 		nastavnikCombo.setPromptText("Select teacher");
 
 		Label label = new Label("You need to select semester!");
+		Label label2 = new Label("You need to select group!");
+		
 		label.setTextFill(Color.RED);
+		label2.setTextFill(Color.RED);
+
 		grid.add(label, 0, 0);
 		grid.add(semestarCombo, 0, 1);
 		grid.add(usCombo, 0, 2);
 		grid.add(salaCombo, 0, 3);
-		grid.add(grupaCombo, 0, 4);
-		grid.add(nastavnikCombo, 0, 5);
+		grid.add(label2, 0, 4);
+		grid.add(grupaCombo, 0, 5);
+		grid.add(nastavnikCombo,0 , 6);
+		
 		dialog.getDialogPane().setContent(grid);
 
 		dialog.setResultConverter(dialogButton -> {
@@ -148,7 +154,7 @@ public class SchedController implements Initializable {
 
 			Optional<ReturnClass> result = dialog.showAndWait();
 			resultData = result.get();
-		} while (resultData.semestar == null);
+		} while (resultData.semestar == null || resultData.grupa == null);
 
 	}
 
