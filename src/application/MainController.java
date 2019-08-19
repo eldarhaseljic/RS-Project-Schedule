@@ -62,21 +62,18 @@ public class MainController {
 			Stage primaryStage = new Stage();
 
 			if (checkStudent.isSelected()) {
-				if(korisnici.get(0).isNastavnik() == false && korisnici.get(0).isProdekan() == false) 
-				{
-				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/StudentScreen.fxml"));
-				Scene scene = new Scene(root);
-				primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				primaryStage.setScene(scene);
-				primaryStage.setWidth(602);
-				primaryStage.setHeight(395);
-				primaryStage.setTitle("Welcome Student");
-				primaryStage.show();
-				}
-				else 
-				{
+				if (korisnici.get(0).isNastavnik() == false && korisnici.get(0).isProdekan() == false) {
+					Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/StudentScreen.fxml"));
+					Scene scene = new Scene(root);
+					primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					primaryStage.setScene(scene);
+					primaryStage.setWidth(602);
+					primaryStage.setHeight(395);
+					primaryStage.setTitle("Welcome Student");
+					primaryStage.show();
+				} else {
 					txtPassword.clear();
-					if(korisnici.get(0).isProdekan() == true)
+					if (korisnici.get(0).isProdekan() == true)
 						lblStatus.setText("You are a Vice Dean , uncheck the checkbox");
 					else
 						lblStatus.setText("You are a teacher, uncheck the checkbox");

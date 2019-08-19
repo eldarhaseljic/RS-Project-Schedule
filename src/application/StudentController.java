@@ -28,6 +28,7 @@ public class StudentController implements Initializable {
 	private Label usr, email, brIndex, orientation;
 
 	public static List<?> temp_list;
+	public static Student student;
 
 	public void close(ActionEvent event) throws Exception {
 		System.exit(0);
@@ -64,6 +65,7 @@ public class StudentController implements Initializable {
 
 				// ako cemo smijer
 				orientation.setText(n.getUsmjerenje());
+
 			}
 		}
 		em.close();
@@ -75,19 +77,18 @@ public class StudentController implements Initializable {
 		EntityManagerFactory emf;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
-
 		show(event,"/fxml_files/Schedule.fxml","Schedule");
 	}
-	
+
 	// Funkcija za pokretanje bilo kojeg gui prozora
 	private void show(Event event, String resurs, String title) throws IOException {
-			Parent root = FXMLLoader.load(getClass().getResource(resurs));
-			Scene scene = new Scene(root);
-			Stage primaryStage = new Stage();
-			
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(true);
-			primaryStage.setTitle(title);
-			primaryStage.show();
-		}
+		Parent root = FXMLLoader.load(getClass().getResource(resurs));
+		Scene scene = new Scene(root);
+		Stage primaryStage = new Stage();
+
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(true);
+		primaryStage.setTitle(title);
+		primaryStage.show();
+	}
 }

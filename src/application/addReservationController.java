@@ -100,10 +100,8 @@ public class addReservationController implements Initializable {
 
 	public void addReservation(ActionEvent event) throws Exception {
 
-		if (classCombo.getSelectionModel().isEmpty() 
-		|| date.getValue() == null
-		|| tipCombo.getSelectionModel().isEmpty()) 
-		{
+		if (classCombo.getSelectionModel().isEmpty() || date.getValue() == null
+				|| tipCombo.getSelectionModel().isEmpty()) {
 			if (classCombo.getSelectionModel().isEmpty()) {
 				errHall.setText("You didn't chose hall.");
 			} else {
@@ -118,20 +116,17 @@ public class addReservationController implements Initializable {
 
 			if (tipCombo.getSelectionModel().isEmpty()) {
 				errType.setText("You didn't chose type.");
-			} else {errType.setText("");}
-			
-		} 
-		else 
-		{
-			if (tipCombo.getSelectionModel().getSelectedItem().equals("Nadoknada")  &&
-				groupCombo.getSelectionModel().isEmpty()) 
-			{
-					errType.setText("You didn't chose the group.");
+			} else {
+				errType.setText("");
 			}
-			else 
-			{
-					errType.setText("");
-				
+
+		} else {
+			if (tipCombo.getSelectionModel().getSelectedItem().equals("Nadoknada")
+					&& groupCombo.getSelectionModel().isEmpty()) {
+				errType.setText("You didn't chose the group.");
+			} else {
+				errType.setText("");
+
 				if (date.getValue().isBefore(LocalDate.now())) {
 					errDate.setText(" Only future dates are allowed ");
 				} else {

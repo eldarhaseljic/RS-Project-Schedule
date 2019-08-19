@@ -16,8 +16,8 @@
       <TableView fx:id="table" layoutX="26.0" layoutY="21.0" prefHeight="442.0" prefWidth="669.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="99.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <columns>
           <TableColumn fx:id="teacher" prefWidth="149.0" sortable="false" text="Teacher" />
-          <TableColumn fx:id="subject" minWidth="0.0" prefWidth="263.0" sortable="false" text="Subject" />
-            <TableColumn fx:id="type" minWidth="0.0" prefWidth="92.0" resizable="false" sortable="false" text="Type" />
+          <TableColumn fx:id="subject" minWidth="0.0" prefWidth="186.0" sortable="false" text="Subject" />
+            <TableColumn fx:id="type" minWidth="0.0" prefWidth="169.0" resizable="false" sortable="false" text="Type" />
             <TableColumn fx:id="students" minWidth="0.0" prefWidth="164.0" sortable="false" text="Students" />
         </columns>
          <columnResizePolicy>

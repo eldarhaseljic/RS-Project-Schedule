@@ -43,7 +43,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
-      <TableView fx:id="table3" layoutX="19.0" layoutY="275.0" prefHeight="131.0" prefWidth="323.0">
+      <TableView fx:id="table3" layoutX="19.0" layoutY="275.0" onMouseClicked="#test2" prefHeight="131.0" prefWidth="323.0">
         <columns>
           <TableColumn fx:id="subject" prefWidth="322.0" sortable="false" text="Subject" />
         </columns>
@@ -51,7 +51,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TableView fx:id="table2" layoutX="19.0" layoutY="69.0" prefHeight="131.0" prefWidth="323.0">
+      <TableView fx:id="table2" layoutX="19.0" layoutY="69.0" onMouseClicked="#test" prefHeight="131.0" prefWidth="323.0">
         <columns>
           <TableColumn fx:id="teacher" prefWidth="322.0" sortable="false" text="Teacher" />
         </columns>

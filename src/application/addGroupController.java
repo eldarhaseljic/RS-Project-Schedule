@@ -35,30 +35,33 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class addGroupController implements Initializable {
 
 	@FXML
-	private ListView<String> students , selectedStudents;
+	private ListView<String> students, selectedStudents;
 	@FXML
 	private ComboBox<String> type;
 	@FXML
 	private TableView<Predmet> table3;
 	@FXML
-	private TableColumn<Predmet,String> subject;
+	private TableColumn<Predmet, String> subject;
 	@FXML
 	private TableView<Nastavnik> table2;
 	@FXML
-	private TableColumn<Nastavnik,String> teacher;
+	private TableColumn<Nastavnik, String> teacher;
 	@FXML
-	private JFXTextField searchField2,searchField3;
+	private JFXTextField searchField2, searchField3;
 
 	private Collection<String> selected;
+	private FilteredList<Predmet> pred;
+	private FilteredList<Nastavnik> nast;
 
 	@FXML
 	Label errType, errSubject, errTeacher, errStudents;
-	
+
 	public void show(ActionEvent event) throws IOException {
 		// TODO Auto-generated method stub
 		Stage primaryStage = new Stage();
@@ -107,23 +110,21 @@ public class addGroupController implements Initializable {
 			temp1.add(((Student) e).getImeStud() + " " + ((Student) e).getPrezStud());
 		students.setItems(FXCollections.observableList(temp1).sorted());
 		students.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		
+
 		teacher.setCellValueFactory(new PropertyValueFactory<Nastavnik, String>("ime"));
 		subject.setCellValueFactory(new PropertyValueFactory<Predmet, String>("imePred"));
-		
-		FilteredList<Nastavnik> nast = new FilteredList<Nastavnik>(temp2,p->true);
-		FilteredList<Predmet> pred = new FilteredList<Predmet>(temp3,p->true);
-		
+
+		nast = new FilteredList<Nastavnik>(temp2, p -> true);
+		pred = new FilteredList<Predmet>(temp3, p -> true);
+
 		table2.setItems(nast.sorted());
 		table3.setItems(pred.sorted());
-		
-		searchField2.setOnKeyReleased(keyEvent ->
-		{
+
+		searchField2.setOnKeyReleased(keyEvent -> {
 			nast.setPredicate(p -> p.getIme().toLowerCase().contains(searchField2.getText().toLowerCase().trim()));
 		});
-		
-		searchField3.setOnKeyReleased(keyEvent ->
-		{
+
+		searchField3.setOnKeyReleased(keyEvent -> {
 			pred.setPredicate(p -> p.getImePred().toLowerCase().contains(searchField3.getText().toLowerCase().trim()));
 		});
 
@@ -138,11 +139,33 @@ public class addGroupController implements Initializable {
 		students.setDisable(true);
 	}
 
+	public void test(MouseEvent event) throws IOException {
+		if (!table2.getSelectionModel().isEmpty()) {
+			ObservableList<Predmet> temp2 = FXCollections.observableArrayList();
+			for (int i = 0; i < table2.getSelectionModel().getSelectedItem().getPredmeti().size(); ++i)
+				temp2.add((Predmet) table2.getSelectionModel().getSelectedItem().getPredmeti().toArray()[i]);
+			FilteredList<Predmet> novi = new FilteredList<Predmet>(temp2, p -> true);
+			table3.setItems(novi.sorted());
+		} else {
+			table3.setItems(pred.sorted());
+		}
+	}
+
+	public void test2(MouseEvent event) throws IOException {
+		if (!table3.getSelectionModel().isEmpty()) {
+			ObservableList<Nastavnik> temp2 = FXCollections.observableArrayList();
+			for (int i = 0; i < table3.getSelectionModel().getSelectedItem().getNastavnike().size(); ++i)
+				temp2.add((Nastavnik) table3.getSelectionModel().getSelectedItem().getNastavnike().toArray()[i]);
+			FilteredList<Nastavnik> novi = new FilteredList<Nastavnik>(temp2, p -> true);
+			table2.setItems(novi.sorted());
+		} else {
+			table2.setItems(nast.sorted());
+		}
+	}
+
 	public void addGroup(ActionEvent event) throws Exception {
-		if (	type.getSelectionModel().isEmpty() 
-				|| table3.getSelectionModel().isEmpty()
-				|| table2.getSelectionModel().isEmpty() 
-				|| students.getSelectionModel().isEmpty()) {
+		if (type.getSelectionModel().isEmpty() || table3.getSelectionModel().isEmpty()
+				|| table2.getSelectionModel().isEmpty() || students.getSelectionModel().isEmpty()) {
 			if (type.getSelectionModel().isEmpty())
 				errType.setText("You didn't choose the type");
 			else
@@ -163,52 +186,49 @@ public class addGroupController implements Initializable {
 			else
 				errStudents.setText("");
 		} else {
-			if(!students.isDisabled())
-			{
+			if (!students.isDisabled()) {
 				errSubject.setText("");
 				errTeacher.setText("");
 				errType.setText("");
 				errStudents.setText("Click on select students to confirm selection");
+			} else {
+				Collection<Student> studenti = new ArrayList<Student>();
+				String tip = type.getValue();
+				Nastavnik nastavnik = table2.getSelectionModel().getSelectedItem();
+				Predmet predmet = table3.getSelectionModel().getSelectedItem();
+
+				String PERSISTENCE_UNIT_NAME = "raspored";
+				EntityManagerFactory emf;
+				emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+				EntityManager em = emf.createEntityManager();
+
+				for (String s : selected) {
+					Query q3 = em.createQuery("SELECT s FROM Student s WHERE CONCAT(s.imeStud,' ',s.prezStud) = :is",
+							Student.class);
+					q3.setParameter("is", s);
+					Object stud = q3.getSingleResult();
+					studenti.add((Student) stud);
+				}
+
+				Grupa g = new Grupa();
+				g.setTipgrupe(tip);
+				g.setNastavnika(nastavnik);
+				g.setPredmet(predmet);
+				g.setStudente(studenti);
+				nastavnik.getGrupe().add(g);
+				for (Student s : studenti)
+					s.getGrupe().add(g);
+
+				em.getTransaction().begin();
+				em.persist(g);
+				em.getTransaction().commit();
+
+				em.close();
+				emf.close();
+
+				ProdekanController.Information = "Successfully added";
+				show(event);
 			}
-			else 
-			{
-			Collection<Student> studenti = new ArrayList<Student>();
-			String tip = type.getValue();
-			Nastavnik nastavnik = table2.getSelectionModel().getSelectedItem();
-			Predmet predmet = table3.getSelectionModel().getSelectedItem();
-
-			String PERSISTENCE_UNIT_NAME = "raspored";
-			EntityManagerFactory emf;
-			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-			EntityManager em = emf.createEntityManager();
-
-			for (String s : selected) {
-				Query q3 = em.createQuery("SELECT s FROM Student s WHERE CONCAT(s.imeStud,' ',s.prezStud) = :is",
-						Student.class);
-				q3.setParameter("is", s);
-				Object stud = q3.getSingleResult();
-				studenti.add((Student) stud);
-			}
-
-			Grupa g = new Grupa();
-			g.setTipgrupe(tip);
-			g.setNastavnika(nastavnik);
-			g.setPredmet(predmet);
-			g.setStudente(studenti);
-			nastavnik.getGrupe().add(g);
-			for (Student s : studenti)
-				s.getGrupe().add(g);
-
-			em.getTransaction().begin();
-			em.persist(g);
-			em.getTransaction().commit();
-
-			em.close();
-			emf.close();
-
-			ProdekanController.Information = "Successfully added";
-			show(event);
-		}
 		}
 	}
 }

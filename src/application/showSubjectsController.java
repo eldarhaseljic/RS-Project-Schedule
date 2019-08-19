@@ -37,37 +37,36 @@ public class showSubjectsController implements Initializable {
 		title.setCellValueFactory(new PropertyValueFactory<Predmet, String>("imePred"));
 		orientation.setCellValueFactory(new PropertyValueFactory<Predmet, String>("imeUsmjerenja"));
 		teachers.setCellValueFactory(new PropertyValueFactory<Predmet, String>("imenaProfesora"));
-		
-		FilteredList<Predmet> predmeti = new FilteredList<Predmet>(temp.sorted(),p->true);
-		
+
+		FilteredList<Predmet> predmeti = new FilteredList<Predmet>(temp.sorted(), p -> true);
+
 		table.setItems(predmeti.sorted());
-		
-        choices.getItems().addAll("Title","Orientation","Teacher");
-        choices.setValue("Title");
-        
-		searchField.setOnKeyReleased(keyEvent ->
-		{
-			switch(choices.getValue())
-			{
+
+		choices.getItems().addAll("Title", "Orientation", "Teacher");
+		choices.setValue("Title");
+
+		searchField.setOnKeyReleased(keyEvent -> {
+			switch (choices.getValue()) {
 			case "Title":
-				predmeti.setPredicate(p -> p.toString().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				predmeti.setPredicate(
+						p -> p.toString().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Teacher":
-				predmeti.setPredicate(p -> p.getImenaProfesora().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				predmeti.setPredicate(
+						p -> p.getImenaProfesora().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Orientation":
-				predmeti.setPredicate(p -> p.getImeUsmjerenja().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				predmeti.setPredicate(
+						p -> p.getImeUsmjerenja().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			}
 		});
-		
-		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) ->
-        {
-            if (newVal != null)
-            {
-                searchField.setText("");
-                predmeti.setPredicate(null);
-            }
-        });
+
+		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal != null) {
+				searchField.setText("");
+				predmeti.setPredicate(null);
+			}
+		});
 	}
 }

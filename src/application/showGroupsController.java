@@ -21,7 +21,7 @@ public class showGroupsController implements Initializable {
 	@FXML
 	private TableView<Grupa> table;
 	@FXML
-	private TableColumn<Grupa, String> teacher ,subject ,type ,students;
+	private TableColumn<Grupa, String> teacher, subject, type, students;
 	@FXML
 	ChoiceBox<String> choices;
 	@FXML
@@ -33,46 +33,46 @@ public class showGroupsController implements Initializable {
 		ObservableList<Grupa> temp = FXCollections.observableArrayList();
 		for (Object e : ProdekanController.temp_list)
 			temp.add((Grupa) e);
-		
+
 		type.setCellValueFactory(new PropertyValueFactory<Grupa, String>("tipgrupe"));
 		teacher.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imeNastavnika"));
 		students.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imenaStudenata"));
 		subject.setCellValueFactory(new PropertyValueFactory<Grupa, String>("imePredmeta"));
-		
-		FilteredList<Grupa> grupe = new FilteredList<Grupa>(temp,p->true);
-		
+
+		FilteredList<Grupa> grupe = new FilteredList<Grupa>(temp, p -> true);
+
 		table.setItems(grupe.sorted());
-		
-		choices.getItems().addAll("Teacher","Subject","Students","Type");
+
+		choices.getItems().addAll("Teacher", "Subject", "Students", "Type");
 		choices.setValue("Teacher");
-		
-		searchField.setOnKeyReleased(keyEvent ->
-		{
-			switch(choices.getValue())
-			{
+
+		searchField.setOnKeyReleased(keyEvent -> {
+			switch (choices.getValue()) {
 			case "Students":
-				grupe.setPredicate(p -> p.getImenaStudenata().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				grupe.setPredicate(
+						p -> p.getImenaStudenata().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Teacher":
-				grupe.setPredicate(p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				grupe.setPredicate(
+						p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Type":
-				grupe.setPredicate(p -> p.getTipgrupe().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				grupe.setPredicate(
+						p -> p.getTipgrupe().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Subject":
-				grupe.setPredicate(p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				grupe.setPredicate(
+						p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			}
 		});
-		
-		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) ->
-        {
-            if (newVal != null)
-            {
-                searchField.setText("");
-                grupe.setPredicate(null);
-            }
-        });
+
+		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal != null) {
+				searchField.setText("");
+				grupe.setPredicate(null);
+			}
+		});
 	}
 
 }

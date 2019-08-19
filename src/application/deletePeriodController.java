@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
 import com.jfoenix.controls.JFXTextField;
 
 import entiteti.Cas;
@@ -31,7 +32,7 @@ public class deletePeriodController implements Initializable {
 	@FXML
 	private TableView<Cas> table;
 	@FXML
-	private TableColumn<Cas,String> hall, subject, time, type, teacher;
+	private TableColumn<Cas, String> hall, subject, time, type, teacher;
 	@FXML
 	private ChoiceBox<String> choices;
 	@FXML
@@ -42,7 +43,7 @@ public class deletePeriodController implements Initializable {
 	public void deletePeriod(ActionEvent event) throws Exception {
 		if (table.getSelectionModel().isEmpty())
 			errBuild.setText("You didn't choose the period.");
-		
+
 		else {
 			ObservableList<Cas> temp = table.getSelectionModel().getSelectedItems();
 
@@ -51,13 +52,12 @@ public class deletePeriodController implements Initializable {
 			emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 			EntityManager em = emf.createEntityManager();
 
-			for (Cas cas : temp) 
-			{
+			for (Cas cas : temp) {
 				Cas c = em.find(Cas.class, cas.getId());
 				em.getTransaction().begin();
 				em.remove(c);
-			   	em.getTransaction().commit();
-			   	ProdekanController.Information = "You deleted a period successfully.";
+				em.getTransaction().commit();
+				ProdekanController.Information = "You deleted a period successfully.";
 				Stage primaryStage = new Stage();
 				Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/Info.fxml"));
 				Scene scene = new Scene(root);
@@ -65,12 +65,12 @@ public class deletePeriodController implements Initializable {
 				primaryStage.setScene(scene);
 				primaryStage.show();
 			}
-			
+
 			em.close();
 			emf.close();
- }
+		}
 
-}
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -79,49 +79,49 @@ public class deletePeriodController implements Initializable {
 		ObservableList<Cas> temp = FXCollections.observableArrayList();
 		for (Object e : ProdekanController.temp_list)
 			temp.add(((Cas) e));
-		
-		hall.setCellValueFactory(new PropertyValueFactory<Cas,String>("imeSale"));
-		subject.setCellValueFactory(new PropertyValueFactory<Cas,String>("imePredmeta"));
-		time.setCellValueFactory(new PropertyValueFactory<Cas,String>("vrijeme"));
-		teacher.setCellValueFactory(new PropertyValueFactory<Cas,String>("imeNastavnika"));
-		type.setCellValueFactory(new PropertyValueFactory<Cas,String>("tip"));
-		
-		FilteredList<Cas> casovi = new FilteredList<Cas>(temp,p->true);
-		
+
+		hall.setCellValueFactory(new PropertyValueFactory<Cas, String>("imeSale"));
+		subject.setCellValueFactory(new PropertyValueFactory<Cas, String>("imePredmeta"));
+		time.setCellValueFactory(new PropertyValueFactory<Cas, String>("vrijeme"));
+		teacher.setCellValueFactory(new PropertyValueFactory<Cas, String>("imeNastavnika"));
+		type.setCellValueFactory(new PropertyValueFactory<Cas, String>("tip"));
+
+		FilteredList<Cas> casovi = new FilteredList<Cas>(temp, p -> true);
+
 		table.setItems(casovi.sorted());
-		
-		choices.getItems().addAll("Hall","Subject","Time","Teacher","Type");
+
+		choices.getItems().addAll("Hall", "Subject", "Time", "Teacher", "Type");
 		choices.setValue("Hall");
-		
-		searchField.setOnKeyReleased(keyEvent ->
-		{
-			switch(choices.getValue())
-			{
+
+		searchField.setOnKeyReleased(keyEvent -> {
+			switch (choices.getValue()) {
 			case "Hall":
-				casovi.setPredicate(p -> p.getImeSale().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				casovi.setPredicate(
+						p -> p.getImeSale().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Subject":
-				casovi.setPredicate(p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				casovi.setPredicate(
+						p -> p.getImePredmeta().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Time":
-				casovi.setPredicate(p -> p.getVrijeme().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				casovi.setPredicate(
+						p -> p.getVrijeme().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Teacher":
-				casovi.setPredicate(p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				casovi.setPredicate(
+						p -> p.getImeNastavnika().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Type":
 				casovi.setPredicate(p -> p.getTip().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			}
 		});
-		
-		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) ->
-        {
-            if (newVal != null)
-            {
-                searchField.setText("");
-                casovi.setPredicate(null);
-            }
-        });
+
+		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal != null) {
+				searchField.setText("");
+				casovi.setPredicate(null);
+			}
+		});
 	}
 }

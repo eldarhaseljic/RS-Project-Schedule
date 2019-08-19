@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addUserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addUserController">
    <children>
       <CheckBox fx:id="checkTeacher" layoutX="67.0" layoutY="155.0" mnemonicParsing="false" onMouseClicked="#testTeacher" text="Teacher" />
       <JFXTextField fx:id="name" layoutX="157.0" layoutY="17.0" prefHeight="27.0" prefWidth="238.0">
@@ -37,9 +37,9 @@
       </Label>
       <CheckBox fx:id="checkStudent" layoutX="280.0" layoutY="155.0" mnemonicParsing="false" onMouseClicked="#testStudent" text="Student" />
       <Label fx:id="errCheck" alignment="CENTER" layoutX="14.0" layoutY="181.0" prefHeight="18.0" prefWidth="388.0" textFill="#bf0909" />
-      <ComboBox fx:id="list" layoutX="63.0" layoutY="206.0" onMouseClicked="#Press" prefHeight="39.0" prefWidth="290.0" />
-      <Label fx:id="errList" alignment="CENTER" layoutX="14.0" layoutY="254.0" prefHeight="18.0" prefWidth="388.0" textFill="#bf0909" />
-      <JFXButton layoutX="135.0" layoutY="282.0" onAction="#addUser" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add User" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+      <ComboBox fx:id="list" layoutX="63.0" layoutY="233.0" onMouseClicked="#Press" prefHeight="39.0" prefWidth="290.0" />
+      <Label fx:id="errList" alignment="CENTER" layoutX="14.0" layoutY="281.0" prefHeight="18.0" prefWidth="388.0" textFill="#bf0909" />
+      <JFXButton layoutX="133.0" layoutY="308.0" onAction="#addUser" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add User" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -50,5 +50,10 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </JFXButton>
+      <Label fx:id="text" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="140.0" layoutY="199.0" prefHeight="24.0" prefWidth="136.0" textAlignment="RIGHT">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

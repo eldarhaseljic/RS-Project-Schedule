@@ -36,35 +36,33 @@ public class showHallsController implements Initializable {
 
 		title.setCellValueFactory(new PropertyValueFactory<Sala, String>("nazivSale"));
 		building.setCellValueFactory(new PropertyValueFactory<Sala, String>("nazivZgrade"));
-		
-		FilteredList<Sala> sale = new FilteredList<Sala>(temp.sorted(),p->true);
-		
+
+		FilteredList<Sala> sale = new FilteredList<Sala>(temp.sorted(), p -> true);
+
 		table.setItems(sale.sorted());
-		
-		choices.getItems().addAll("Title","Building");
+
+		choices.getItems().addAll("Title", "Building");
 		choices.setValue("Title");
-		
-		searchField.setOnKeyReleased(keyEvent ->
-		{
-			switch(choices.getValue())
-			{
+
+		searchField.setOnKeyReleased(keyEvent -> {
+			switch (choices.getValue()) {
 			case "Title":
-				sale.setPredicate(p -> p.getNazivSale().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				sale.setPredicate(
+						p -> p.getNazivSale().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			case "Building":
-				sale.setPredicate(p -> p.getNazivZgrade().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
+				sale.setPredicate(
+						p -> p.getNazivZgrade().toLowerCase().contains(searchField.getText().toLowerCase().trim()));
 				break;
 			}
 		});
-		
-		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) ->
-        {
-            if (newVal != null)
-            {
-                searchField.setText("");
-                sale.setPredicate(null);
-            }
-        });
+
+		choices.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal != null) {
+				searchField.setText("");
+				sale.setPredicate(null);
+			}
+		});
 	}
 
 }

@@ -35,7 +35,6 @@ public class deleteReservationController implements Initializable {
 		if (listbox.getSelectionModel().isEmpty())
 			errBuild.setText("You didn't choose the reservation.");
 		else {
-			
 
 			String PERSISTENCE_UNIT_NAME = "raspored";
 			EntityManagerFactory emf;
@@ -55,7 +54,7 @@ public class deleteReservationController implements Initializable {
 				show(event);
 
 			}
-		
+
 			em.close();
 			emf.close();
 		}
@@ -79,13 +78,14 @@ public class deleteReservationController implements Initializable {
 		EntityManagerFactory emf;
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = emf.createEntityManager();
-		
-		Query q = em.createQuery("SELECT r FROM Rezervacija r where r.nastavnik = :n").setParameter("n",ProfessorController.nastavnik);
+
+		Query q = em.createQuery("SELECT r FROM Rezervacija r where r.nastavnik = :n").setParameter("n",
+				ProfessorController.nastavnik);
 		@SuppressWarnings("unchecked")
 		List<Rezervacija> nastavnici = q.getResultList();
-		
+
 		listbox.setItems(FXCollections.observableList(nastavnici).sorted());
-		
+
 		em.close();
 		emf.close();
 	}

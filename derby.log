@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sat Aug 17 17:53:18 CEST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-016c-a048-7480-000004ec8b90 
+Mon Aug 19 13:26:56 CEST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-016c-a9a1-4ba3-000004d483e0 
 on database directory /home/mahha/MyDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@3b9a45b3 
 Loaded from file:/home/mahha/razvoj_projekat/derby.jar
 java.vendor=Ubuntu

@@ -54,7 +54,7 @@ public class addHallController implements Initializable {
 			}
 		} else {
 			String nazivZ = buildingTitle.getValue();
-			String nazivS = hallTitle.getText().toUpperCase();
+			String nazivS = hallTitle.getText();
 			boolean exists = false;
 
 			String PERSISTENCE_UNIT_NAME = "raspored";
@@ -69,23 +69,8 @@ public class addHallController implements Initializable {
 
 			for (Zgrada z : zgrade) {
 				Collection<Sala> sale = z.getSale();
-
-				if (sale.isEmpty()) {
-					Sala s = new Sala();
-					s.setNazivSale(nazivS);
-					s.setZgrada(z);
-					z.getSale().add(s);
-					em.getTransaction().begin();
-					em.persist(s);
-					em.getTransaction().commit();
-
-					ProdekanController.Information = "The entity is successfully added to the database.";
-					show(event);
-					break;
-				}
-
 				for (Sala s : sale) {
-					if (s.getNazivSale().equals(nazivS)) {
+					if (s.getNazivSale().toLowerCase().equals(nazivS.toLowerCase())) {
 						exists = true;
 						ProdekanController.Information = "The entity already exists in the database!";
 						show(event);
@@ -104,6 +89,7 @@ public class addHallController implements Initializable {
 
 					ProdekanController.Information = "The entity is successfully added to the database.";
 					show(event);
+					break;
 				}
 			}
 

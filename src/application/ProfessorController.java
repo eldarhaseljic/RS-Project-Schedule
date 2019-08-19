@@ -18,8 +18,10 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -32,6 +34,9 @@ public class ProfessorController implements Initializable {
 	@FXML
 	private Label usr, email, titula;
 	public static List<?> temp_list;
+
+	@FXML
+	private Button button;
 
 	public void close(ActionEvent event) throws Exception {
 		System.exit(0);
@@ -79,16 +84,34 @@ public class ProfessorController implements Initializable {
 		for (Nastavnik n : nastavnici) {
 			if (MainController.trenutniKor.getIme().equals(n.getImeNast())
 					&& MainController.trenutniKor.getPrezime().equals(n.getPrezNast())) {
+				if (n.getTitula().equals("Prodekan")) {
+					button.setVisible(true);
+					button.setDisable(false);
+				} else {
+					button.setVisible(false);
+					button.setDisable(true);
+				}
 				titula.setText(n.getTitula());
 				ProfessorController.nastavnik = n;
 			}
 		}
-				
-		
+
 		em.close();
 		emf.close();
 	}
-	
+
+	public void Dean(ActionEvent event) throws Exception {
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/ProdekanScreen.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		primaryStage.setScene(scene);
+		primaryStage.setWidth(602);
+		primaryStage.setHeight(395);
+		primaryStage.setTitle("Welcome Vice Dean");
+		primaryStage.show();
+	}
+
 	public void addReservation(ActionEvent event) throws Exception {
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
@@ -101,8 +124,7 @@ public class ProfessorController implements Initializable {
 		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "The Vice Dean didn't enter any halls!";
 			show(event, "/fxml_files/Info.fxml", "Info");
-		} else 
-		{
+		} else {
 			show(event, "/fxml_files/addReservationScreen.fxml", "New Reservation");
 		}
 	}
@@ -119,13 +141,11 @@ public class ProfessorController implements Initializable {
 		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "There are no reservations!";
 			show(event, "/fxml_files/Info.fxml", "Info");
-		} 
-		else 
-		{
-			show(event,"/fxml_files/deleteReservationScreen.fxml","Delete Reservation");
+		} else {
+			show(event, "/fxml_files/deleteReservationScreen.fxml", "Delete Reservation");
 		}
 	}
-	
+
 	public void myReservations(ActionEvent event) throws Exception {
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
@@ -139,13 +159,11 @@ public class ProfessorController implements Initializable {
 		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "You don't have any reservations!";
 			show(event, "/fxml_files/Info.fxml", "Info");
-		} 
-		else 
-		{
-			show(event,"/fxml_files/myReservationScreen.fxml","My reservations");
+		} else {
+			show(event, "/fxml_files/myReservationScreen.fxml", "My reservations");
 		}
 	}
-	
+
 	public void otherReservations(ActionEvent event) throws Exception {
 		String PERSISTENCE_UNIT_NAME = "raspored";
 		EntityManagerFactory emf;
@@ -159,23 +177,20 @@ public class ProfessorController implements Initializable {
 		if (temp_list.isEmpty()) {
 			ProdekanController.Information = "There are no other reservations!";
 			show(event, "/fxml_files/Info.fxml", "Info");
-		} 
-		else 
-		{
-			show(event,"/fxml_files/otherReservationScreen.fxml","Other reservations");
+		} else {
+			show(event, "/fxml_files/otherReservationScreen.fxml", "Other reservations");
 		}
 	}
+
 	// Funkcija za pokretanje bilo kojeg gui prozora
 	private void show(Event event, String resurs, String title) throws IOException {
-			Parent root = FXMLLoader.load(getClass().getResource(resurs));
-			Scene scene = new Scene(root);
-			Stage primaryStage = new Stage();
-			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
-			primaryStage.setTitle(title);
-			primaryStage.show();
-		}
-	
-}
+		Parent root = FXMLLoader.load(getClass().getResource(resurs));
+		Scene scene = new Scene(root);
+		Stage primaryStage = new Stage();
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.setTitle(title);
+		primaryStage.show();
+	}
 
-	
+}
