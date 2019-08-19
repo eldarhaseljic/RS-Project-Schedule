@@ -79,7 +79,8 @@ public class addBuildingController {
 				nazivBaza = zgrada.getNazivZg();
 				adresaBaza = zgrada.getAdresaZg();
 
-				if (nazivBaza.toLowerCase().equals(naziv.toLowerCase()) && adresaBaza.toLowerCase().equals(adresa.toLowerCase())) {
+				if (nazivBaza.toLowerCase().equals(naziv.toLowerCase())
+						&& adresaBaza.toLowerCase().equals(adresa.toLowerCase())) {
 					exists = true;
 					ProdekanController.Information = "The entity already exists in the database!";
 					show(event);

@@ -108,10 +108,8 @@ public class addSubjectController implements Initializable {
 			@SuppressWarnings("unchecked")
 			List<Predmet> predmeti = q.getResultList();
 
-			for(Predmet e:predmeti) 
-			{
-				if (e.getImePred().toLowerCase().equals(subjectName.toLowerCase()))
-				{
+			for (Predmet e : predmeti) {
+				if (e.getImePred().toLowerCase().equals(subjectName.toLowerCase())) {
 					ProdekanController.Information = "The entity is already in the database!";
 					show(event);
 					em.close();
@@ -119,7 +117,7 @@ public class addSubjectController implements Initializable {
 					return;
 				}
 			}
-			
+
 			Predmet noviPredmet = new Predmet(subjectName, teacherName, orientationName, semesterName);
 			em.getTransaction().begin();
 			em.persist(noviPredmet);

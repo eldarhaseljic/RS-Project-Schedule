@@ -62,6 +62,17 @@ public class ProdekanController implements Initializable {
 		emf.close();
 	}
 
+	public void logout(ActionEvent event) throws Exception {
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/WelcometoFET.fxml"));
+		Scene scene = new Scene(root);
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.setTitle("Login Screen");
+		primaryStage.show();
+	}
+
 	public void Teacher(ActionEvent event) throws Exception {
 		Stage primaryStage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/ProfessorScreen.fxml"));

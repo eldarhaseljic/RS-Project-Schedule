@@ -1,7 +1,6 @@
 package application;
 
 import java.net.URL;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,7 +126,7 @@ public class SchedController implements Initializable {
 
 		Label label = new Label("You need to select semester!");
 		Label label2 = new Label("You need to select group!");
-		
+
 		label.setTextFill(Color.RED);
 		label2.setTextFill(Color.RED);
 
@@ -137,8 +136,8 @@ public class SchedController implements Initializable {
 		grid.add(salaCombo, 0, 3);
 		grid.add(label2, 0, 4);
 		grid.add(grupaCombo, 0, 5);
-		grid.add(nastavnikCombo,0 , 6);
-		
+		grid.add(nastavnikCombo, 0, 6);
+
 		dialog.getDialogPane().setContent(grid);
 
 		dialog.setResultConverter(dialogButton -> {
@@ -267,7 +266,7 @@ public class SchedController implements Initializable {
 						z1.setStyle("-fx-background-color: blue");
 
 					grid.add(z1, l, i);
-					
+
 					if ((4 * (temp.get(i).getVrijemeZavrsetkaCasaSat() - 8)
 							+ temp.get(i).getVrijemeZavrsetkaCasaMinuta() / 15)
 							- 4 * (temp.get(i).getvrijemePocetkaCasaSat() - 8)
@@ -291,8 +290,8 @@ public class SchedController implements Initializable {
 					} else {
 						z = new Label(temp.get(i).getImePredmeta() + " " + temp.get(i).getImeSale());
 					}
-					
-						grid.add(z, l, i);
+
+					grid.add(z, l, i);
 				}
 				grid.add(new Label(""), l, i);
 			}

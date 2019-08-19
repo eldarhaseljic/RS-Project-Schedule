@@ -122,7 +122,6 @@ public class Rezervacija {
 		return sala;
 	}
 
-
 	public void setNastavnik(Nastavnik n) {
 		nastavnik = n;
 	}

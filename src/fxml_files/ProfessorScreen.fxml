@@ -11,6 +11,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -21,12 +22,7 @@
             <Image url="@/slike/background.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="103.0" fitWidth="104.0" layoutX="57.0" layoutY="86.0" pickOnBounds="false" preserveRatio="true">
-         <image>
-            <Image url="@/slike/user.png" />
-         </image>
-      </ImageView>
-      <MenuBar layoutX="-4.0" prefHeight="32.0" prefWidth="606.0">
+      <MenuBar layoutX="-4.0" prefHeight="32.0" prefWidth="606.0" style="-fx-background-color: #f2b38d;">
         <menus>
             <Menu mnemonicParsing="false" text="Index">
                <items>
@@ -51,43 +47,66 @@
       <Line endX="101.0" layoutX="344.0" layoutY="95.0" startX="-151.0" />
       <Line endX="101.0" layoutX="344.0" layoutY="138.0" startX="-151.0" />
       <Line endX="101.0" layoutX="344.0" layoutY="180.0" startX="-151.0" />
-      <Line endX="443.0" layoutX="159.0" layoutY="235.0" startX="-167.0" />
-     <JFXButton layoutX="59.0" layoutY="261.0" onAction="#myReservations" prefHeight="40.0" prefWidth="205.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="My reservations" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton fx:id="report" layoutX="199.0" layoutY="316.0" onAction="#makeReport" prefHeight="40.0" prefWidth="205.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Report" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton layoutX="343.0" layoutY="261.0" onAction="#otherReservations" prefHeight="40.0" prefWidth="205.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Other reservations" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </JFXButton>
       <AnchorPane layoutX="244.0" layoutY="198.0" prefHeight="26.0" prefWidth="150.0">
          <children>
-            <JFXButton fx:id="button" layoutX="-8.0" layoutY="-13.0" onAction="#Dean" prefHeight="26.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Dean mod" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <JFXButton fx:id="button" layoutX="-8.0" layoutY="-13.0" onAction="#Dean" prefHeight="26.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Vice Dean mod" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <Pane layoutY="234.0" prefHeight="165.0" prefWidth="602.0" style="-fx-background-color: #f2b38d;">
+         <children>
+           <JFXButton layoutX="14.0" layoutY="60.0" onAction="#myReservations" prefHeight="40.0" prefWidth="169.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="My Reservations" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="report" layoutX="423.0" layoutY="60.0" onAction="#makeReport" prefHeight="40.0" prefWidth="169.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Report" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton layoutX="219.0" layoutY="60.0" onAction="#otherReservations" prefHeight="40.0" prefWidth="169.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Other Reservations" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </Pane>
+      <ImageView fitHeight="147.0" fitWidth="111.0" layoutX="45.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../slike/prof.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="56.0" layoutY="198.0" prefHeight="26.0" prefWidth="88.0">
+         <children>
+            <JFXButton layoutX="28.0" onAction="#logout" prefHeight="26.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Log out" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

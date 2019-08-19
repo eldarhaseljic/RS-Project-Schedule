@@ -11,10 +11,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addSubjectController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="684.0" style="-fx-background-color: #adb5f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addSubjectController">
    <children>
 
-     <JFXButton layoutX="444.0" layoutY="408.0" onAction="#addSubject" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add Subject" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+     <JFXButton layoutX="444.0" layoutY="463.0" onAction="#addSubject" prefHeight="40.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Add Subject" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -35,21 +35,21 @@
             <Font size="20.0" />
          </font>
       </JFXTextField>
-      <Label id="teachersTitle" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="17.0" layoutY="342.0" prefHeight="31.0" prefWidth="103.0" text="Orientation" textAlignment="CENTER">
+      <Label id="teachersTitle" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="12.0" layoutY="334.0" prefHeight="31.0" prefWidth="103.0" text="Orientation" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label id="teachersTitle" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="387.0" layoutY="26.0" prefHeight="39.0" prefWidth="90.0" text="Semester" textAlignment="CENTER">
+      <Label id="teachersTitle" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="380.0" layoutY="14.0" prefHeight="39.0" prefWidth="90.0" text="Semester" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <ListView fx:id="orientationsTitle" layoutX="14.0" layoutY="378.0" prefHeight="125.0" prefWidth="335.0" />
-      <ListView fx:id="semesterTitle" layoutX="387.0" layoutY="65.0" prefHeight="147.0" prefWidth="282.0" />
+      <ListView fx:id="orientationsTitle" layoutX="14.0" layoutY="363.0" prefHeight="140.0" prefWidth="335.0" />
+      <ListView fx:id="semesterTitle" layoutX="387.0" layoutY="65.0" prefHeight="371.0" prefWidth="282.0" />
       <Label fx:id="errSubject" layoutX="102.0" layoutY="56.0" prefHeight="26.0" prefWidth="245.0" textFill="#bf0909" />
       <Label fx:id="errTeachers" layoutX="68.0" layoutY="323.0" prefHeight="18.0" prefWidth="223.0" textFill="#bf0909" />
-      <Label fx:id="errSemester" layoutX="386.0" layoutY="219.0" prefHeight="18.0" prefWidth="282.0" textFill="#bf0909" />
+      <Label fx:id="errSemester" layoutX="387.0" layoutY="441.0" prefHeight="18.0" prefWidth="282.0" textFill="#bf0909" />
       <Label fx:id="errOrientations" layoutX="126.0" layoutY="349.0" prefHeight="18.0" prefWidth="223.0" textFill="#bf0909" />
       <TableView fx:id="table" layoutX="12.0" layoutY="83.0" prefHeight="200.0" prefWidth="335.0">
         <columns>

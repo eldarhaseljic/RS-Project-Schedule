@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="658.0" style="-fx-background-color: #7c0909;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.showSubjectsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="658.0" style="-fx-background-color: #c4c4fa;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.showSubjectsController">
    <children>
       <TableView fx:id="table" layoutX="17.0" layoutY="59.0" prefHeight="317.0" prefWidth="580.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <columns>
@@ -24,13 +24,13 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="40.0" layoutY="350.0" text="Search By:" textFill="WHITE">
+      <Label layoutX="40.0" layoutY="350.0" text="Search By:" textFill="#6b6969">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
       <ChoiceBox fx:id="choices" layoutX="134.0" layoutY="345.0" prefWidth="150.0" />
-      <JFXTextField fx:id="searchField" alignment="CENTER" focusColor="WHITE" layoutX="405.0" layoutY="345.0" promptText="Search here" style="-fx-background-color: #ffffff;" unFocusColor="BLACK">
+      <JFXTextField fx:id="searchField" alignment="CENTER" focusColor="WHITE" layoutX="405.0" layoutY="345.0" promptText="Search here" style="-fx-background-color: #ffffff;" unFocusColor="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

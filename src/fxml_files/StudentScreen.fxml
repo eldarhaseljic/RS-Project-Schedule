@@ -10,6 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -20,12 +21,12 @@
             <Image url="@/slike/background.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="146.0" fitWidth="157.0" layoutX="20.0" layoutY="60.0" pickOnBounds="false" preserveRatio="true">
+      <ImageView fitHeight="86.0" fitWidth="187.0" layoutX="31.0" layoutY="80.0" pickOnBounds="false" preserveRatio="true">
          <image>
-            <Image url="@/slike/user.png" />
+            <Image url="@../slike/grad.png" />
          </image>
       </ImageView>
-      <MenuBar layoutX="-4.0" prefHeight="32.0" prefWidth="606.0">
+      <MenuBar layoutX="-4.0" prefHeight="32.0" prefWidth="606.0" style="-fx-background-color: #bbe0f7;">
         <menus>
             <Menu mnemonicParsing="false" text="Index">
                <items>
@@ -33,35 +34,53 @@
                </items></Menu>
         </menus>
       </MenuBar>      
-      <Label fx:id="orientation" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="199.0" layoutY="48.0" prefHeight="32.0" prefWidth="348.0" textAlignment="CENTER">
+      <Label fx:id="orientation" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="230.0" layoutY="91.0" prefHeight="32.0" prefWidth="348.0" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="usr" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="199.0" layoutY="91.0" prefHeight="32.0" prefWidth="348.0" textAlignment="CENTER">
+      <Label fx:id="usr" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="230.0" layoutY="48.0" prefHeight="32.0" prefWidth="348.0" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Label fx:id="email" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="199.0" layoutY="135.0" prefHeight="32.0" prefWidth="348.0" textAlignment="CENTER" />
-      <Label fx:id="brIndex" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="200.0" layoutY="176.0" prefHeight="32.0" prefWidth="348.0" textAlignment="CENTER">
+      <Label fx:id="email" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="230.0" layoutY="135.0" prefHeight="32.0" prefWidth="348.0" textAlignment="CENTER" />
+      <Label fx:id="brIndex" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="230.0" layoutY="176.0" prefHeight="32.0" prefWidth="348.0" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Line endX="195.5" layoutX="355.0" layoutY="207.0" startX="-151.0" />
-      <Line endX="195.5" layoutX="354.0" layoutY="80.0" startX="-151.0" />
-      <Line endX="195.5" layoutX="354.0" layoutY="123.0" startX="-151.0" />
-      <Line endX="195.5" layoutX="354.0" layoutY="166.0" startX="-151.0" />
-      <Line endX="443.0" layoutX="159.0" layoutY="235.0" startX="-167.0" />
-      <JFXButton layoutX="199.0" layoutY="277.0" onAction="#openSched" prefHeight="40.0" prefWidth="205.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="View schedule" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </JFXButton>
+      <Line endX="195.5" layoutX="382.0" layoutY="208.0" startX="-151.0" />
+      <Line endX="195.5" layoutX="382.0" layoutY="80.0" startX="-151.0" />
+      <Line endX="195.5" layoutX="382.0" layoutY="123.0" startX="-151.0" />
+      <Line endX="195.5" layoutX="382.0" layoutY="167.0" startX="-151.0" />
+      <Pane layoutX="-3.0" layoutY="235.0" prefHeight="127.0" prefWidth="606.0" style="-fx-background-color: #bbe0f7;">
+         <children>
+            <JFXButton layoutX="201.0" layoutY="57.0" onAction="#openSched" prefHeight="40.0" prefWidth="205.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="View schedule" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </Pane>
+      <AnchorPane layoutX="78.0" layoutY="179.0" prefHeight="26.0" prefWidth="88.0">
+         <children>
+            <JFXButton layoutX="28.0" onAction="#logout" prefHeight="26.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Log out" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

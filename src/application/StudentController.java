@@ -10,13 +10,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import entiteti.Rezervacija;
 import entiteti.Student;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -71,13 +71,20 @@ public class StudentController implements Initializable {
 		em.close();
 		emf.close();
 	}
-	
+
 	public void openSched(ActionEvent event) throws Exception {
-		String PERSISTENCE_UNIT_NAME = "raspored";
-		EntityManagerFactory emf;
-		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		EntityManager em = emf.createEntityManager();
-		show(event,"/fxml_files/Schedule.fxml","Schedule");
+		show(event, "/fxml_files/Schedule.fxml", "Schedule");
+	}
+
+	public void logout(ActionEvent event) throws Exception {
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/WelcometoFET.fxml"));
+		Scene scene = new Scene(root);
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.setTitle("Login Screen");
+		primaryStage.show();
 	}
 
 	// Funkcija za pokretanje bilo kojeg gui prozora

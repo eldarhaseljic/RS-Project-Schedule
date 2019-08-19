@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addUserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="415.0" style="-fx-background-color: #c9adf5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.addUserController">
    <children>
       <CheckBox fx:id="checkTeacher" layoutX="67.0" layoutY="155.0" mnemonicParsing="false" onMouseClicked="#testTeacher" text="Teacher" />
       <JFXTextField fx:id="name" layoutX="157.0" layoutY="17.0" prefHeight="27.0" prefWidth="238.0">
@@ -19,7 +19,7 @@
          </font>
       </JFXTextField>
       <Label fx:id="errName" alignment="CENTER" layoutX="157.0" layoutY="62.0" prefHeight="18.0" prefWidth="238.0" textFill="#bf0909" />
-      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="25.0" layoutY="14.0" prefHeight="39.0" prefWidth="119.0" text="Name" textAlignment="RIGHT">
+      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="25.0" layoutY="14.0" prefHeight="39.0" prefWidth="119.0" text="First Name" textAlignment="RIGHT">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
@@ -30,7 +30,7 @@
          </font>
       </JFXTextField>
       <Label fx:id="errLastName" alignment="CENTER" layoutX="157.0" layoutY="131.0" prefHeight="18.0" prefWidth="238.0" textFill="#bf0909" />
-      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="25.0" layoutY="83.0" prefHeight="39.0" prefWidth="119.0" text="Last name" textAlignment="RIGHT">
+      <Label alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="25.0" layoutY="83.0" prefHeight="39.0" prefWidth="119.0" text="Last Name" textAlignment="RIGHT">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
