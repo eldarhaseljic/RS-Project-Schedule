@@ -74,7 +74,7 @@ public class MainController {
 				} else {
 					txtPassword.clear();
 					if (korisnici.get(0).isProdekan() == true)
-						lblStatus.setText("You are a Vice Dean , uncheck the checkbox");
+						lblStatus.setText("You are a Vice Dean, uncheck the checkbox");
 					else
 						lblStatus.setText("You are a teacher, uncheck the checkbox");
 				}
