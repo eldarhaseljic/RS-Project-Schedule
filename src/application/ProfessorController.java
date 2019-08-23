@@ -42,6 +42,10 @@ public class ProfessorController implements Initializable {
 		System.exit(0);
 	}
 
+	public void openSched(ActionEvent event) throws Exception {
+		show(event, "/fxml_files/Schedule.fxml", "Schedule");
+	}
+
 	public void logout(ActionEvent event) throws Exception {
 		Stage primaryStage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getResource("/fxml_files/WelcometoFET.fxml"));
