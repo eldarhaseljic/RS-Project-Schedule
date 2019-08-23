@@ -47,9 +47,9 @@
       <Line endX="101.0" layoutX="344.0" layoutY="95.0" startX="-151.0" />
       <Line endX="101.0" layoutX="344.0" layoutY="138.0" startX="-151.0" />
       <Line endX="101.0" layoutX="344.0" layoutY="180.0" startX="-151.0" />
-      <AnchorPane layoutX="244.0" layoutY="198.0" prefHeight="26.0" prefWidth="150.0">
+      <AnchorPane layoutX="235.0" layoutY="198.0" prefHeight="26.0" prefWidth="128.0">
          <children>
-            <JFXButton fx:id="button" layoutX="-8.0" layoutY="-13.0" onAction="#Dean" prefHeight="26.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Vice Dean mod" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <JFXButton fx:id="button" layoutX="-8.0" layoutY="-13.0" onAction="#Dean" prefHeight="26.0" prefWidth="128.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Vice Dean mod" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -107,6 +107,21 @@
       <AnchorPane layoutX="56.0" layoutY="198.0" prefHeight="26.0" prefWidth="88.0">
          <children>
             <JFXButton layoutX="28.0" onAction="#logout" prefHeight="26.0" prefWidth="150.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="Log out" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="446.0" layoutY="198.0" prefHeight="26.0" prefWidth="111.0">
+         <children>
+            <JFXButton onAction="#openSched" prefHeight="26.0" prefWidth="128.0" ripplerFill="#4d1a1a" style="-fx-background-color: #7c0909; -fx-opacity: 1;" text="View schedule" textAlignment="CENTER" textFill="WHITE" viewOrder="2.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

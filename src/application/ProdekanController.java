@@ -38,6 +38,10 @@ public class ProdekanController implements Initializable {
 		System.exit(0);
 	}
 
+	public void openSched(ActionEvent event) throws Exception {
+		show(event, "/fxml_files/Schedule.fxml", "Schedule");
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
